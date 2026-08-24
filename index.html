@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISC Mathematics &mdash; First Term Practice</title>
+<style>
+/* Shared design tokens — keep in step with src/build_revision.py. */
+:root{
+  --bg:#EEF1F6; --surface:#FFFFFF; --surface-2:#F6F8FC;
+  --ink:#151B26; --muted:#5A6577; --rule:#D5DCE7; --rule-strong:#A3AFC2;
+  --accent:#2A4B8D; --accent-soft:#DFE7F6; --accent-ink:#1D3667;
+  --warm:#8A5A12; --warm-soft:#FBF0DC;
+  --shadow:0 1px 2px rgba(21,27,38,.05), 0 10px 28px -20px rgba(21,27,38,.4);
+  --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono","JetBrains Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1017; --surface:#141A24; --surface-2:#1A222E;
+    --ink:#E5EAF2; --muted:#94A1B5; --rule:#26303E; --rule-strong:#48566B;
+    --accent:#7EA6EE; --accent-soft:#182741; --accent-ink:#A8C4F5;
+    --warm:#E0B36A; --warm-soft:#2C2314;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px -20px rgba(0,0,0,.85);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1017; --surface:#141A24; --surface-2:#1A222E;
+  --ink:#E5EAF2; --muted:#94A1B5; --rule:#26303E; --rule-strong:#48566B;
+  --accent:#7EA6EE; --accent-soft:#182741; --accent-ink:#A8C4F5;
+  --warm:#E0B36A; --warm-soft:#2C2314;
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px -20px rgba(0,0,0,.85);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--serif); font-size:17px; line-height:1.6;
+  display:flex; flex-direction:column; min-height:100vh;
+}
+a{color:inherit}
+button{font:inherit; color:inherit; cursor:pointer}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+sub,sup{line-height:0; font-size:74%}
+sup{vertical-align:.45em} sub{vertical-align:-.22em}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:1px solid var(--rule); background:var(--surface)}
+.masthead .inner{
+  max-width:56rem; margin:0 auto; padding:2.6rem 1.25rem 2rem;
+  display:flex; flex-direction:column; gap:.7rem; position:relative;
+}
+.eyebrow{
+  font-family:var(--sans); font-size:.7rem; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--accent);
+}
+h1{
+  font-family:var(--serif); font-weight:600; font-size:clamp(2rem,5vw,2.8rem);
+  line-height:1.1; margin:0; letter-spacing:-.014em; text-wrap:balance;
+}
+.standfirst{margin:0; color:var(--muted); max-width:60ch; font-size:1.02rem}
+.themeBtn{
+  position:absolute; top:2.6rem; right:1.25rem;
+  font-family:var(--sans); font-size:.78rem; font-weight:550;
+  background:var(--surface); border:1px solid var(--rule); border-radius:2px;
+  padding:.38rem .8rem; color:var(--muted); transition:border-color .15s, color .15s;
+}
+.themeBtn:hover{border-color:var(--rule-strong); color:var(--ink)}
+
+/* ---------- layout ---------- */
+main{flex:1 0 auto; max-width:56rem; margin:0 auto; padding:2.2rem 1.25rem 1rem; width:100%}
+.section-label{
+  font-family:var(--sans); font-size:.7rem; font-weight:600; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--muted);
+  display:flex; align-items:center; gap:.8rem; margin-bottom:1rem;
+}
+.section-label::after{content:""; flex:1 1 auto; height:1px; background:var(--rule)}
+.lead{margin:0 0 1.3rem; color:var(--muted); font-size:.98rem; max-width:66ch}
+.sets{display:flex; flex-direction:column; gap:1rem; list-style:none; margin:0; padding:0}
+.sets + .section-label{margin-top:2.4rem}
+
+/* ---------- scope panel ---------- */
+.scope{
+  background:var(--warm-soft); border:1px solid var(--rule); border-radius:3px;
+  border-left:3px solid var(--warm); padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem; font-size:.95rem;
+}
+.scope h2{
+  font-family:var(--sans); font-size:.7rem; font-weight:700; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--warm); margin:0 0 .7rem;
+}
+.scope .cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:1rem}
+.scope h3{
+  font-family:var(--sans); font-size:.68rem; font-weight:600; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted); margin:0 0 .35rem;
+}
+.scope ol{margin:0; padding-left:1.4rem; font-size:.92rem}
+.scope li{margin:.1rem 0}
+.scope p{margin:.85rem 0 0; color:var(--muted); font-size:.9rem; max-width:70ch}
+
+/* ---------- cards ---------- */
+.set, .paperblock{
+  background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+  box-shadow:var(--shadow); padding:1.4rem 1.5rem 1.35rem;
+}
+.set{display:block; text-decoration:none; transition:border-color .16s, transform .16s}
+.set:hover{border-color:var(--accent); transform:translateY(-1px)}
+.kicker{
+  font-family:var(--sans); font-size:.68rem; font-weight:600; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--accent); display:block; margin-bottom:.45rem;
+}
+.set h2, .paperblock h2{
+  font-family:var(--serif); font-weight:600; font-size:1.45rem; line-height:1.2;
+  margin:0 0 .5rem; letter-spacing:-.01em;
+  display:flex; align-items:baseline; gap:.5rem; flex-wrap:wrap;
+}
+.set h2 .go{
+  font-family:var(--sans); font-size:.78rem; font-weight:600; color:var(--accent);
+  letter-spacing:.02em; transition:transform .16s;
+}
+.set:hover h2 .go{transform:translateX(3px)}
+.set > p, .paperblock > p{margin:0; color:var(--muted); font-size:.98rem; max-width:62ch}
+.stats{
+  font-family:var(--sans); font-size:.78rem; color:var(--muted);
+  margin:.85rem 0 0; padding:.7rem 0 0; border-top:1px solid var(--rule);
+  display:flex; flex-wrap:wrap; gap:.4rem .5rem; align-items:center;
+}
+.stats b{font-variant-numeric:tabular-nums; font-weight:650; color:var(--ink); margin-right:.15rem}
+.stats .sep{color:var(--rule-strong)}
+.chips{display:flex; flex-wrap:wrap; gap:.35rem; margin:.7rem 0 0}
+.chip{
+  font-family:var(--sans); font-size:.72rem; color:var(--accent-ink);
+  background:var(--accent-soft); border:1px solid var(--accent-soft);
+  border-radius:2px; padding:.16rem .45rem;
+}
+.chip b{font-variant-numeric:tabular-nums; font-weight:650}
+.paperblock.featured{border-color:var(--accent); border-left:3px solid var(--accent)}
+
+/* ---------- the ways in ---------- */
+.ways{display:grid; grid-template-columns:1fr; gap:.7rem; margin-top:1rem}
+.way{
+  display:flex; flex-direction:column; gap:.28rem; text-decoration:none;
+  border:1px solid var(--rule); border-radius:3px; padding:.85rem .95rem .8rem;
+  background:var(--surface-2); transition:border-color .16s, transform .16s;
+}
+.way:hover{border-color:var(--accent); transform:translateY(-1px)}
+.way .wk{
+  font-family:var(--sans); font-size:.64rem; font-weight:700; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--accent);
+}
+.way b{font-family:var(--serif); font-size:1.05rem; font-weight:600; line-height:1.25}
+.way .wd{font-size:.86rem; color:var(--muted); line-height:1.45}
+.way .go{
+  font-family:var(--sans); font-size:.76rem; font-weight:600; color:var(--accent);
+  margin-top:.25rem; transition:transform .16s;
+}
+.way:hover .go{transform:translateX(3px)}
+
+/* ---------- blueprint table ---------- */
+.bp{width:100%; border-collapse:collapse; font-family:var(--sans); font-size:.8rem;
+    margin:1rem 0 0}
+.bp th,.bp td{border:1px solid var(--rule); padding:.32rem .55rem; text-align:left}
+.bp th{background:var(--surface-2); font-weight:650; font-size:.72rem;
+       letter-spacing:.04em; color:var(--muted)}
+.bp td{font-variant-numeric:tabular-nums}
+.bp tfoot td{font-weight:650; color:var(--ink); background:var(--surface-2)}
+
+/* ---------- footer ---------- */
+footer{
+  max-width:56rem; margin:0 auto; padding:2.4rem 1.25rem 3rem; width:100%;
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); line-height:1.65;
+}
+footer .rule{height:1px; background:var(--rule); margin-bottom:1.1rem}
+footer h3{
+  font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted); margin:0 0 .5rem;
+}
+footer p{margin:0 0 .9rem; max-width:70ch}
+footer code{
+  font-family:var(--mono); font-size:.9em; background:var(--surface-2);
+  border:1px solid var(--rule); border-radius:3px; padding:.08em .34em;
+}
+footer a{color:var(--accent); text-decoration:none}
+footer a:hover{text-decoration:underline}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+@media (max-width:560px){
+  body{font-size:16px}
+  .masthead .inner{padding-top:3.6rem}
+  .themeBtn{top:1.1rem}
+  .set,.paperblock{padding:1.15rem 1.1rem}
+}
+</style>
+<script>
+/* Apply the remembered theme before first paint, so there is no flash of the
+   wrong palette. Shares its storage key with the revision page. */
+try {
+  var t = localStorage.getItem('isc-maths-theme');
+  if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+} catch (e) {}
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="inner">
+    <button class="themeBtn" id="themeBtn" type="button">Dark</button>
+    <div class="eyebrow">The Heritage School &middot; Class 12 &middot; First Term 2026&ndash;27</div>
+    <h1>Mathematics First Term</h1>
+    <p class="standfirst">One revision document to work through and three full papers to sit.
+    The revision page keeps every solution hidden behind a button so you can attempt first;
+    the papers follow the <b>new ISC 2027 pattern</b> and each carries its own answer key.</p>
+  </div>
+</header>
+
+<main>
+
+  <div class="scope">
+    <h2>What the First Term covers this year</h2>
+    <div class="cols">
+      <div>
+        <h3>In the First Term</h3>
+        <ol>
+          <li>Relations and Functions</li>
+          <li>Inverse Trigonometric Functions</li>
+          <li>Matrices</li>
+          <li>Determinants</li>
+          <li>Continuity and Differentiability</li>
+          <li>Applications of Derivatives</li>
+          <li>Integrals</li>
+          <li>Application of Integrals</li>
+          <li>Linear Programming</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Held back to the Pre-Board</h3>
+        <ol>
+          <li>Differential Equations</li>
+          <li>Vectors</li>
+          <li>Three-dimensional Geometry</li>
+          <li>Probability</li>
+        </ol>
+      </div>
+    </div>
+    <p>Chapter order follows <i>Understanding ISC Mathematics</i> (M.L.&nbsp;Aggarwal). Worth
+    knowing before you reach for last year&rsquo;s paper: the <b>2024&ndash;25 First Term paper
+    examined Probability, Vectors, 3-D Geometry and Linear Regression</b>, none of which is in
+    this year&rsquo;s First Term &mdash; and linear regression has been dropped from the ISC
+    syllabus altogether. Integrals and Application of Integrals are new to the First Term and
+    were not on that paper at all.</p>
+  </div>
+
+  <div class="section-label">Revision</div>
+
+  <p class="lead">Start here. Problems are grouped <b>by type</b> rather than by paper, each
+  type opening with the method that solves all of them. Nothing is a question paper &mdash;
+  attempt on paper, then reveal.</p>
+
+  <ul class="sets">
+    <li>
+      <a class="set" href="First-Term-Revision-Learn.html">
+        <span class="kicker">Learn &middot; solutions hidden until you ask</span>
+        <h2>First Term Revision <span class="go">Open &rarr;</span></h2>
+        <p>Ninety worked problems over the nine First Term chapters, each tagged with its
+        marks and its source. Every solution sits behind a <i>Show solution</i> button, with
+        <i>reveal chapter</i> and <i>reveal all</i> when you want them. Solutions carry an
+        <b>Answer</b> line, a <b>Note</b> on method, and a <b>Trap</b> naming the specific
+        error the examiner is testing for.</p>
+        <!-- Counts below are the real per-chapter totals; recompute with
+             python3 src/build_revision.py, which prints the totals it wrote. -->
+        <div class="chips">
+          <span class="chip"><b>12</b> Relations &amp; Functions</span>
+          <span class="chip"><b>9</b> Inverse Trig</span>
+          <span class="chip"><b>9</b> Matrices</span>
+          <span class="chip"><b>8</b> Determinants</span>
+          <span class="chip"><b>12</b> Continuity &amp; Differentiability</span>
+          <span class="chip"><b>12</b> Applications of Derivatives</span>
+          <span class="chip"><b>15</b> Integrals</span>
+          <span class="chip"><b>7</b> Application of Integrals</span>
+          <span class="chip"><b>6</b> Linear Programming</span>
+        </div>
+        <p class="stats">
+          <span><b>90</b> problems</span> <span class="sep">&middot;</span>
+          <span><b>34</b> problem types</span> <span class="sep">&middot;</span>
+          <span><b>9</b> chapters</span> <span class="sep">&middot;</span>
+          <span>no clock, no score</span> <span class="sep">&middot;</span>
+          <span>printing reveals everything</span>
+        </p>
+      </a>
+    </li>
+  </ul>
+
+  <div class="section-label">Practice papers</div>
+
+  <p class="lead">Three papers on the <b>ISC 2027 pattern</b>, which is new this year: four
+  sections A&ndash;D, twenty questions, <b>all compulsory</b> &mdash; the old choice between
+  Section&nbsp;B and Section&nbsp;C is gone. Each paper is 80 marks over three hours, with
+  internal choice in three questions in each of Sections B, C and D, and an answer key on the
+  last pages.</p>
+
+  <table class="bp">
+    <thead>
+      <tr><th>Section</th><th>Questions</th><th>Marks each</th><th>Total</th><th>Internal choices</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A</td><td>Q1, sub-parts (i)&ndash;(xx)</td><td>1</td><td>20</td><td>&mdash;</td></tr>
+      <tr><td>B</td><td>Q2&ndash;Q8</td><td>2</td><td>14</td><td>3</td></tr>
+      <tr><td>C</td><td>Q9&ndash;Q15</td><td>3</td><td>21</td><td>3</td></tr>
+      <tr><td>D</td><td>Q16&ndash;Q20</td><td>5</td><td>25</td><td>3</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td colspan="3">Unit weights &mdash; Relations &amp; Functions and Inverse Trig 14,
+      Algebra 14, Calculus 45, Linear Programming 7</td><td>80</td><td>9</td></tr>
+    </tfoot>
+  </table>
+
+  <ul class="sets" style="margin-top:1.5rem">
+
+    <li class="paperblock featured">
+      <span class="kicker">Paper 1 &middot; sit this one first</span>
+      <h2>First Term Practice Paper 1</h2>
+      <p>The closest of the three to a straight reading of the syllabus, and the one to try
+      before the others. Its long answers are the four that come up most often: a bijection
+      with its inverse, a three-variable system by Martin&rsquo;s rule, a maximum-area
+      optimisation, and an area bounded by a circle and a line.</p>
+      <div class="chips">
+        <span class="chip">Equivalence relations</span>
+        <span class="chip">tan<sup>&minus;1</sup> equations</span>
+        <span class="chip">Determinant properties</span>
+        <span class="chip">Martin&rsquo;s rule</span>
+        <span class="chip">Rate of change</span>
+        <span class="chip">Partial fractions</span>
+        <span class="chip">Window optimisation</span>
+        <span class="chip">Circle and line area</span>
+      </div>
+      <p class="stats">
+        <span><b>80</b> marks</span> <span class="sep">&middot;</span>
+        <span><b>3</b> hours</span> <span class="sep">&middot;</span>
+        <span><b>20</b> questions</span> <span class="sep">&middot;</span>
+        <span>6 pages</span> <span class="sep">&middot;</span>
+        <span>answer key included</span>
+      </p>
+      <div class="ways">
+        <a class="way" href="First-Term-Practice-Paper-1.pdf">
+          <span class="wk">PDF &middot; question paper and key</span>
+          <b>Open Paper 1</b>
+          <span class="wd">Sections A&ndash;D as above. The key is on the last two pages and
+            is marked <i>do not read before attempting</i> &mdash; print pages 1&ndash;4 alone
+            if you would rather not have it to hand.</span>
+          <span class="go">Open &rarr;</span>
+        </a>
+      </div>
+    </li>
+
+    <li class="paperblock">
+      <span class="kicker">Paper 2 &middot; heavier on proof</span>
+      <h2>First Term Practice Paper 2</h2>
+      <p>Leans towards the questions that ask you to <i>show</i> rather than compute: a
+      second-order differentiation identity, an inverse-trigonometric identity over a
+      restricted domain, and the classic open-box maximum volume. Its integrals are the
+      substitution-and-partial-fractions pair the syllabus names explicitly.</p>
+      <div class="chips">
+        <span class="chip">Reflexivity counterexamples</span>
+        <span class="chip">2&nbsp;tan<sup>&minus;1</sup> formula</span>
+        <span class="chip">Cayley&ndash;Hamilton style identity</span>
+        <span class="chip">Implicit differentiation</span>
+        <span class="chip">e<sup>a&nbsp;cos&#8315;&#185;x</sup> proof</span>
+        <span class="chip">Tangent and normal</span>
+        <span class="chip">Open box maximum</span>
+        <span class="chip">Area along the y-axis</span>
+      </div>
+      <p class="stats">
+        <span><b>80</b> marks</span> <span class="sep">&middot;</span>
+        <span><b>3</b> hours</span> <span class="sep">&middot;</span>
+        <span><b>20</b> questions</span> <span class="sep">&middot;</span>
+        <span>6 pages</span> <span class="sep">&middot;</span>
+        <span>answer key included</span>
+      </p>
+      <div class="ways">
+        <a class="way" href="First-Term-Practice-Paper-2.pdf">
+          <span class="wk">PDF &middot; question paper and key</span>
+          <b>Open Paper 2</b>
+          <span class="wd">Same blueprint, different questions throughout &mdash; no problem
+            is repeated from Paper 1.</span>
+          <span class="go">Open &rarr;</span>
+        </a>
+      </div>
+    </li>
+
+    <li class="paperblock">
+      <span class="kicker">Paper 3 &middot; widest spread of small questions</span>
+      <h2>First Term Practice Paper 3</h2>
+      <p>The best of the three for finding gaps: its Section A ranges over all nine chapters
+      and its two-markers are short and varied. Long answers cover a least-cost problem, a
+      completed-square integral and an area cut by the line y&nbsp;=&nbsp;x.</p>
+      <div class="chips">
+        <span class="chip">Counting equivalence relations</span>
+        <span class="chip">tan<sup>&minus;1</sup>1&nbsp;+&nbsp;tan<sup>&minus;1</sup>2&nbsp;+&nbsp;tan<sup>&minus;1</sup>3</span>
+        <span class="chip">Area by determinants</span>
+        <span class="chip">Parametric derivatives</span>
+        <span class="chip">Local maxima</span>
+        <span class="chip">Least-cost tank</span>
+        <span class="chip">Completing the square</span>
+        <span class="chip">Circle and y&nbsp;=&nbsp;x</span>
+      </div>
+      <p class="stats">
+        <span><b>80</b> marks</span> <span class="sep">&middot;</span>
+        <span><b>3</b> hours</span> <span class="sep">&middot;</span>
+        <span><b>20</b> questions</span> <span class="sep">&middot;</span>
+        <span>6 pages</span> <span class="sep">&middot;</span>
+        <span>answer key included</span>
+      </p>
+      <div class="ways">
+        <a class="way" href="First-Term-Practice-Paper-3.pdf">
+          <span class="wk">PDF &middot; question paper and key</span>
+          <b>Open Paper 3</b>
+          <span class="wd">Sit this one last, as a check on coverage rather than on
+            technique.</span>
+          <span class="go">Open &rarr;</span>
+        </a>
+      </div>
+    </li>
+
+    <!-- ============================================================
+         TO ADD ANOTHER PAPER: copy one <li class="paperblock"> above,
+         change the paper number in the heading and the href, and
+         rewrite the description, the chips and the stats. The PDF
+         itself is generated by src/build_papers.py from a matching
+         src/papers_pN.py data file.
+         ============================================================ -->
+
+  </ul>
+</main>
+
+<footer>
+  <div class="rule"></div>
+  <h3>Where the questions come from</h3>
+  <p>Problems are drawn from the <b>NCERT Exemplar</b> and the <b>NCERT textbook</b>, the
+  <b>ISC board and specimen papers</b> held in <code>Question-Papers/</code> and
+  <code>Specimen-Papers/</code>, and the <b>Heritage School</b> First Term paper of
+  2024&ndash;25. Each problem on the revision page names its source. Where a school-paper
+  question was ambiguous or misprinted it has been restated and the change noted.</p>
+
+  <h3>Answers</h3>
+  <p>Every numerical and algebraic answer on the revision page and in the three answer keys
+  was checked against a computer algebra system rather than copied across.</p>
+
+  <h3>Also in this folder</h3>
+  <p><a href="Functional_Analysis_Viva_Questions.pdf">Project viva questions</a> &mdash; 73
+  questions with answers, plus a rapid-fire sheet, for the Paper II project
+  <i>Functional Analysis of Exponential Mappings and Cryptographic Applications</i>. Check the
+  current syllabus in <code>Syllabus/</code> before working through the older papers; it
+  decides what is still examinable.</p>
+
+  <h3>Rebuilding</h3>
+  <p><code>python3 src/build_revision.py</code> rebuilds the revision page.
+  <code>python3 src/build_papers.py</code> rebuilds all three papers, or pass a number for
+  one of them. This page is maintained by hand.</p>
+</footer>
+
+<script>
+/* Remember the reader's light / dark choice across this page and the revision
+   page. The stored value is applied by the small script in <head>. */
+var KEY = 'isc-maths-theme';
+function save(v){ try { localStorage.setItem(KEY, v); } catch(e){} }
+
+function isDark(){
+  var set = document.documentElement.getAttribute('data-theme');
+  if (set) return set === 'dark';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+var btn = document.getElementById('themeBtn');
+function syncBtn(){ btn.textContent = isDark() ? 'Light' : 'Dark'; }
+btn.addEventListener('click', function(){
+  var next = isDark() ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  save(next);
+  syncBtn();
+});
+syncBtn();
+</script>
+</body>
+</html>

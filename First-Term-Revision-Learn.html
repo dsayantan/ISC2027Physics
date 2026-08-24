@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISC Maths Class 12 &mdash; First Term Revision &middot; Problems with Hidden Solutions</title>
+<script>
+/* Honour the light / dark choice made on index.html, before first paint. */
+try {
+  var _t = localStorage.getItem('isc-maths-theme');
+  if (_t === 'dark' || _t === 'light')
+    document.documentElement.setAttribute('data-theme', _t);
+} catch (e) {}
+</script>
+<style>
+:root{
+  --bg:#EEF1F6; --surface:#FFFFFF; --surface-2:#F6F8FC; --surface-3:#EDF1F8;
+  --ink:#151B26; --muted:#5A6577; --rule:#D5DCE7; --rule-strong:#A3AFC2;
+  --accent:#2A4B8D; --accent-soft:#DFE7F6; --accent-ink:#1D3667;
+  --warm:#8A5A12; --warm-soft:#FBF0DC;
+  --ok:#186B45; --ok-soft:#DDF0E6; --danger:#B0402F;
+  --shadow:0 1px 2px rgba(21,27,38,.05), 0 10px 28px -20px rgba(21,27,38,.4);
+  --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+  --maxw:53rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1017; --surface:#141A24; --surface-2:#1A222E; --surface-3:#202A38;
+    --ink:#E5EAF2; --muted:#94A1B5; --rule:#26303E; --rule-strong:#48566B;
+    --accent:#7EA6EE; --accent-soft:#182741; --accent-ink:#A8C4F5;
+    --warm:#E0B36A; --warm-soft:#2C2314;
+    --ok:#5FC793; --ok-soft:#102C1E; --danger:#F09080;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px -20px rgba(0,0,0,.85);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1017; --surface:#141A24; --surface-2:#1A222E; --surface-3:#202A38;
+  --ink:#E5EAF2; --muted:#94A1B5; --rule:#26303E; --rule-strong:#48566B;
+  --accent:#7EA6EE; --accent-soft:#182741; --accent-ink:#A8C4F5;
+  --warm:#E0B36A; --warm-soft:#2C2314;
+  --ok:#5FC793; --ok-soft:#102C1E; --danger:#F09080;
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px -20px rgba(0,0,0,.85);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.15rem 5rem}
+
+/* ---------------------------------------------------------------- masthead */
+header.mast{padding:2.6rem 0 1.4rem;border-bottom:1px solid var(--rule);margin-bottom:1.6rem}
+.kicker{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+        color:var(--warm);font-weight:650;margin:0 0 .7rem}
+h1{font-family:var(--serif);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.16;
+   margin:0 0 .6rem;color:var(--accent-ink);font-weight:700;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0;max-width:44rem}
+.statrow{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+.stat{background:var(--surface);border:1px solid var(--rule);border-radius:9px;
+      padding:.5rem .8rem;box-shadow:var(--shadow)}
+.stat b{display:block;font-family:var(--serif);font-size:1.2rem;color:var(--accent);
+        line-height:1.1}
+.stat span{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* ------------------------------------------------------------------ panels */
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:12px;
+       padding:1.1rem 1.2rem;margin:1.3rem 0;box-shadow:var(--shadow)}
+.panel.warm{background:var(--warm-soft);border-color:color-mix(in srgb,var(--warm) 32%,transparent)}
+.panel h2{font-size:.95rem;margin:0 0 .55rem;color:var(--warm);font-weight:700;
+          letter-spacing:.01em}
+.panel.plain h2{color:var(--accent)}
+.panel ul{margin:.3rem 0 0;padding-left:1.15rem}
+.panel li{margin:.3rem 0}
+.panel p{margin:.35rem 0}
+.scopegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.9rem}
+.scopecol h3{font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;
+             margin:0 0 .4rem;color:var(--muted)}
+.scopecol.in h3{color:var(--ok)}
+.scopecol.out h3{color:var(--danger)}
+.scopecol ol{margin:0;padding-left:1.3rem;font-size:.9rem}
+.scopecol li{margin:.15rem 0}
+
+/* --------------------------------------------------------------------- toc */
+nav.toc{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);
+        backdrop-filter:blur(9px);border-bottom:1px solid var(--rule);
+        margin:1.4rem -1.15rem 1.8rem;padding:.55rem 1.15rem}
+.tocinner{max-width:var(--maxw);margin:0 auto;display:flex;gap:.35rem;overflow-x:auto;
+          scrollbar-width:thin}
+nav.toc a{flex:0 0 auto;font-size:.78rem;text-decoration:none;color:var(--muted);
+          padding:.3rem .6rem;border-radius:999px;border:1px solid transparent;
+          white-space:nowrap}
+nav.toc a:hover{color:var(--accent);background:var(--accent-soft)}
+nav.toc a.on{color:var(--accent-ink);background:var(--accent-soft);
+             border-color:color-mix(in srgb,var(--accent) 35%,transparent);font-weight:600}
+
+/* ---------------------------------------------------------------- controls */
+.gcontrol{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:1rem 0 1.6rem}
+button{font:inherit;font-size:.83rem;cursor:pointer;border-radius:8px;
+       border:1px solid var(--rule-strong);background:var(--surface);color:var(--ink);
+       padding:.42rem .85rem;transition:background .13s,border-color .13s,color .13s}
+button:hover{border-color:var(--accent);color:var(--accent)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button.primary:hover{filter:brightness(1.1);color:#fff}
+.prog{margin-left:auto;font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* ---------------------------------------------------------------- chapters */
+section.ch{margin:2.6rem 0 0;scroll-margin-top:4rem}
+.chhead{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;
+        border-bottom:2px solid var(--accent);padding-bottom:.5rem;margin-bottom:.2rem}
+.chnum{font-family:var(--serif);font-size:2.1rem;line-height:1;color:var(--accent);
+       font-weight:700;opacity:.55}
+.chhead h2{font-family:var(--serif);font-size:1.42rem;margin:0;color:var(--accent-ink);
+           font-weight:700;flex:1 1 12rem}
+.chhead .chctl{display:flex;gap:.35rem}
+.chhead button{font-size:.74rem;padding:.28rem .6rem}
+.chscope{font-size:.86rem;color:var(--muted);margin:.6rem 0 1.4rem;
+         padding-left:.8rem;border-left:2px solid var(--rule)}
+
+/* ------------------------------------------------------------------- types */
+.type{margin:1.7rem 0}
+.tname{font-size:1rem;font-weight:700;color:var(--ink);margin:0 0 .5rem;
+       font-family:var(--serif);letter-spacing:.005em}
+.strategy{background:var(--surface-3);border-left:3px solid var(--accent);
+          border-radius:0 9px 9px 0;padding:.6rem .85rem;font-size:.88rem;
+          color:var(--ink);margin:0 0 .9rem}
+.strategy b::before{content:""}
+.strategy .lbl{display:block;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+               color:var(--accent);font-weight:700;margin-bottom:.2rem}
+
+/* ---------------------------------------------------------------- problems */
+.prob{background:var(--surface);border:1px solid var(--rule);border-radius:11px;
+      padding:.95rem 1.05rem;margin:.75rem 0;box-shadow:var(--shadow);position:relative}
+.prob.done{border-color:color-mix(in srgb,var(--ok) 50%,transparent)}
+.pmeta{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem}
+.pn{font-family:var(--mono);font-size:.72rem;font-weight:700;color:#fff;
+    background:var(--accent);border-radius:5px;padding:.1rem .42rem;letter-spacing:.02em}
+.marks{font-size:.7rem;color:var(--accent-ink);background:var(--accent-soft);
+       border-radius:999px;padding:.1rem .5rem;font-weight:650}
+.src{font-size:.71rem;color:var(--muted);font-style:italic}
+.dtoggle{margin-left:auto;font-size:.7rem;padding:.18rem .5rem;border-radius:999px}
+.prob.done .dtoggle{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.q{margin:.15rem 0 .7rem}
+.q p{margin:.35rem 0}
+.sbtn{font-size:.8rem}
+.sol{display:none;margin-top:.85rem;padding-top:.85rem;border-top:1px dashed var(--rule-strong)}
+.prob.open .sol{display:block}
+.sol > :first-child{margin-top:0}
+
+ol.steps{margin:.2rem 0;padding-left:1.35rem}
+ol.steps li{margin:.4rem 0}
+ul.bul{margin:.2rem 0;padding-left:1.2rem}
+.disp{text-align:center;margin:.7rem 0;font-family:var(--serif);font-size:1.03em}
+p.note,p.trap,p.ansline{margin:.7rem 0 0;font-size:.89rem;padding:.5rem .7rem;
+                        border-radius:8px;line-height:1.55}
+p.ansline{background:var(--ok-soft);border:1px solid color-mix(in srgb,var(--ok) 30%,transparent)}
+p.note{background:var(--surface-2);border:1px solid var(--rule)}
+p.trap{background:var(--warm-soft);border:1px solid color-mix(in srgb,var(--warm) 30%,transparent)}
+.tag{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+     margin-right:.45rem;vertical-align:.05em}
+p.ansline .tag{color:var(--ok)}
+p.note .tag{color:var(--muted)}
+p.trap .tag{color:var(--warm)}
+
+.tw{overflow-x:auto;margin:.6rem 0}
+table{border-collapse:collapse;font-size:.87rem;min-width:16rem}
+th,td{border:1px solid var(--rule);padding:.32rem .6rem;text-align:left}
+th{background:var(--surface-3);font-size:.78rem;letter-spacing:.02em}
+
+/* ------------------------------------------------------------------- math */
+.fr{display:inline-block;vertical-align:middle;text-align:center;font-size:.92em;
+    margin:0 .16em;line-height:1.22}
+.fr .n{display:block;border-bottom:1px solid currentColor;padding:0 .26em}
+.fr .d{display:block;padding:0 .26em}
+.rt{white-space:nowrap}
+.rt .bar{border-top:1px solid currentColor;padding:0 .14em 0 .05em;margin-left:-.03em}
+.rt .ridx{font-size:.6em;margin-right:-.25em}
+.ig{display:inline-flex;align-items:center;vertical-align:middle;gap:.06em}
+.ig .sym{font-size:1.55em;line-height:.85;font-family:var(--serif)}
+.ig .lim{display:inline-flex;flex-direction:column;font-size:.62em;line-height:1.15;
+         margin:0 .1em 0 -.1em}
+.ig .hi{margin-bottom:.75em}
+.ig .lo{margin-top:-.75em}
+.mx{position:relative;display:inline-grid;vertical-align:middle;justify-items:center;
+    gap:.16em .7em;padding:.3em .5em;margin:0 .16em;font-size:.94em;line-height:1.2}
+.mx::before,.mx::after{content:"";position:absolute;top:0;bottom:0;width:.3em;
+                       border:1.5px solid currentColor}
+.mx::before{left:0;border-right:none}
+.mx::after{right:0;border-left:none}
+.mx.det::before,.mx.det::after{width:0;border-top:none;border-bottom:none}
+.mx.det::before{border-right:none}
+.mx.det::after{border-left:1.5px solid currentColor;border-right:none}
+.pw{display:inline-flex;align-items:center;vertical-align:middle;gap:.3em;margin:0 .1em}
+.pw .brace{font-size:2.3em;line-height:.75;font-weight:200;font-family:var(--serif)}
+.pw .cases{display:inline-grid;grid-template-columns:auto auto;gap:.12em .9em;
+           font-size:.94em;line-height:1.25;text-align:left}
+.pw .c{color:var(--muted);font-size:.94em}
+.lm{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;
+    line-height:1.05;margin:0 .1em}
+.lm .op{font-size:.95em}
+.lm .to{font-size:.66em;color:inherit}
+sup,sub{font-size:.72em;line-height:0}
+
+footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--rule);
+       font-size:.8rem;color:var(--muted)}
+footer p{margin:.3rem 0}
+.up{position:fixed;right:1rem;bottom:1rem;z-index:30;border-radius:999px;
+    width:2.6rem;height:2.6rem;padding:0;font-size:1rem;box-shadow:var(--shadow);
+    opacity:0;pointer-events:none;transition:opacity .2s}
+.up.show{opacity:1;pointer-events:auto}
+
+@media print{
+  body{background:#fff;font-size:10.5pt}
+  nav.toc,.gcontrol,.chhead .chctl,button,.up{display:none !important}
+  .prob .sol{display:block !important}
+  .prob,.panel{break-inside:avoid;box-shadow:none}
+  section.ch{break-before:page}
+  section.ch:first-of-type{break-before:auto}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <p class="kicker">The Heritage School &middot; Class 12 &middot; 2026&ndash;27 &middot; First Term</p>
+  <h1>Mathematics First Term Revision</h1>
+  <p class="sub">Worked problems arranged <b>by type</b>, covering the nine chapters of the
+  First Term syllabus. Every solution is hidden until you ask for it &mdash; attempt the
+  problem on paper first, then check. This is a revision document, not a question paper.</p>
+  <div class="statrow">
+    <div class="stat"><b>9</b><span>chapters</span></div>
+    <div class="stat"><b>34</b><span>problem types</span></div>
+    <div class="stat"><b>90</b><span>problems</span></div>
+    <div class="stat"><b>ML Aggarwal</b><span>prescribed text</span></div>
+  </div>
+</header>
+
+<div class="panel plain">
+  <h2>First Term syllabus &mdash; what is in and what is not</h2>
+  <div class="scopegrid">
+    <div class="scopecol in"><h3>In the First Term</h3><ol><li>Relations and Functions</li><li>Inverse Trigonometric Functions</li><li>Matrices</li><li>Determinants</li><li>Continuity and Differentiability</li><li>Applications of Derivatives</li><li>Linear Programming</li><li>Integrals</li><li>Application of Integrals</li></ol></div>
+    <div class="scopecol out"><h3>Held back to the Pre-Board</h3><ol><li>Differential Equations</li><li>Vectors</li><li>Three-dimensional Geometry</li><li>Probability</li></ol></div>
+  </div>
+  <p style="margin-top:.8rem;font-size:.87rem;color:var(--muted)">Chapter numbers follow
+  <i>Understanding ISC Mathematics</i> (M.L. Aggarwal). Note that the 2024&ndash;25 First
+  Term paper examined Probability, Vectors, 3-D Geometry and Linear Regression &mdash;
+  <b>none of those is in this year's First Term</b>, and linear regression has been dropped
+  from the ISC syllabus altogether.</p>
+</div>
+
+<div class="panel warm">
+  <h2>How to use this document</h2>
+  <ul>
+    <li><b>Attempt before revealing.</b> The button is there so the answer cannot catch
+        your eye. Write the solution out, then compare &mdash; especially the final
+        simplification, where most marks go missing.</li>
+    <li><b>Work by type, not by chapter.</b> Each block opens with a
+        <i>How to attack it</i> note. If you can state that method from memory, you can
+        do every problem of the type; if you cannot, that is the gap to close.</li>
+    <li><b>Read the Trap notes.</b> They record the specific error the examiner is
+        testing for &mdash; ignoring the interval in an inverse-trig question, forgetting
+        to divide before partial fractions, quoting both points when only one lies on the
+        tangent line.</li>
+    <li><b>Marks shown are ISC weights</b>, so a 6-mark problem should take about
+        eight minutes. Use them to pace yourself.</li>
+    <li><b>Mark done</b> tracks what you have finished; it is stored in this browser
+        only. Printing reveals every solution.</li>
+  </ul>
+</div>
+
+<nav class="toc"><div class="tocinner"><a href="#rf">1. Relations and Functions</a><a href="#itf">2. Inverse Trigonometric Functions</a><a href="#mat">3. Matrices</a><a href="#det">4. Determinants</a><a href="#cd">5. Continuity and Differentiability</a><a href="#aod">6. Applications of Derivatives</a><a href="#int">7. Integrals</a><a href="#aoi">8. Application of Integrals</a><a href="#lpp">12. Linear Programming</a></div></nav>
+
+<div class="gcontrol">
+  <button class="primary" id="revealAll">Reveal all solutions</button>
+  <button id="hideAll">Hide all</button>
+  <button id="clearDone">Clear progress</button>
+  <span class="prog" id="prog"></span>
+</div>
+
+<section class="ch" id="rf">
+<div class="chhead"><span class="chnum">1</span><h2>Relations and Functions</h2><span class="chctl"><button data-ch-reveal="rf">reveal chapter</button><button data-ch-hide="rf">hide</button></span></div>
+<p class="chscope">Types of relations; one-one, onto, into; composite functions; inverse of a function; conditions of invertibility.</p>
+<div class="type">
+<p class="tname">Type 1 &middot; Testing a relation for reflexive / symmetric / transitive</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Check the three properties one at a time, in that order. For each, either give a general proof or a single explicit counterexample. Transitivity is where marks are lost &mdash; hunt for a counterexample <i>first</i>, before trying to prove it.</div>
+<div class="prob" id="p1">
+<div class="pmeta"><span class="pn">P1</span><span class="marks">4 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q8</span><button class="dtoggle">mark done</button></div>
+<div class="q">Test whether the relation R on &#8484; defined by R = {(a, b) : |a &minus; b| &le; 5} is reflexive, symmetric and transitive.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><b>Reflexive.</b> For any a &isin; &#8484;, |a &minus; a| = 0 &le; 5, so (a, a) &isin; R. R <b>is reflexive</b>.</li><li><b>Symmetric.</b> If (a, b) &isin; R then |a &minus; b| &le; 5. Since |b &minus; a| = |a &minus; b| &le; 5, (b, a) &isin; R. R <b>is symmetric</b>.</li><li><b>Transitive.</b> Take a = 1, b = 5, c = 10. Then |1 &minus; 5| = 4 &le; 5 and |5 &minus; 10| = 5 &le; 5, so (1, 5) &isin; R and (5, 10) &isin; R. But |1 &minus; 10| = 9 &gt; 5, so (1, 10) &notin; R. R <b>is not transitive</b>.</li></ol><p class="ansline"><span class="tag">Answer</span> Reflexive and symmetric, but not transitive.</p><p class="trap"><span class="tag">Trap</span> A counterexample must satisfy <i>both</i> hypotheses (a,b) and (b,c) and fail the conclusion. Numbers that are 5 apart each time, adding to more than 5, are the ones to reach for.</p></div>
+</div>
+<div class="prob" id="p2">
+<div class="pmeta"><span class="pn">P2</span><span class="marks">1 mark</span><span class="src">NCERT Exemplar Ch 1, Q31</span><button class="dtoggle">mark done</button></div>
+<div class="q">A relation R on the set {1, 2, 3} is defined by R = {(1, 2)}. Classify R.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><b>Reflexive?</b> (1,1) &notin; R, so <b>not reflexive</b>.</li><li><b>Symmetric?</b> (1,2) &isin; R but (2,1) &notin; R, so <b>not symmetric</b>.</li><li><b>Transitive?</b> Transitivity needs a pair (a,b), (b,c) in R. The only element is (1,2), and (2, c) &notin; R for every c, so the hypothesis is never satisfied. A statement with a false hypothesis is vacuously true, so R <b>is transitive</b>.</li></ol><p class="ansline"><span class="tag">Answer</span> R is transitive only.</p><p class="note"><span class="tag">Note</span> A single-element relation {(a, b)} with a &ne; b is always transitive and never reflexive or symmetric. This <i>vacuously true</i> reasoning is the whole point of the question.</p></div>
+</div>
+<div class="prob" id="p3">
+<div class="pmeta"><span class="pn">P3</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Show that the relation R on &#8484; defined by R = {(a, b) : 5 divides (a &minus; b)} is an equivalence relation. Write its equivalence classes.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><b>Reflexive.</b> 5 | (a &minus; a) = 0 for every a, so (a, a) &isin; R.</li><li><b>Symmetric.</b> If 5 | (a &minus; b), write a &minus; b = 5k. Then b &minus; a = &minus;5k, which is divisible by 5, so (b, a) &isin; R.</li><li><b>Transitive.</b> If a &minus; b = 5k and b &minus; c = 5m then a &minus; c = 5(k + m), divisible by 5, so (a, c) &isin; R.</li><li>Hence R is an equivalence relation. Two integers are related exactly when they leave the same remainder on division by 5, so the classes are the five remainder classes.</li></ol><p class="ansline"><span class="tag">Answer</span> [0], [1], [2], [3], [4] &mdash; five equivalence classes, [r] = {5n + r : n &isin; &#8484;}.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 2 &middot; Deciding one-one / onto for a given domain and codomain</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Injectivity: start from f(x&#8321;) = f(x&#8322;) and force x&#8321; = x&#8322;, or use strict monotonicity via f&prime;. Surjectivity: compute the <i>range</i> and compare it with the <b>declared codomain</b> &mdash; never with &#8477; by habit.</div>
+<div class="prob" id="p4">
+<div class="pmeta"><span class="pn">P4</span><span class="marks">1 mark</span><span class="src">Heritage First Term 2024&ndash;25, Q1(vi)</span><button class="dtoggle">mark done</button></div>
+<div class="q">Let A = {x : &minus;1 &le; x &le; 1} and let f : A &rarr; A be defined by f(x) = x|x|. Then f is: (a) a bijection &nbsp;(b) injective but not surjective &nbsp;(c) surjective but not injective &nbsp;(d) neither.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol">Write f without the modulus:<div class="disp">f(x) = <span class="pw"><span class="brace">{</span><span class="cases"><span class="v">x<sup>2</sup></span><span class="c">0 &le; x &le; 1</span><span class="v">&minus;x<sup>2</sup></span><span class="c">&minus;1 &le; x &lt; 0</span></span></span></div><ol class="steps"><li>On [0, 1], f(x) = x<sup>2</sup> increases from 0 to 1. On [&minus;1, 0), f(x) = &minus;x<sup>2</sup> increases from &minus;1 to 0. So f is strictly increasing across the whole of A.</li><li>Strictly increasing &rArr; injective.</li><li>The values run over [&minus;1, 1] = A, with f(&minus;1) = &minus;1 and f(1) = 1 attained, so f is onto A.</li></ol><p class="ansline"><span class="tag">Answer</span> (a) a bijection.</p><p class="note"><span class="tag">Note</span> Note how the codomain was declared to be A, not &#8477;. Had the codomain been &#8477; the same rule would not be surjective.</p></div>
+</div>
+<div class="prob" id="p5">
+<div class="pmeta"><span class="pn">P5</span><span class="marks">1 mark</span><span class="src">Heritage First Term 2024&ndash;25, Q1(ii)</span><button class="dtoggle">mark done</button></div>
+<div class="q">Let f : [2, &infin;) &rarr; &#8477; be defined by f(x) = x<sup>2</sup> &minus; 4x + 5. Find the range of f.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Complete the square: f(x) = (x &minus; 2)<sup>2</sup> + 1.</li><li>For x &ge; 2, (x &minus; 2)<sup>2</sup> &ge; 0 and increases without bound.</li><li>So f(x) &ge; 1, with the value 1 attained at x = 2.</li></ol><p class="ansline"><span class="tag">Answer</span> Range = [1, &infin;).</p><p class="trap"><span class="tag">Trap</span> The vertex of the parabola is at x = 2, which is the <i>endpoint</i> of the domain. If the domain had been [3, &infin;) the answer would be [2, &infin;) instead &mdash; always check whether the vertex lies inside the given domain.</p></div>
+</div>
+<div class="prob" id="p6">
+<div class="pmeta"><span class="pn">P6</span><span class="marks">1 mark</span><span class="src">Heritage First Term 2024&ndash;25, Q1(xii)</span><button class="dtoggle">mark done</button></div>
+<div class="q">The function f : &#8477; &rarr; &#8477;, f(x) = x<sup>2</sup> &minus; 4 is many-one. Give a reason.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><p class="ansline"><span class="tag">Answer</span> f(2) = 0 = f(&minus;2) with 2 &ne; &minus;2, so two distinct inputs share an output.</p><p class="note"><span class="tag">Note</span> One explicit pair is a complete answer for a 1-mark &lsquo;give a reason&rsquo;. There is no need to discuss the whole function.</p></div>
+</div>
+<div class="prob" id="p7">
+<div class="pmeta"><span class="pn">P7</span><span class="marks">2 marks</span><span class="src">Project link</span><button class="dtoggle">mark done</button></div>
+<div class="q">Show that f : &#8477; &rarr; &#8477;, f(x) = e<sup>x</sup> is injective but not surjective, and state the change that makes it a bijection.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>If e<sup>x&#8321;</sup> = e<sup>x&#8322;</sup>, taking natural logarithms gives x&#8321; = x&#8322;, so f is injective.</li><li>e<sup>x</sup> &gt; 0 for every real x, so y = &minus;2 has no pre-image. Hence f is not onto &#8477; and Ran(f) = (0, &infin;).</li><li>Redeclaring the codomain as (0, &infin;) makes f a bijection, with inverse f<sup>&minus;1</sup>(x) = ln x.</li></ol><p class="note"><span class="tag">Note</span> This is exactly your project's central point: only the <b>codomain</b> changed &mdash; the rule and the domain did not.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 3 &middot; Proving invertibility and finding the inverse</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Show one-one, show onto (usually by solving y = f(x) for x), then read off f&#8315;&#185; from that solution. State the domain of the inverse: it is the codomain of f.</div>
+<div class="prob" id="p8">
+<div class="pmeta"><span class="pn">P8</span><span class="marks">4 marks</span><span class="src">NCERT Ch 1, standard</span><button class="dtoggle">mark done</button></div>
+<div class="q">Let f : &rarr; &infin; [&minus;6, &infin;) be given by f(x) = 9x<sup>2</sup> + 6x &minus; 5, where the domain is [&minus;<span class="fr"><span class="n">1</span><span class="d">3</span></span>, &infin;). Show that f is invertible and find f<sup>&minus;1</sup>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Complete the square: f(x) = (3x + 1)<sup>2</sup> &minus; 6.</li><li>On x &ge; &minus;<span class="fr"><span class="n">1</span><span class="d">3</span></span> we have 3x + 1 &ge; 0, so (3x + 1)<sup>2</sup> is strictly increasing; hence f is injective.</li><li>Set y = (3x + 1)<sup>2</sup> &minus; 6, so (3x + 1)<sup>2</sup> = y + 6. Since 3x + 1 &ge; 0 we take the non-negative root: 3x + 1 = <span class="rt">&radic;<span class="bar">y + 6</span></span>, giving x = <span class="fr"><span class="n"><span class="rt">&radic;<span class="bar">y+6</span></span> &minus; 1</span><span class="d">3</span></span>.</li><li>For every y &ge; &minus;6 this x lies in the domain, so f is onto [&minus;6, &infin;) and therefore invertible.</li></ol><p class="ansline"><span class="tag">Answer</span> f<sup>&minus;1</sup>(y) = <span class="fr"><span class="n"><span class="rt">&radic;<span class="bar">y+6</span></span> &minus; 1</span><span class="d">3</span></span>, y &ge; &minus;6.</p><p class="trap"><span class="tag">Trap</span> Both signs of the square root solve the quadratic; the domain x &ge; &minus;<span class="fr"><span class="n">1</span><span class="d">3</span></span> is what selects the + sign. Dropping that is the commonest error here.</p></div>
+</div>
+<div class="prob" id="p9">
+<div class="pmeta"><span class="pn">P9</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Let f : &#8477; &minus; {<span class="fr"><span class="n">2</span><span class="d">3</span></span>} &rarr; &#8477; &minus; {<span class="fr"><span class="n">2</span><span class="d">3</span></span>} be defined by f(x) = <span class="fr"><span class="n">4x + 3</span><span class="d">6x &minus; 4</span></span>. Show that f is a bijection and find f<sup>&minus;1</sup>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><b>One-one.</b> f(x&#8321;) = f(x&#8322;) gives (4x&#8321; + 3)(6x&#8322; &minus; 4) = (4x&#8322; + 3)(6x&#8321; &minus; 4). Expanding, 24x&#8321;x&#8322; &minus; 16x&#8321; + 18x&#8322; &minus; 12 = 24x&#8321;x&#8322; &minus; 16x&#8322; + 18x&#8321; &minus; 12, so 34x&#8322; = 34x&#8321;, i.e. x&#8321; = x&#8322;.</li><li><b>Onto.</b> Put y = <span class="fr"><span class="n">4x + 3</span><span class="d">6x &minus; 4</span></span> and solve for x: y(6x &minus; 4) = 4x + 3, so x(6y &minus; 4) = 4y + 3, giving x = <span class="fr"><span class="n">4y + 3</span><span class="d">6y &minus; 4</span></span>, which is defined for every y &ne; <span class="fr"><span class="n">2</span><span class="d">3</span></span>.</li><li>Hence f is a bijection and the formula for x <i>is</i> the inverse.</li></ol><p class="ansline"><span class="tag">Answer</span> f<sup>&minus;1</sup>(y) = <span class="fr"><span class="n">4y + 3</span><span class="d">6y &minus; 4</span></span> &mdash; f is its own inverse (an involution).</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 4 &middot; Composite functions and counting functions</p>
+<div class="strategy"><span class="lbl">How to attack it</span>For gof always apply f first. For counting, one-one maps need |A| &le; |B| and onto maps need |A| &ge; |B|.</div>
+<div class="prob" id="p10">
+<div class="pmeta"><span class="pn">P10</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">If f(x) = x<sup>2</sup> + 1 and g(x) = 2x &minus; 3, find (gof)(x) and (fog)(x). Are they equal?</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>(gof)(x) = g(f(x)) = g(x<sup>2</sup> + 1) = 2(x<sup>2</sup> + 1) &minus; 3 = 2x<sup>2</sup> &minus; 1.</li><li>(fog)(x) = f(g(x)) = f(2x &minus; 3) = (2x &minus; 3)<sup>2</sup> + 1 = 4x<sup>2</sup> &minus; 12x + 10.</li></ol><p class="ansline"><span class="tag">Answer</span> gof &ne; fog, so composition of functions is not commutative.</p></div>
+</div>
+<div class="prob" id="p11">
+<div class="pmeta"><span class="pn">P11</span><span class="marks">1 mark</span><span class="src">Exemplar-style objective</span><button class="dtoggle">mark done</button></div>
+<div class="q">How many one-one functions are there from a set with 3 elements to a set with 4 elements? How many onto functions are there in the other direction?</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>One-one from a 3-set to a 4-set: choose an image for each of the 3 elements without repetition &mdash; 4 &times; 3 &times; 2 = 24.</li><li>Onto from a 4-set to a 3-set: total maps 3<sup>4</sup> = 81, minus those missing at least one image. By inclusion&ndash;exclusion, 3<sup>4</sup> &minus; 3&times;2<sup>4</sup> + 3&times;1<sup>4</sup> = 81 &minus; 48 + 3 = 36.</li></ol><p class="ansline"><span class="tag">Answer</span> 24 one-one functions; 36 onto functions.</p></div>
+</div>
+<div class="prob" id="p12">
+<div class="pmeta"><span class="pn">P12</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Let f : &#8469; &rarr; &#8469; be defined by f(n) = n + 1 if n is odd and f(n) = n &minus; 1 if n is even. Show that f is a bijection.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>f pairs 1 &rarr; 2, 2 &rarr; 1, 3 &rarr; 4, 4 &rarr; 3, and so on: f swaps each odd number with the even number above it.</li><li>Hence f(f(n)) = n for every n, so f is its own inverse.</li><li>A function with a two-sided inverse is a bijection.</li></ol><p class="ansline"><span class="tag">Answer</span> f is a bijection, and f<sup>&minus;1</sup> = f.</p><p class="note"><span class="tag">Note</span> Exhibiting an inverse is usually faster than checking one-one and onto separately.</p></div>
+</div>
+</div>
+</section>
+<section class="ch" id="itf">
+<div class="chhead"><span class="chnum">2</span><h2>Inverse Trigonometric Functions</h2><span class="chctl"><button data-ch-reveal="itf">reveal chapter</button><button data-ch-hide="itf">hide</button></span></div>
+<p class="chscope">Definition, domain, range, principal value branch; elementary properties; formulae for 2sin&#8315;&#185;x, 2tan&#8315;&#185;x etc.</p>
+<div class="type">
+<p class="tname">Type 1 &middot; Principal values, including arguments outside the branch</p>
+<div class="strategy"><span class="lbl">How to attack it</span>sin&#8315;&#185;(sin x) = x <b>only</b> for x in [&minus;&pi;/2, &pi;/2]. Otherwise reduce the angle into the principal branch first, using sin(&pi; &minus; x) = sin x, cos(2&pi; &minus; x) = cos x, tan(x &minus; &pi;) = tan x.</div>
+<div class="prob" id="p13">
+<div class="pmeta"><span class="pn">P13</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate: sin<sup>&minus;1</sup>(sin <span class="fr"><span class="n">3&pi;</span><span class="d">4</span></span>), cos<sup>&minus;1</sup>(cos <span class="fr"><span class="n">7&pi;</span><span class="d">6</span></span>) and tan<sup>&minus;1</sup>(tan <span class="fr"><span class="n">5&pi;</span><span class="d">6</span></span>).</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><span class="fr"><span class="n">3&pi;</span><span class="d">4</span></span> is not in [&minus;<span class="fr"><span class="n">&pi;</span><span class="d">2</span></span>, <span class="fr"><span class="n">&pi;</span><span class="d">2</span></span>], the range of sin<sup>&minus;1</sup>. But sin <span class="fr"><span class="n">3&pi;</span><span class="d">4</span></span> = sin(&pi; &minus; <span class="fr"><span class="n">3&pi;</span><span class="d">4</span></span>) = sin <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span>, and <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> <i>is</i> in the branch. So sin<sup>&minus;1</sup>(sin <span class="fr"><span class="n">3&pi;</span><span class="d">4</span></span>) = <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span>.</li><li><span class="fr"><span class="n">7&pi;</span><span class="d">6</span></span> is not in [0, &pi;], the range of cos<sup>&minus;1</sup>. Use cos <span class="fr"><span class="n">7&pi;</span><span class="d">6</span></span> = cos(2&pi; &minus; <span class="fr"><span class="n">7&pi;</span><span class="d">6</span></span>) = cos <span class="fr"><span class="n">5&pi;</span><span class="d">6</span></span>, and <span class="fr"><span class="n">5&pi;</span><span class="d">6</span></span> &isin; [0, &pi;].</li><li><span class="fr"><span class="n">5&pi;</span><span class="d">6</span></span> is not in (&minus;<span class="fr"><span class="n">&pi;</span><span class="d">2</span></span>, <span class="fr"><span class="n">&pi;</span><span class="d">2</span></span>), the range of tan<sup>&minus;1</sup>. Use tan <span class="fr"><span class="n">5&pi;</span><span class="d">6</span></span> = tan(<span class="fr"><span class="n">5&pi;</span><span class="d">6</span></span> &minus; &pi;) = tan(&minus;<span class="fr"><span class="n">&pi;</span><span class="d">6</span></span>) = &minus;tan <span class="fr"><span class="n">&pi;</span><span class="d">6</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span>, &nbsp; <span class="fr"><span class="n">5&pi;</span><span class="d">6</span></span>, &nbsp; &minus;<span class="fr"><span class="n">&pi;</span><span class="d">6</span></span>.</p><p class="trap"><span class="tag">Trap</span> Writing sin<sup>&minus;1</sup>(sin <span class="fr"><span class="n">3&pi;</span><span class="d">4</span></span>) = <span class="fr"><span class="n">3&pi;</span><span class="d">4</span></span> is the single most common error in this chapter. Always check the branch first.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 2 &middot; Using sin&#8315;&#185;x + cos&#8315;&#185;x = &pi;/2</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Whenever both sin&#8315;&#185; and cos&#8315;&#185; of the <b>same</b> argument appear, replace one using sin&#8315;&#185;x + cos&#8315;&#185;x = &pi;/2. Almost every &lsquo;find the range&rsquo; question here is that one line.</div>
+<div class="prob" id="p14">
+<div class="pmeta"><span class="pn">P14</span><span class="marks">1 mark</span><span class="src">Heritage First Term 2024&ndash;25, Q1(iii)</span><button class="dtoggle">mark done</button></div>
+<div class="q">If a &le; cos<sup>&minus;1</sup>x + 2 sin<sup>&minus;1</sup>x &le; b, then find a and b.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Split off one sin<sup>&minus;1</sup>: cos<sup>&minus;1</sup>x + 2 sin<sup>&minus;1</sup>x = (cos<sup>&minus;1</sup>x + sin<sup>&minus;1</sup>x) + sin<sup>&minus;1</sup>x.</li><li>The bracket is &pi;/2, a constant, so the expression equals &pi;/2 + sin<sup>&minus;1</sup>x.</li><li>sin<sup>&minus;1</sup>x ranges over [&minus;<span class="fr"><span class="n">&pi;</span><span class="d">2</span></span>, <span class="fr"><span class="n">&pi;</span><span class="d">2</span></span>], so the expression ranges over [&pi;/2 &minus; &pi;/2, &pi;/2 + &pi;/2] = [0, &pi;].</li></ol><p class="ansline"><span class="tag">Answer</span> a = 0, b = &pi;.</p></div>
+</div>
+<div class="prob" id="p15">
+<div class="pmeta"><span class="pn">P15</span><span class="marks">2 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q3</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find x such that cos(sin<sup>&minus;1</sup><span class="fr"><span class="n">2</span><span class="d"><span class="rt">&radic;<span class="bar">5</span></span></span></span> + cos<sup>&minus;1</sup>x) = 0.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>cos &theta; = 0 with &theta; a sum of principal values forces &theta; = <span class="fr"><span class="n">&pi;</span><span class="d">2</span></span>.</li><li>So sin<sup>&minus;1</sup><span class="fr"><span class="n">2</span><span class="d"><span class="rt">&radic;<span class="bar">5</span></span></span></span> + cos<sup>&minus;1</sup>x = <span class="fr"><span class="n">&pi;</span><span class="d">2</span></span>.</li><li>Hence cos<sup>&minus;1</sup>x = <span class="fr"><span class="n">&pi;</span><span class="d">2</span></span> &minus; sin<sup>&minus;1</sup><span class="fr"><span class="n">2</span><span class="d"><span class="rt">&radic;<span class="bar">5</span></span></span></span> = cos<sup>&minus;1</sup><span class="fr"><span class="n">2</span><span class="d"><span class="rt">&radic;<span class="bar">5</span></span></span></span>, using &pi;/2 &minus; sin<sup>&minus;1</sup>t = cos<sup>&minus;1</sup>t.</li><li>cos<sup>&minus;1</sup> is one-one on [&minus;1, 1], so x = <span class="fr"><span class="n">2</span><span class="d"><span class="rt">&radic;<span class="bar">5</span></span></span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> x = <span class="fr"><span class="n">2</span><span class="d"><span class="rt">&radic;<span class="bar">5</span></span></span></span> = <span class="fr"><span class="n">2<span class="rt">&radic;<span class="bar">5</span></span></span><span class="d">5</span></span>.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 3 &middot; Reducing an expression to a principal value</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Turn the argument into a single sine or cosine of a compound angle, then decide which reduction formula applies from the <b>interval given for x</b>. The interval is never decoration.</div>
+<div class="prob" id="p16">
+<div class="pmeta"><span class="pn">P16</span><span class="marks">4 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q7</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the value of cos<sup>&minus;1</sup>[<span class="fr"><span class="n">sin x + cos x</span><span class="d"><span class="rt">&radic;<span class="bar">2</span></span></span></span>], where <span class="fr"><span class="n">5&pi;</span><span class="d">4</span></span> &lt; x &lt; <span class="fr"><span class="n">9&pi;</span><span class="d">4</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><span class="fr"><span class="n">sin x + cos x</span><span class="d"><span class="rt">&radic;<span class="bar">2</span></span></span></span> = cos x cos <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> + sin x sin <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> = cos(x &minus; <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span>).</li><li>So the expression is cos<sup>&minus;1</sup>(cos(x &minus; <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span>)).</li><li>Given <span class="fr"><span class="n">5&pi;</span><span class="d">4</span></span> &lt; x &lt; <span class="fr"><span class="n">9&pi;</span><span class="d">4</span></span>, subtracting <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> gives &pi; &lt; x &minus; <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> &lt; 2&pi;.</li><li>For &theta; &isin; (&pi;, 2&pi;), cos<sup>&minus;1</sup>(cos &theta;) = 2&pi; &minus; &theta;.</li><li>Hence the value is 2&pi; &minus; (x &minus; <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span>) = <span class="fr"><span class="n">9&pi;</span><span class="d">4</span></span> &minus; x.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">9&pi;</span><span class="d">4</span></span> &minus; x.</p><p class="trap"><span class="tag">Trap</span> The whole question turns on locating x &minus; &pi;/4 in (&pi;, 2&pi;). Skipping that step and writing x &minus; &pi;/4 loses every mark.</p></div>
+</div>
+<div class="prob" id="p17">
+<div class="pmeta"><span class="pn">P17</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Write tan<sup>&minus;1</sup><span class="rt">&radic;<span class="bar"><span class="fr"><span class="n">1 &minus; cos x</span><span class="d">1 + cos x</span></span></span></span> in simplest form, for 0 &lt; x &lt; &pi;.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Use 1 &minus; cos x = 2sin<sup>2</sup>(x/2) and 1 + cos x = 2cos<sup>2</sup>(x/2).</li><li>The radicand becomes tan<sup>2</sup>(x/2), so the radical is |tan(x/2)|.</li><li>For 0 &lt; x &lt; &pi; we have 0 &lt; x/2 &lt; &pi;/2, where tan(x/2) &gt; 0.</li><li>So the expression is tan<sup>&minus;1</sup>(tan(x/2)) = x/2, since x/2 lies in the principal branch.</li></ol><p class="ansline"><span class="tag">Answer</span> x/2.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 4 &middot; Solving inverse-trigonometric equations</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Move one term across, take sine (or tangent) of both sides, then solve the algebraic equation. <b>Always substitute the roots back</b> &mdash; squaring introduces extraneous ones.</div>
+<div class="prob" id="p18">
+<div class="pmeta"><span class="pn">P18</span><span class="marks">4 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q7 (OR)</span><button class="dtoggle">mark done</button></div>
+<div class="q">Solve: sin<sup>&minus;1</sup><span class="fr"><span class="n">4x</span><span class="d">5</span></span> + sin<sup>&minus;1</sup><span class="fr"><span class="n">3x</span><span class="d">5</span></span> = sin<sup>&minus;1</sup>x.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Rewrite as sin<sup>&minus;1</sup><span class="fr"><span class="n">3x</span><span class="d">5</span></span> = sin<sup>&minus;1</sup>x &minus; sin<sup>&minus;1</sup><span class="fr"><span class="n">4x</span><span class="d">5</span></span> and take the sine of both sides:<div class="disp"><span class="fr"><span class="n">3x</span><span class="d">5</span></span> = x&middot;<span class="rt">&radic;<span class="bar">1 &minus; <span class="fr"><span class="n">16x<sup>2</sup></span><span class="d">25</span></span></span></span> &minus; <span class="fr"><span class="n">4x</span><span class="d">5</span></span>&middot;<span class="rt">&radic;<span class="bar">1 &minus; x<sup>2</sup></span></span></div></li><li>Multiply through by 5: 3x = x<span class="rt">&radic;<span class="bar">25 &minus; 16x<sup>2</sup></span></span> &minus; 4x<span class="rt">&radic;<span class="bar">1 &minus; x<sup>2</sup></span></span>.</li><li>So x = 0, or 3 = <span class="rt">&radic;<span class="bar">25 &minus; 16x<sup>2</sup></span></span> &minus; 4<span class="rt">&radic;<span class="bar">1 &minus; x<sup>2</sup></span></span>.</li><li>Rearrange and square: 25 &minus; 16x<sup>2</sup> = 9 + 24<span class="rt">&radic;<span class="bar">1 &minus; x<sup>2</sup></span></span> + 16(1 &minus; x<sup>2</sup>), which simplifies to 0 = 24<span class="rt">&radic;<span class="bar">1 &minus; x<sup>2</sup></span></span>, so x = &plusmn;1.</li><li>Domain check: all three inverse sines need |x| &le; 1, and x = 0, &plusmn;1 all satisfy the original equation (at x = 1, sin<sup>&minus;1</sup>0.8 + sin<sup>&minus;1</sup>0.6 = <span class="fr"><span class="n">&pi;</span><span class="d">2</span></span> = sin<sup>&minus;1</sup>1).</li></ol><p class="ansline"><span class="tag">Answer</span> x = 0, 1, &minus;1.</p></div>
+</div>
+<div class="prob" id="p19">
+<div class="pmeta"><span class="pn">P19</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Solve: 2 tan<sup>&minus;1</sup>(cos x) = tan<sup>&minus;1</sup>(2 cosec x).</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Use 2 tan<sup>&minus;1</sup>t = tan<sup>&minus;1</sup><span class="fr"><span class="n">2t</span><span class="d">1 &minus; t<sup>2</sup></span></span> on the left.</li><li>With t = cos x: tan<sup>&minus;1</sup><span class="fr"><span class="n">2 cos x</span><span class="d">1 &minus; cos<sup>2</sup> x</span></span> = tan<sup>&minus;1</sup><span class="fr"><span class="n">2</span><span class="d">sin x</span></span>.</li><li>Since 1 &minus; cos<sup>2</sup>x = sin<sup>2</sup>x, the left argument is <span class="fr"><span class="n">2 cos x</span><span class="d">sin<sup>2</sup> x</span></span>.</li><li>Equate arguments: <span class="fr"><span class="n">2 cos x</span><span class="d">sin<sup>2</sup> x</span></span> = <span class="fr"><span class="n">2</span><span class="d">sin x</span></span>, so 2 cos x sin x = 2 sin<sup>2</sup>x, giving sin x (cos x &minus; sin x) = 0.</li><li>sin x = 0 is rejected (cosec x would be undefined), so tan x = 1.</li></ol><p class="ansline"><span class="tag">Answer</span> x = <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> (taking the principal solution).</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 5 &middot; Proving an identity</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Convert each inverse function to the <i>same</i> one (usually tan&#8315;&#185;), then apply the addition formula, checking the xy &lt; 1 condition. Right-to-left is often easier than left-to-right.</div>
+<div class="prob" id="p20">
+<div class="pmeta"><span class="pn">P20</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Prove that tan<sup>&minus;1</sup><span class="fr"><span class="n">1</span><span class="d">2</span></span> + tan<sup>&minus;1</sup><span class="fr"><span class="n">1</span><span class="d">5</span></span> + tan<sup>&minus;1</sup><span class="fr"><span class="n">1</span><span class="d">8</span></span> = <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Combine the first two. With x = <span class="fr"><span class="n">1</span><span class="d">2</span></span>, y = <span class="fr"><span class="n">1</span><span class="d">5</span></span> we have xy = <span class="fr"><span class="n">1</span><span class="d">10</span></span> &lt; 1, so tan<sup>&minus;1</sup>x + tan<sup>&minus;1</sup>y = tan<sup>&minus;1</sup><span class="fr"><span class="n">x + y</span><span class="d">1 &minus; xy</span></span>.<div class="disp">= tan<sup>&minus;1</sup><span class="fr"><span class="n"><span class="fr"><span class="n">1</span><span class="d">2</span></span> + <span class="fr"><span class="n">1</span><span class="d">5</span></span></span><span class="d">1 &minus; <span class="fr"><span class="n">1</span><span class="d">10</span></span></span></span> = tan<sup>&minus;1</sup><span class="fr"><span class="n"><span class="fr"><span class="n">7</span><span class="d">10</span></span></span><span class="d"><span class="fr"><span class="n">9</span><span class="d">10</span></span></span></span> = tan<sup>&minus;1</sup><span class="fr"><span class="n">7</span><span class="d">9</span></span></div></li><li>Now add the third term: x = <span class="fr"><span class="n">7</span><span class="d">9</span></span>, y = <span class="fr"><span class="n">1</span><span class="d">8</span></span>, xy = <span class="fr"><span class="n">7</span><span class="d">72</span></span> &lt; 1, so the sum is<div class="disp">tan<sup>&minus;1</sup><span class="fr"><span class="n"><span class="fr"><span class="n">7</span><span class="d">9</span></span> + <span class="fr"><span class="n">1</span><span class="d">8</span></span></span><span class="d">1 &minus; <span class="fr"><span class="n">7</span><span class="d">72</span></span></span></span> = tan<sup>&minus;1</sup><span class="fr"><span class="n"><span class="fr"><span class="n">65</span><span class="d">72</span></span></span><span class="d"><span class="fr"><span class="n">65</span><span class="d">72</span></span></span></span> = tan<sup>&minus;1</sup>1 = <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span></div></li></ol><p class="note"><span class="tag">Note</span> Checking xy &lt; 1 at each step is what makes this a proof rather than a manipulation &mdash; the formula has a different form when xy &gt; 1.</p></div>
+</div>
+<div class="prob" id="p21">
+<div class="pmeta"><span class="pn">P21</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Prove that sin<sup>&minus;1</sup><span class="fr"><span class="n">3</span><span class="d">5</span></span> &minus; sin<sup>&minus;1</sup><span class="fr"><span class="n">8</span><span class="d">17</span></span> = cos<sup>&minus;1</sup><span class="fr"><span class="n">84</span><span class="d">85</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Let A = sin<sup>&minus;1</sup><span class="fr"><span class="n">3</span><span class="d">5</span></span>, so sin A = <span class="fr"><span class="n">3</span><span class="d">5</span></span> and cos A = <span class="fr"><span class="n">4</span><span class="d">5</span></span> (A is in the first quadrant).</li><li>Let B = sin<sup>&minus;1</sup><span class="fr"><span class="n">8</span><span class="d">17</span></span>, so sin B = <span class="fr"><span class="n">8</span><span class="d">17</span></span> and cos B = <span class="fr"><span class="n">15</span><span class="d">17</span></span>.</li><li>Then cos(A &minus; B) = cos A cos B + sin A sin B = <span class="fr"><span class="n">4</span><span class="d">5</span></span>&middot;<span class="fr"><span class="n">15</span><span class="d">17</span></span> + <span class="fr"><span class="n">3</span><span class="d">5</span></span>&middot;<span class="fr"><span class="n">8</span><span class="d">17</span></span> = <span class="fr"><span class="n">60</span><span class="d">85</span></span> + <span class="fr"><span class="n">24</span><span class="d">85</span></span> = <span class="fr"><span class="n">84</span><span class="d">85</span></span>.</li><li>Since sin A &gt; sin B with both angles acute, A &minus; B &isin; [0, &pi;/2], which is inside the range of cos<sup>&minus;1</sup>. Hence A &minus; B = cos<sup>&minus;1</sup><span class="fr"><span class="n">84</span><span class="d">85</span></span>.</li></ol></div>
+</div>
+</div>
+</section>
+<section class="ch" id="mat">
+<div class="chhead"><span class="chnum">3</span><h2>Matrices</h2><span class="chctl"><button data-ch-reveal="mat">reveal chapter</button><button data-ch-hide="mat">hide</button></span></div>
+<p class="chscope">Types of matrices; transpose; symmetric and skew symmetric; operations; non-commutativity; invertible matrices (order up to 3).</p>
+<div class="type">
+<p class="tname">Type 1 &middot; Symmetric and skew symmetric matrices</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Everything here comes from one move: take the transpose of the whole expression and use (AB)&prime; = B&prime;A&prime;, (A + B)&prime; = A&prime; + B&prime;. Then compare with the original.</div>
+<div class="prob" id="p22">
+<div class="pmeta"><span class="pn">P22</span><span class="marks">1 mark</span><span class="src">NCERT Exemplar Ch 3, Example 12 &middot; Heritage FT Q1(i)</span><button class="dtoggle">mark done</button></div>
+<div class="q">If A and B are symmetric matrices of the same order, then (AB&prime; &minus; BA&prime;) is: (a) skew symmetric &nbsp;(b) null &nbsp;(c) symmetric &nbsp;(d) none of these.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>A and B symmetric means A&prime; = A and B&prime; = B, so AB&prime; &minus; BA&prime; = AB &minus; BA.</li><li>Take the transpose: (AB &minus; BA)&prime; = (AB)&prime; &minus; (BA)&prime; = B&prime;A&prime; &minus; A&prime;B&prime; = BA &minus; AB.</li><li>That is &minus;(AB &minus; BA), so the matrix equals the negative of its own transpose.</li></ol><p class="ansline"><span class="tag">Answer</span> (a) skew symmetric.</p><p class="note"><span class="tag">Note</span> It is <b>not</b> the null matrix: AB &minus; BA vanishes only when A and B commute, which symmetry alone does not force.</p></div>
+</div>
+<div class="prob" id="p23">
+<div class="pmeta"><span class="pn">P23</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Express A = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>3</span><span>&minus;1</span><span>5</span><span>2</span></span> as the sum of a symmetric and a skew symmetric matrix.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Always use A = <span class="fr"><span class="n">1</span><span class="d">2</span></span>(A + A&prime;) + <span class="fr"><span class="n">1</span><span class="d">2</span></span>(A &minus; A&prime;); the first bracket is symmetric, the second skew symmetric.</li><li>A&prime; = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>3</span><span>5</span><span>&minus;1</span><span>2</span></span>, so A + A&prime; = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>6</span><span>4</span><span>4</span><span>4</span></span> and A &minus; A&prime; = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>0</span><span>&minus;6</span><span>6</span><span>0</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> A = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>3</span><span>2</span><span>2</span><span>2</span></span> + <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>0</span><span>&minus;3</span><span>3</span><span>0</span></span>.</p><p class="note"><span class="tag">Note</span> Check: the skew part must have zeros all down the diagonal. If it does not, you have made an arithmetic slip.</p></div>
+</div>
+<div class="prob" id="p24">
+<div class="pmeta"><span class="pn">P24</span><span class="marks">2 marks</span><span class="src">Exemplar-style</span><button class="dtoggle">mark done</button></div>
+<div class="q">If a matrix A is both symmetric and skew symmetric, show that A is the zero matrix.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Symmetric gives A&prime; = A; skew symmetric gives A&prime; = &minus;A.</li><li>So A = &minus;A, hence 2A = O and A = O.</li></ol></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 2 &middot; Matrix algebra: powers, polynomial identities, induction</p>
+<div class="strategy"><span class="lbl">How to attack it</span>For A<sup>2</sup> = kA + mI, compute A<sup>2</sup> once and compare entries. For a power A<sup>n</sup>, compute A<sup>2</sup> and A<sup>3</sup>, guess the pattern, then prove it by induction.</div>
+<div class="prob" id="p25">
+<div class="pmeta"><span class="pn">P25</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">If A = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>3</span><span>&minus;2</span><span>4</span><span>&minus;2</span></span>, find k such that A<sup>2</sup> = kA &minus; 2I.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>A<sup>2</sup> = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>3</span><span>&minus;2</span><span>4</span><span>&minus;2</span></span>&middot;<span class="mx" style="grid-template-columns:repeat(2,auto)"><span>3</span><span>&minus;2</span><span>4</span><span>&minus;2</span></span> = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>1</span><span>&minus;2</span><span>4</span><span>&minus;4</span></span>.</li><li>kA &minus; 2I = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>3k &minus; 2</span><span>&minus;2k</span><span>4k</span><span>&minus;2k &minus; 2</span></span>.</li><li>Comparing the (1,2) entries: &minus;2k = &minus;2, so k = 1. Every other entry then agrees.</li></ol><p class="ansline"><span class="tag">Answer</span> k = 1.</p></div>
+</div>
+<div class="prob" id="p26">
+<div class="pmeta"><span class="pn">P26</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">If A = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>1</span><span>1</span><span>0</span><span>1</span></span>, prove by induction that A<sup>n</sup> = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>1</span><span>n</span><span>0</span><span>1</span></span> for all n &ge; 1.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><b>Base case.</b> For n = 1 the claim reads A = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>1</span><span>1</span><span>0</span><span>1</span></span>, which is true.</li><li><b>Inductive step.</b> Assume A<sup>k</sup> = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>1</span><span>k</span><span>0</span><span>1</span></span>. Then<div class="disp">A<sup>k+1</sup> = A<sup>k</sup>&middot;A = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>1</span><span>k</span><span>0</span><span>1</span></span>&middot;<span class="mx" style="grid-template-columns:repeat(2,auto)"><span>1</span><span>1</span><span>0</span><span>1</span></span> = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>1</span><span>k + 1</span><span>0</span><span>1</span></span></div></li><li>which is the claim for n = k + 1. By induction it holds for all n &ge; 1.</li></ol></div>
+</div>
+<div class="prob" id="p27">
+<div class="pmeta"><span class="pn">P27</span><span class="marks">2 marks</span><span class="src">Exemplar-style</span><button class="dtoggle">mark done</button></div>
+<div class="q">Give two non-zero 2 &times; 2 matrices A and B with AB = O.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><p class="ansline"><span class="tag">Answer</span> A = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>1</span><span>0</span><span>0</span><span>0</span></span>, B = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>0</span><span>0</span><span>0</span><span>1</span></span> give AB = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>0</span><span>0</span><span>0</span><span>0</span></span>, although neither factor is zero.</p><p class="note"><span class="tag">Note</span> So the cancellation law fails for matrices: AB = O does <b>not</b> imply A = O or B = O. This is exactly what the syllabus means by &lsquo;existence of non-zero matrices whose product is the zero matrix&rsquo;.</p></div>
+</div>
+<div class="prob" id="p28">
+<div class="pmeta"><span class="pn">P28</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Show that (A + B)<sup>2</sup> = A<sup>2</sup> + 2AB + B<sup>2</sup> holds only if AB = BA.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>(A + B)<sup>2</sup> = (A + B)(A + B) = A<sup>2</sup> + AB + BA + B<sup>2</sup>.</li><li>This equals A<sup>2</sup> + 2AB + B<sup>2</sup> exactly when AB + BA = 2AB, i.e. BA = AB.</li></ol><p class="trap"><span class="tag">Trap</span> Ordinary algebraic identities transfer to matrices only when the matrices concerned commute. Never expand a matrix square automatically.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 3 &middot; Solving matrix equations for unknown entries</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Equate corresponding entries and solve the resulting simultaneous equations. Check <b>every</b> entry &mdash; an inconsistent system means no such matrix exists.</div>
+<div class="prob" id="p29">
+<div class="pmeta"><span class="pn">P29</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find x and y if 2<span class="mx" style="grid-template-columns:repeat(2,auto)"><span>x</span><span>5</span><span>7</span><span>y &minus; 3</span></span> + <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>3</span><span>&minus;4</span><span>1</span><span>2</span></span> = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>7</span><span>6</span><span>15</span><span>14</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>The left side is <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>2x + 3</span><span>6</span><span>15</span><span>2y &minus; 4</span></span>.</li><li>Comparing (1,1): 2x + 3 = 7, so x = 2.</li><li>Comparing (2,2): 2y &minus; 4 = 14, so y = 9.</li><li>The (1,2) and (2,1) entries already match, so the solution is consistent.</li></ol><p class="ansline"><span class="tag">Answer</span> x = 2, y = 9.</p></div>
+</div>
+<div class="prob" id="p30">
+<div class="pmeta"><span class="pn">P30</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">If A = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>x</span><span>0</span><span>0</span><span>&minus;1</span></span> satisfies A<sup>2</sup> = I, find the possible values of x.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>A<sup>2</sup> = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>x<sup>2</sup></span><span>0</span><span>0</span><span>1</span></span>.</li><li>Setting this equal to I gives x<sup>2</sup> = 1.</li></ol><p class="ansline"><span class="tag">Answer</span> x = &plusmn;1.</p></div>
+</div>
+</div>
+</section>
+<section class="ch" id="det">
+<div class="chhead"><span class="chnum">4</span><h2>Determinants</h2><span class="chctl"><button data-ch-reveal="det">reveal chapter</button><button data-ch-hide="det">hide</button></span></div>
+<p class="chscope">Determinants up to 3 &times; 3; properties; minors and cofactors; area of a triangle and collinearity; adjoint and inverse; consistency and solution of linear systems by matrices (Martin's rule).</p>
+<div class="type">
+<p class="tname">Type 1 &middot; Evaluating a determinant using properties</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Look for a row or column operation that creates a row/column of zeros, or that makes two rows/columns proportional (determinant then 0). Never expand a 3 &times; 3 determinant with messy entries before trying this.</div>
+<div class="prob" id="p31">
+<div class="pmeta"><span class="pn">P31</span><span class="marks">2 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q6</span><button class="dtoggle">mark done</button></div>
+<div class="q">Using properties of determinants, evaluate <span class="mx det" style="grid-template-columns:repeat(3,auto)"><span>(a<sup>x</sup> + a<sup>&minus;x</sup>)<sup>2</sup></span><span>(a<sup>x</sup> &minus; a<sup>&minus;x</sup>)<sup>2</sup></span><span>1</span><span>(a<sup>y</sup> + a<sup>&minus;y</sup>)<sup>2</sup></span><span>(a<sup>y</sup> &minus; a<sup>&minus;y</sup>)<sup>2</sup></span><span>1</span><span>(a<sup>z</sup> + a<sup>&minus;z</sup>)<sup>2</sup></span><span>(a<sup>z</sup> &minus; a<sup>&minus;z</sup>)<sup>2</sup></span><span>1</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>For any t, (a<sup>t</sup> + a<sup>&minus;t</sup>)<sup>2</sup> &minus; (a<sup>t</sup> &minus; a<sup>&minus;t</sup>)<sup>2</sup> = 4, because the cross terms are +2 and &minus;2 times a<sup>t</sup>&middot;a<sup>&minus;t</sup> = 1.</li><li>So C&#8321; &minus; C&#8322; = 4 for every row, i.e. C&#8321; &minus; C&#8322; = 4 C&#8323;.</li><li>Apply C&#8321; &rarr; C&#8321; &minus; C&#8322; &minus; 4C&#8323;. Every entry of the new first column is 0.</li><li>A determinant with a zero column is 0.</li></ol><p class="ansline"><span class="tag">Answer</span> 0.</p><p class="note"><span class="tag">Note</span> Verified symbolically: the determinant is identically zero for all a, x, y, z.</p></div>
+</div>
+<div class="prob" id="p32">
+<div class="pmeta"><span class="pn">P32</span><span class="marks">1 mark</span><span class="src">Heritage First Term 2024&ndash;25, Q1(iv)</span><button class="dtoggle">mark done</button></div>
+<div class="q">If <span class="mx det" style="grid-template-columns:repeat(3,auto)"><span>a<sup>2</sup></span><span>bc</span><span>c<sup>2</sup> + ac</span><span>a<sup>2</sup> + ab</span><span>b<sup>2</sup></span><span>ca</span><span>ab</span><span>b<sup>2</sup> + bc</span><span>c<sup>2</sup></span></span> = k a<sup>2</sup>b<sup>2</sup>c<sup>2</sup>, then k = ?</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><b>Take a common factor out of each column.</b> C&#8321; = (a<sup>2</sup>, a<sup>2</sup> + ab, ab) = a(a, a + b, b); C&#8322; = (bc, b<sup>2</sup>, b<sup>2</sup> + bc) = b(c, b, b + c); C&#8323; = (c<sup>2</sup> + ac, ca, c<sup>2</sup>) = c(c + a, a, c). So the determinant is<div class="disp">abc <span class="mx det" style="grid-template-columns:repeat(3,auto)"><span>a</span><span>c</span><span>c + a</span><span>a + b</span><span>b</span><span>a</span><span>b</span><span>b + c</span><span>c</span></span></div></li><li><b>Apply C&#8323; &rarr; C&#8323; &minus; C&#8321; &minus; C&#8322;.</b> Row 1 gives (c + a) &minus; a &minus; c = 0; rows 2 and 3 both give &minus;2b:<div class="disp">abc <span class="mx det" style="grid-template-columns:repeat(3,auto)"><span>a</span><span>c</span><span>0</span><span>a + b</span><span>b</span><span>&minus;2b</span><span>b</span><span>b + c</span><span>&minus;2b</span></span></div></li><li><b>Apply R&#8322; &rarr; R&#8322; &minus; R&#8323;</b>, which clears the third column except for one entry:<div class="disp">abc <span class="mx det" style="grid-template-columns:repeat(3,auto)"><span>a</span><span>c</span><span>0</span><span>a</span><span>&minus;c</span><span>0</span><span>b</span><span>b + c</span><span>&minus;2b</span></span></div></li><li><b>Expand along C&#8323;.</b> The only non-zero entry is &minus;2b at position (3,3), whose cofactor sign is +:<div class="disp">abc &middot; (&minus;2b) <span class="mx det" style="grid-template-columns:repeat(2,auto)"><span>a</span><span>c</span><span>a</span><span>&minus;c</span></span> = abc(&minus;2b)(&minus;ac &minus; ac) = abc &middot; 4abc</div></li></ol><p class="ansline"><span class="tag">Answer</span> The determinant is 4a<sup>2</sup>b<sup>2</sup>c<sup>2</sup>, so k = 4.</p><p class="note"><span class="tag">Note</span> Every step above was checked symbolically. Pulling a common factor out of each column first is what makes this tractable &mdash; expanding the original 3 &times; 3 directly takes far longer than a 1-mark question deserves.</p></div>
+</div>
+<div class="prob" id="p33">
+<div class="pmeta"><span class="pn">P33</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Prove that <span class="mx det" style="grid-template-columns:repeat(3,auto)"><span>1</span><span>a</span><span>a<sup>2</sup></span><span>1</span><span>b</span><span>b<sup>2</sup></span><span>1</span><span>c</span><span>c<sup>2</sup></span></span> = (a &minus; b)(b &minus; c)(c &minus; a).</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Apply R&#8321; &rarr; R&#8321; &minus; R&#8322; and R&#8322; &rarr; R&#8322; &minus; R&#8323;:<div class="disp"><span class="mx det" style="grid-template-columns:repeat(3,auto)"><span>0</span><span>a &minus; b</span><span>a<sup>2</sup> &minus; b<sup>2</sup></span><span>0</span><span>b &minus; c</span><span>b<sup>2</sup> &minus; c<sup>2</sup></span><span>1</span><span>c</span><span>c<sup>2</sup></span></span></div></li><li>Take (a &minus; b) out of R&#8321; and (b &minus; c) out of R&#8322;, using a<sup>2</sup> &minus; b<sup>2</sup> = (a &minus; b)(a + b):<div class="disp">(a &minus; b)(b &minus; c) <span class="mx det" style="grid-template-columns:repeat(3,auto)"><span>0</span><span>1</span><span>a + b</span><span>0</span><span>1</span><span>b + c</span><span>1</span><span>c</span><span>c<sup>2</sup></span></span></div></li><li>Expand along C&#8321;: the only non-zero entry is the 1 in position (3,1), with cofactor +[(1)(b + c) &minus; (1)(a + b)] = c &minus; a.</li></ol><p class="ansline"><span class="tag">Answer</span> (a &minus; b)(b &minus; c)(c &minus; a).</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 2 &middot; Determinant of a power, product or adjoint</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Learn the four rules and the questions become one-liners: |AB| = |A||B|, |A<sup>n</sup>| = |A|<sup>n</sup>, |kA| = k<sup>n</sup>|A| for order n, and |adj A| = |A|<sup>n&minus;1</sup>.</div>
+<div class="prob" id="p34">
+<div class="pmeta"><span class="pn">P34</span><span class="marks">2 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q4</span><button class="dtoggle">mark done</button></div>
+<div class="q">If A = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>x</span><span>2</span><span>2</span><span>x</span></span> and |A<sup>4</sup>| = 625, find the value(s) of x.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>|A| = x<sup>2</sup> &minus; 4.</li><li>|A<sup>4</sup>| = |A|<sup>4</sup> = (x<sup>2</sup> &minus; 4)<sup>4</sup>.</li><li>So (x<sup>2</sup> &minus; 4)<sup>4</sup> = 625 = 5<sup>4</sup>, giving x<sup>2</sup> &minus; 4 = &plusmn;5.</li><li>x<sup>2</sup> &minus; 4 = 5 gives x<sup>2</sup> = 9, so x = &plusmn;3. x<sup>2</sup> &minus; 4 = &minus;5 gives x<sup>2</sup> = &minus;1, rejected over the reals.</li></ol><p class="ansline"><span class="tag">Answer</span> x = &plusmn;3.</p><p class="trap"><span class="tag">Trap</span> A fourth power is non-negative, so <b>both</b> signs of the fourth root must be considered &mdash; then discarded on real grounds. Writing only x<sup>2</sup> &minus; 4 = 5 is an incomplete solution.</p></div>
+</div>
+<div class="prob" id="p35">
+<div class="pmeta"><span class="pn">P35</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">A is a 3 &times; 3 matrix with |A| = 5. Find |2A|, |A<sup>&minus;1</sup>|, |adj A| and |A&middot;adj A|.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>|2A| = 2<sup>3</sup>|A| = 8 &times; 5 = 40 (the scalar multiplies every one of the 3 rows).</li><li>|A<sup>&minus;1</sup>| = 1/|A| = <span class="fr"><span class="n">1</span><span class="d">5</span></span>.</li><li>|adj A| = |A|<sup>n&minus;1</sup> = 5<sup>2</sup> = 25.</li><li>A&middot;adj A = |A| I, so |A&middot;adj A| = |5I| = 5<sup>3</sup> = 125.</li></ol><p class="ansline"><span class="tag">Answer</span> 40, &nbsp;<span class="fr"><span class="n">1</span><span class="d">5</span></span>, &nbsp;25, &nbsp;125.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 3 &middot; Solving a system by the matrix method (Martin's rule)</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Write AX = B, check |A| &ne; 0, compute adj A, then X = A<sup>&minus;1</sup> B = (adj A / |A|)B. Word problems: define the variables explicitly in the first line.</div>
+<div class="prob" id="p36">
+<div class="pmeta"><span class="pn">P36</span><span class="marks">6 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q11</span><button class="dtoggle">mark done</button></div>
+<div class="q">A shopkeeper has three varieties of pens A, B and C. Hina bought 1 pen of each variety for a total of &#8377;21. Meena bought 4 pens of A, 3 of B and 2 of C for &#8377;60. Lina bought 6 pens of A, 2 of B and 3 of C for &#8377;70. (i) Translate into a system of equations. (ii) Solve it by the matrix method. (iii) Hence find the cost of each variety.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Let the costs be &#8377;x, &#8377;y, &#8377;z for A, B, C. Then<div class="disp">x + y + z = 21, &nbsp; 4x + 3y + 2z = 60, &nbsp; 6x + 2y + 3z = 70</div></li><li>So AX = B with A = <span class="mx" style="grid-template-columns:repeat(3,auto)"><span>1</span><span>1</span><span>1</span><span>4</span><span>3</span><span>2</span><span>6</span><span>2</span><span>3</span></span>, B = <span class="mx" style="grid-template-columns:repeat(1,auto)"><span>21</span><span>60</span><span>70</span></span>.</li><li>|A| = 1(9 &minus; 4) &minus; 1(12 &minus; 12) + 1(8 &minus; 18) = 5 &minus; 0 &minus; 10 = &minus;5 &ne; 0, so A<sup>&minus;1</sup> exists.</li><li>Computing the cofactors and transposing, adj A = <span class="mx" style="grid-template-columns:repeat(3,auto)"><span>5</span><span>&minus;1</span><span>&minus;1</span><span>0</span><span>&minus;3</span><span>2</span><span>&minus;10</span><span>4</span><span>&minus;1</span></span>, so A<sup>&minus;1</sup> = &minus;<span class="fr"><span class="n">1</span><span class="d">5</span></span> adj A.</li><li>X = A<sup>&minus;1</sup> B = &minus;<span class="fr"><span class="n">1</span><span class="d">5</span></span><span class="mx" style="grid-template-columns:repeat(3,auto)"><span>5</span><span>&minus;1</span><span>&minus;1</span><span>0</span><span>&minus;3</span><span>2</span><span>&minus;10</span><span>4</span><span>&minus;1</span></span> = &minus;<span class="fr"><span class="n">1</span><span class="d">5</span></span><span class="mx" style="grid-template-columns:repeat(1,auto)"><span>&minus;25</span><span>&minus;40</span><span>&minus;40</span></span> = <span class="mx" style="grid-template-columns:repeat(1,auto)"><span>5</span><span>8</span><span>8</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> A costs &#8377;5, B costs &#8377;8, C costs &#8377;8.</p><p class="note"><span class="tag">Note</span> Verified: 5 + 8 + 8 = 21, 20 + 24 + 16 = 60, 30 + 16 + 24 = 70. Always substitute back &mdash; it costs ten seconds and catches every arithmetic slip in the adjoint.</p></div>
+</div>
+<div class="prob" id="p37">
+<div class="pmeta"><span class="pn">P37</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">For what value of k does the system kx + 2y = 5, 3x + y = 1 fail to have a unique solution? Is it then inconsistent or does it have infinitely many solutions?</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>A unique solution needs |A| &ne; 0, where A = <span class="mx" style="grid-template-columns:repeat(2,auto)"><span>k</span><span>2</span><span>3</span><span>1</span></span>.</li><li>|A| = k &minus; 6, which vanishes at k = 6.</li><li>At k = 6 the equations read 6x + 2y = 5 and 3x + y = 1. Doubling the second gives 6x + 2y = 2, which contradicts 6x + 2y = 5.</li></ol><p class="ansline"><span class="tag">Answer</span> k = 6; the system is then inconsistent (no solution).</p><p class="note"><span class="tag">Note</span> |A| = 0 alone does not tell you which of the two cases holds. You must compare the equations, as the syllabus note on consistency requires.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 4 &middot; Area of a triangle and collinearity</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Area = <span class="fr"><span class="n">1</span><span class="d">2</span></span>|<span class="mx det" style="grid-template-columns:repeat(3,auto)"><span>x&#8321;</span><span>y&#8321;</span><span>1</span><span>x&#8322;</span><span>y&#8322;</span><span>1</span><span>x&#8323;</span><span>y&#8323;</span><span>1</span></span>|. Collinear &hArr; determinant = 0. Remember the modulus: area is never negative.</div>
+<div class="prob" id="p38">
+<div class="pmeta"><span class="pn">P38</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the area of the triangle with vertices (1, 0), (6, 0) and (4, 3), and find k so that (1, 0), (6, 0), (k, 3) are collinear.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Area = <span class="fr"><span class="n">1</span><span class="d">2</span></span>|<span class="mx det" style="grid-template-columns:repeat(3,auto)"><span>1</span><span>0</span><span>1</span><span>6</span><span>0</span><span>1</span><span>4</span><span>3</span><span>1</span></span>|.</li><li>Expanding along C&#8322; (two zeros): the only contribution is &minus;3&middot;(1&middot;1 &minus; 1&middot;6) = &minus;3(&minus;5) = 15. So area = <span class="fr"><span class="n">1</span><span class="d">2</span></span>&middot;15.</li><li>For collinearity with (k, 3) the determinant must be 0. The same expansion gives &minus;3(1 &minus; 6) = 15 &ne; 0 regardless of k.</li></ol><p class="ansline"><span class="tag">Answer</span> Area = <span class="fr"><span class="n">15</span><span class="d">2</span></span> square units. No value of k makes the three points collinear, because (1,0) and (6,0) lie on y = 0 while the third point has y = 3.</p><p class="note"><span class="tag">Note</span> A good example of a question whose answer is &lsquo;no such value&rsquo;. Say <i>why</i>, geometrically.</p></div>
+</div>
+</div>
+</section>
+<section class="ch" id="cd">
+<div class="chhead"><span class="chnum">5</span><h2>Continuity and Differentiability</h2><span class="chctl"><button data-ch-reveal="cd">reveal chapter</button><button data-ch-hide="cd">hide</button></span></div>
+<p class="chscope">Continuity at a point and on an interval; differentiability; chain rule; derivatives of inverse trigonometric, exponential and logarithmic functions; implicit, parametric and logarithmic differentiation; second order derivatives.</p>
+<div class="type">
+<p class="tname">Type 1 &middot; Finding a constant so that a piecewise function is continuous</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Continuity at x = a means LHL = RHL = f(a). Write all three, set them equal, solve. Only <b>one</b> equation comes out of continuity &mdash; if the question asks for two constants you also need differentiability.</div>
+<div class="prob" id="p39">
+<div class="pmeta"><span class="pn">P39</span><span class="marks">1 mark</span><span class="src">Heritage First Term 2024&ndash;25, Q1(ix)</span><button class="dtoggle">mark done</button></div>
+<div class="q"><b>Assertion (A):</b> the value of k for which f(x) = <span class="pw"><span class="brace">{</span><span class="cases"><span class="v">kx<sup>2</sup></span><span class="c">x &le; 2</span><span class="v">3</span><span class="c">x &gt; 2</span></span></span> is continuous at x = 2 is k = <span class="fr"><span class="n">4</span><span class="d">3</span></span>.<br><b>Reason (R):</b> f is continuous at x = a if <span class="lm"><span class="op">lim</span><span class="to">x &rarr; a</span></span><span class="lmb"></span> f(x) = f(a).<br>Choose: (a) both true, R explains A; (b) both true, R does not explain A; (c) both false; (d) A false but R true.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Continuity at 2 needs <span class="lm"><span class="op">lim</span><span class="to">x &rarr; 2<sup>&minus;</sup></span></span><span class="lmb"></span> k x<sup>2</sup> = f(2) = 4k on the left and <span class="lm"><span class="op">lim</span><span class="to">x &rarr; 2<sup>+</sup></span></span><span class="lmb"></span> 3 = 3 on the right.</li><li>So 4k = 3, giving k = <span class="fr"><span class="n">3</span><span class="d">4</span></span>, <b>not</b> <span class="fr"><span class="n">4</span><span class="d">3</span></span>. Assertion is <b>false</b>.</li><li>The Reason is the correct definition of continuity at a point, so it is <b>true</b>.</li></ol><p class="ansline"><span class="tag">Answer</span> (d) A is false but R is true.</p><p class="trap"><span class="tag">Trap</span> <span class="fr"><span class="n">3</span><span class="d">4</span></span> and <span class="fr"><span class="n">4</span><span class="d">3</span></span> are easy to swap under pressure. Write 4k = 3 and solve it on paper rather than in your head.</p></div>
+</div>
+<div class="prob" id="p40">
+<div class="pmeta"><span class="pn">P40</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find k so that f(x) = <span class="pw"><span class="brace">{</span><span class="cases"><span class="v"><span class="fr"><span class="n">sin 3x</span><span class="d">x</span></span></span><span class="c">x &ne; 0</span><span class="v">k</span><span class="c">x = 0</span></span></span> is continuous at x = 0.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><span class="lm"><span class="op">lim</span><span class="to">x &rarr; 0</span></span><span class="lmb"></span> <span class="fr"><span class="n">sin 3x</span><span class="d">x</span></span> = <span class="lm"><span class="op">lim</span><span class="to">x &rarr; 0</span></span><span class="lmb"></span> <span class="fr"><span class="n">sin 3x</span><span class="d">3x</span></span> &middot; 3 = 1 &middot; 3 = 3, using <span class="lm"><span class="op">lim</span><span class="to">&theta; &rarr; 0</span></span><span class="lmb"></span> <span class="fr"><span class="n">sin &theta;</span><span class="d">&theta;</span></span> = 1.</li><li>For continuity this limit must equal f(0) = k.</li></ol><p class="ansline"><span class="tag">Answer</span> k = 3.</p></div>
+</div>
+<div class="prob" id="p41">
+<div class="pmeta"><span class="pn">P41</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Discuss the continuity and differentiability of f(x) = |x &minus; 1| + |x &minus; 2| on &#8477;.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Write f without moduli:<div class="disp">f(x) = <span class="pw"><span class="brace">{</span><span class="cases"><span class="v">3 &minus; 2x</span><span class="c">x &lt; 1</span><span class="v">1</span><span class="c">1 &le; x &le; 2</span><span class="v">2x &minus; 3</span><span class="c">x &gt; 2</span></span></span></div></li><li>Each piece is a polynomial, hence continuous; at x = 1 both sides give 1 and at x = 2 both sides give 1. So f is <b>continuous everywhere</b>.</li><li>Derivatives of the pieces are &minus;2, 0 and 2. At x = 1 the left derivative is &minus;2 and the right derivative 0; at x = 2 they are 0 and 2.</li></ol><p class="ansline"><span class="tag">Answer</span> Continuous on &#8477;; differentiable on &#8477; except at x = 1 and x = 2.</p><p class="note"><span class="tag">Note</span> A modulus function is always continuous at its corner but never differentiable there. Count the corners and you have the answer.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 2 &middot; Two constants: continuity <i>and</i> differentiability</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Differentiability at x = a needs two conditions: continuity there, <b>and</b> equal one-sided derivatives. That gives two equations for two unknowns.</div>
+<div class="prob" id="p42">
+<div class="pmeta"><span class="pn">P42</span><span class="marks">6 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q12</span><button class="dtoggle">mark done</button></div>
+<div class="q">If f(x) = <span class="pw"><span class="brace">{</span><span class="cases"><span class="v">x<sup>2</sup> + 3x + a</span><span class="c">x &le; 1</span><span class="v">bx + 2</span><span class="c">x &gt; 1</span></span></span> is derivable, find a and b.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><b>Continuity at x = 1.</b> Left value 1 + 3 + a = a + 4; right value b + 2. So a + 4 = b + 2, i.e. <b>b = a + 2</b>.</li><li><b>Equal derivatives at x = 1.</b> For x &lt; 1, f&prime;(x) = 2x + 3, so the left derivative at 1 is 5. For x &gt; 1, f&prime;(x) = b. So <b>b = 5</b>.</li><li>Then a = b &minus; 2 = 3.</li></ol><p class="ansline"><span class="tag">Answer</span> a = 3, b = 5.</p><p class="trap"><span class="tag">Trap</span> Differentiability is the <i>stronger</i> condition, but it does not replace continuity &mdash; you need both equations. Answering with only b = 5 loses half the marks.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 3 &middot; Logarithmic differentiation</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Use it whenever the variable appears in an exponent, or the expression is a long product/quotient. Take ln of both sides, differentiate implicitly, then multiply back by y.</div>
+<div class="prob" id="p43">
+<div class="pmeta"><span class="pn">P43</span><span class="marks">4 marks</span><span class="src">Standard ISC type (syllabus names this case)</span><button class="dtoggle">mark done</button></div>
+<div class="q">If y = x<sup>x<sup>x</sup></sup>, find <span class="fr"><span class="n">dy</span><span class="d">dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Let u = x<sup>x</sup> so y = x<sup>u</sup>. Take logs: ln y = u ln x.</li><li>First find <span class="fr"><span class="n">du</span><span class="d">dx</span></span>. From ln u = x ln x, <span class="fr"><span class="n">1</span><span class="d">u</span></span>&middot;<span class="fr"><span class="n">du</span><span class="d">dx</span></span> = ln x + 1, so <span class="fr"><span class="n">du</span><span class="d">dx</span></span> = x<sup>x</sup>(ln x + 1).</li><li>Differentiate ln y = u ln x: <span class="fr"><span class="n">1</span><span class="d">y</span></span>&middot;<span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = <span class="fr"><span class="n">du</span><span class="d">dx</span></span>&middot;ln x + <span class="fr"><span class="n">u</span><span class="d">x</span></span>.</li><li>Substitute u and du/dx:<div class="disp"><span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = x<sup>x<sup>x</sup></sup>[ x<sup>x</sup>(ln x + 1) ln x + <span class="fr"><span class="n">x<sup>x</sup></span><span class="d">x</span></span> ]</div></li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = x<sup>x<sup>x</sup></sup>&middot;x<sup>x</sup>[ (ln x + 1) ln x + <span class="fr"><span class="n">1</span><span class="d">x</span></span> ].</p><p class="note"><span class="tag">Note</span> Verified symbolically against a computer algebra system.</p></div>
+</div>
+<div class="prob" id="p44">
+<div class="pmeta"><span class="pn">P44</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">If x<sup>y</sup> = y<sup>x</sup>, find <span class="fr"><span class="n">dy</span><span class="d">dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Take logs: y ln x = x ln y.</li><li>Differentiate both sides with respect to x:<div class="disp"><span class="fr"><span class="n">dy</span><span class="d">dx</span></span>&middot;ln x + <span class="fr"><span class="n">y</span><span class="d">x</span></span> = ln y + <span class="fr"><span class="n">x</span><span class="d">y</span></span>&middot;<span class="fr"><span class="n">dy</span><span class="d">dx</span></span></div></li><li>Collect the <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> terms: <span class="fr"><span class="n">dy</span><span class="d">dx</span></span>(ln x &minus; <span class="fr"><span class="n">x</span><span class="d">y</span></span>) = ln y &minus; <span class="fr"><span class="n">y</span><span class="d">x</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = <span class="fr"><span class="n">y(x ln y &minus; y)</span><span class="d">x(y ln x &minus; x)</span></span>.</p><p class="note"><span class="tag">Note</span> Verified numerically at the point (2, 4), which lies on the curve since 2<sup>4</sup> = 4<sup>2</sup>.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 4 &middot; Parametric differentiation and second derivatives</p>
+<div class="strategy"><span class="lbl">How to attack it</span><span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = <span class="fr"><span class="n">dy</span><span class="d">dt</span></span> &divide; <span class="fr"><span class="n">dx</span><span class="d">dt</span></span>. For the second derivative you must differentiate <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> <b>with respect to t</b> and then divide by <span class="fr"><span class="n">dx</span><span class="d">dt</span></span> again &mdash; never divide the two second derivatives.</div>
+<div class="prob" id="p45">
+<div class="pmeta"><span class="pn">P45</span><span class="marks">1 mark</span><span class="src">Heritage First Term 2024&ndash;25, Q1(viii)</span><button class="dtoggle">mark done</button></div>
+<div class="q"><b>Assertion (A):</b> if x = at<sup>2</sup> and y = 2at, then <span class="fr"><span class="n">d<sup>2</sup>y</span><span class="d">dx<sup>2</sup></span></span> = &minus;<span class="fr"><span class="n">1</span><span class="d">t<sup>2</sup></span></span>.<br><b>Reason (R):</b> <span class="fr"><span class="n">d<sup>2</sup>y</span><span class="d">dx<sup>2</sup></span></span> = <span class="fr"><span class="n">d<sup>2</sup>y</span><span class="d">dt<sup>2</sup></span></span> &divide; <span class="fr"><span class="n">d<sup>2</sup>x</span><span class="d">dt<sup>2</sup></span></span>.<br>Choose: (a) both true, R explains A; (b) both true, R does not explain A; (c) both false; (d) A true but R false.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><span class="fr"><span class="n">dy</span><span class="d">dt</span></span> = 2a, <span class="fr"><span class="n">dx</span><span class="d">dt</span></span> = 2at, so <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = <span class="fr"><span class="n">2a</span><span class="d">2at</span></span> = <span class="fr"><span class="n">1</span><span class="d">t</span></span>.</li><li>Now <span class="fr"><span class="n">d<sup>2</sup>y</span><span class="d">dx<sup>2</sup></span></span> = <span class="fr"><span class="n">d</span><span class="d">dt</span></span>(<span class="fr"><span class="n">1</span><span class="d">t</span></span>) &divide; <span class="fr"><span class="n">dx</span><span class="d">dt</span></span> = (&minus;<span class="fr"><span class="n">1</span><span class="d">t<sup>2</sup></span></span>) &divide; 2at = &minus;<span class="fr"><span class="n">1</span><span class="d">2at<sup>3</sup></span></span>.</li><li>So the Assertion&rsquo;s value &minus;1/t<sup>2</sup> is <b>wrong</b>: the correct answer is &minus;1/(2at<sup>3</sup>).</li><li>The Reason is also <b>wrong</b> &mdash; the second derivative is <i>not</i> the quotient of the two second derivatives.</li></ol><p class="ansline"><span class="tag">Answer</span> (c) both A and R are false.</p><p class="trap"><span class="tag">Trap</span> The false Reason here is a genuinely popular misconception. The correct rule is <span class="fr"><span class="n">d<sup>2</sup>y</span><span class="d">dx<sup>2</sup></span></span> = <span class="fr"><span class="n">d</span><span class="d">dt</span></span>(<span class="fr"><span class="n">dy</span><span class="d">dx</span></span>) &divide; <span class="fr"><span class="n">dx</span><span class="d">dt</span></span>.</p></div>
+</div>
+<div class="prob" id="p46">
+<div class="pmeta"><span class="pn">P46</span><span class="marks">4 marks</span><span class="src">NCERT Exemplar Ch 5, Q81 &middot; Heritage FT Q9 (OR)</span><button class="dtoggle">mark done</button></div>
+<div class="q">If x = sin t and y = sin pt, prove that (1 &minus; x<sup>2</sup>)<span class="fr"><span class="n">d<sup>2</sup>y</span><span class="d">dx<sup>2</sup></span></span> &minus; x<span class="fr"><span class="n">dy</span><span class="d">dx</span></span> + p<sup>2</sup>y = 0.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><span class="fr"><span class="n">dx</span><span class="d">dt</span></span> = cos t, <span class="fr"><span class="n">dy</span><span class="d">dt</span></span> = p cos pt, so <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = <span class="fr"><span class="n">p cos pt</span><span class="d">cos t</span></span>.</li><li>Then cos t &middot; <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = p cos pt. Square both sides and use cos<sup>2</sup>t = 1 &minus; x<sup>2</sup>, cos<sup>2</sup>pt = 1 &minus; y<sup>2</sup>:<div class="disp">(1 &minus; x<sup>2</sup>)(<span class="fr"><span class="n">dy</span><span class="d">dx</span></span>)<sup>2</sup> = p<sup>2</sup>(1 &minus; y<sup>2</sup>)</div></li><li>Differentiate this with respect to x:<div class="disp">&minus;2x(<span class="fr"><span class="n">dy</span><span class="d">dx</span></span>)<sup>2</sup> + (1 &minus; x<sup>2</sup>)&middot;2<span class="fr"><span class="n">dy</span><span class="d">dx</span></span>&middot;<span class="fr"><span class="n">d<sup>2</sup>y</span><span class="d">dx<sup>2</sup></span></span> = &minus;2p<sup>2</sup>y<span class="fr"><span class="n">dy</span><span class="d">dx</span></span></div></li><li>Divide throughout by 2<span class="fr"><span class="n">dy</span><span class="d">dx</span></span> (non-zero in general) and rearrange.</li></ol><p class="ansline"><span class="tag">Answer</span> (1 &minus; x<sup>2</sup>)<span class="fr"><span class="n">d<sup>2</sup>y</span><span class="d">dx<sup>2</sup></span></span> &minus; x<span class="fr"><span class="n">dy</span><span class="d">dx</span></span> + p<sup>2</sup>y = 0, as required.</p><p class="note"><span class="tag">Note</span> Squaring first, then differentiating, avoids ever computing d<sup>2</sup>/dx<sup>2</sup> of a quotient. That is the standard trick for this whole family.</p></div>
+</div>
+<div class="prob" id="p47">
+<div class="pmeta"><span class="pn">P47</span><span class="marks">4 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q9</span><button class="dtoggle">mark done</button></div>
+<div class="q">If (ax + b)e<sup>y/x</sup> = x, prove that x<sup>3</sup><span class="fr"><span class="n">d<sup>2</sup>y</span><span class="d">dx<sup>2</sup></span></span> = (x<span class="fr"><span class="n">dy</span><span class="d">dx</span></span> &minus; y)<sup>2</sup>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Rearrange: e<sup>y/x</sup> = <span class="fr"><span class="n">x</span><span class="d">ax + b</span></span>, so <span class="fr"><span class="n">y</span><span class="d">x</span></span> &minus; ln(ax + b) = 0, i.e. y = x[ln x &minus; ln(ax + b)].</li><li>Differentiate: <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = ln x &minus; ln(ax + b) + x[<span class="fr"><span class="n">1</span><span class="d">x</span></span> &minus; <span class="fr"><span class="n">a</span><span class="d">ax + b</span></span>] = <span class="fr"><span class="n">y</span><span class="d">x</span></span> + 1 &minus; <span class="fr"><span class="n">ax</span><span class="d">ax + b</span></span>.</li><li>So x<span class="fr"><span class="n">dy</span><span class="d">dx</span></span> &minus; y = x &minus; <span class="fr"><span class="n">ax<sup>2</sup></span><span class="d">ax + b</span></span> = <span class="fr"><span class="n">bx</span><span class="d">ax + b</span></span>, giving (x<span class="fr"><span class="n">dy</span><span class="d">dx</span></span> &minus; y)<sup>2</sup> = <span class="fr"><span class="n">b<sup>2</sup>x<sup>2</sup></span><span class="d">(ax + b)<sup>2</sup></span></span>.</li><li>Differentiating <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> once more gives <span class="fr"><span class="n">d<sup>2</sup>y</span><span class="d">dx<sup>2</sup></span></span> = <span class="fr"><span class="n">b<sup>2</sup></span><span class="d">x(ax + b)<sup>2</sup></span></span>, so x<sup>3</sup><span class="fr"><span class="n">d<sup>2</sup>y</span><span class="d">dx<sup>2</sup></span></span> = <span class="fr"><span class="n">b<sup>2</sup>x<sup>2</sup></span><span class="d">(ax + b)<sup>2</sup></span></span>, which matches.</li></ol><p class="note"><span class="tag">Note</span> Verified symbolically: x<sup>3</sup> y&Prime; &minus; (xy&prime; &minus; y)<sup>2</sup> reduces identically to 0 on the curve.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 5 &middot; Differentiation of inverse trigonometric functions by substitution</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Do not attack these with the chain rule. Substitute x = sin &theta; (for &radic;1 &minus; x<sup>2</sup>), x = tan &theta; (for 1 + x<sup>2</sup>), simplify to a multiple of &theta;, and differentiate that.</div>
+<div class="prob" id="p48">
+<div class="pmeta"><span class="pn">P48</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Differentiate sin<sup>&minus;1</sup>(2x<span class="rt">&radic;<span class="bar">1 &minus; x<sup>2</sup></span></span>) with respect to x, for |x| &lt; <span class="fr"><span class="n">1</span><span class="d"><span class="rt">&radic;<span class="bar">2</span></span></span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Put x = sin &theta;, so <span class="rt">&radic;<span class="bar">1 &minus; x<sup>2</sup></span></span> = cos &theta; and 2x<span class="rt">&radic;<span class="bar">1 &minus; x<sup>2</sup></span></span> = 2 sin &theta; cos &theta; = sin 2&theta;.</li><li>So the expression is sin<sup>&minus;1</sup>(sin 2&theta;) = 2&theta;, valid because |x| &lt; 1/<span class="rt">&radic;<span class="bar">2</span></span> puts 2&theta; inside [&minus;&pi;/2, &pi;/2].</li><li>Hence the expression equals 2 sin<sup>&minus;1</sup>x, whose derivative is <span class="fr"><span class="n">2</span><span class="d"><span class="rt">&radic;<span class="bar">1 &minus; x<sup>2</sup></span></span></span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">2</span><span class="d"><span class="rt">&radic;<span class="bar">1 &minus; x<sup>2</sup></span></span></span></span>.</p><p class="trap"><span class="tag">Trap</span> Outside |x| &lt; 1/<span class="rt">&radic;<span class="bar">2</span></span> the simplification is <i>not</i> 2sin<sup>&minus;1</sup>x &mdash; the stated restriction is doing real work.</p></div>
+</div>
+<div class="prob" id="p49">
+<div class="pmeta"><span class="pn">P49</span><span class="marks">2 marks</span><span class="src">Syllabus names this case explicitly</span><button class="dtoggle">mark done</button></div>
+<div class="q">Differentiate sin(x<sup>3</sup>) with respect to x<sup>3</sup>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Let u = x<sup>3</sup>. We want <span class="fr"><span class="n">d(sin u)</span><span class="d">du</span></span>, not <span class="fr"><span class="n">dy</span><span class="d">dx</span></span>.</li><li><span class="fr"><span class="n">d(sin u)</span><span class="d">du</span></span> = <span class="fr"><span class="n">d(sin x<sup>3</sup>)</span><span class="d">dx</span></span> &divide; <span class="fr"><span class="n">d(x<sup>3</sup>)</span><span class="d">dx</span></span> = <span class="fr"><span class="n">3x<sup>2</sup> cos x<sup>3</sup></span><span class="d">3x<sup>2</sup></span></span> = cos u.</li></ol><p class="ansline"><span class="tag">Answer</span> cos(x<sup>3</sup>).</p><p class="note"><span class="tag">Note</span> &lsquo;Differentiate f with respect to g&rsquo; always means (df/dx) &divide; (dg/dx). Read the question carefully &mdash; the answer is much simpler than the chain-rule one.</p></div>
+</div>
+<div class="prob" id="p50">
+<div class="pmeta"><span class="pn">P50</span><span class="marks">2 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q2</span><button class="dtoggle">mark done</button></div>
+<div class="q">If y = e<sup>log sin<sup>&minus;1</sup>x</sup> + e<sup>log cos<sup>&minus;1</sup>x</sup> where 0 &lt; x &lt; 1, find <span class="fr"><span class="n">dy</span><span class="d">dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>e<sup>log t</sup> = t for t &gt; 0, so the two terms are simply sin<sup>&minus;1</sup>x and cos<sup>&minus;1</sup>x.</li><li>So y = sin<sup>&minus;1</sup>x + cos<sup>&minus;1</sup>x = <span class="fr"><span class="n">&pi;</span><span class="d">2</span></span>, a constant.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = 0.</p><p class="note"><span class="tag">Note</span> A question designed to look hard. Recognising e<sup>log t</sup> = t collapses it to one line.</p></div>
+</div>
+</div>
+</section>
+<section class="ch" id="aod">
+<div class="chhead"><span class="chnum">6</span><h2>Applications of Derivatives</h2><span class="chctl"><button data-ch-reveal="aod">reveal chapter</button><button data-ch-hide="aod">hide</button></span></div>
+<p class="chscope">Rate of change; increasing and decreasing functions; tangents and normals; angle between curves; maxima and minima (first and second derivative tests); applied maximum/minimum problems.</p>
+<div class="type">
+<p class="tname">Type 1 &middot; Tangents and normals</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Slope of the tangent is <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> at the point. If the tangent is a given line, equate slopes to find x, then <b>check that the point actually lies on that line</b> &mdash; that check is usually where the marks are.</div>
+<div class="prob" id="p51">
+<div class="pmeta"><span class="pn">P51</span><span class="marks">2 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q5</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the point on the curve y = x<sup>3</sup> &minus; 11x + 5 at which the tangent is y = x &minus; 11.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = 3x<sup>2</sup> &minus; 11. The line y = x &minus; 11 has slope 1, so 3x<sup>2</sup> &minus; 11 = 1, giving x<sup>2</sup> = 4 and x = &plusmn;2.</li><li>At x = 2: y = 8 &minus; 22 + 5 = &minus;9. Does (2, &minus;9) lie on y = x &minus; 11? 2 &minus; 11 = &minus;9 &nbsp;&#10003;</li><li>At x = &minus;2: y = &minus;8 + 22 + 5 = 19. Does (&minus;2, 19) lie on the line? &minus;2 &minus; 11 = &minus;13 &ne; 19 &nbsp;&#10007;</li></ol><p class="ansline"><span class="tag">Answer</span> (2, &minus;9) only.</p><p class="trap"><span class="tag">Trap</span> Both x = &plusmn;2 give a tangent <i>parallel</i> to the line, but only one gives the line itself. Quoting both points is the standard mistake.</p></div>
+</div>
+<div class="prob" id="p52">
+<div class="pmeta"><span class="pn">P52</span><span class="marks">2 marks</span><span class="src">NCERT Exemplar Ch 6, Q14 &middot; Heritage FT Q5 (OR)</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the coordinates of the point on the curve <span class="rt">&radic;<span class="bar">x</span></span> + <span class="rt">&radic;<span class="bar">y</span></span> = 4 at which the tangent is equally inclined to the axes.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Differentiate implicitly: <span class="fr"><span class="n">1</span><span class="d">2<span class="rt">&radic;<span class="bar">x</span></span></span></span> + <span class="fr"><span class="n">1</span><span class="d">2<span class="rt">&radic;<span class="bar">y</span></span></span></span>&middot;<span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = 0, so <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = &minus;<span class="fr"><span class="n"><span class="rt">&radic;<span class="bar">y</span></span></span><span class="d"><span class="rt">&radic;<span class="bar">x</span></span></span></span>.</li><li>Equally inclined to the axes means slope &plusmn;1. Since <span class="rt">&radic;<span class="bar">x</span></span> and <span class="rt">&radic;<span class="bar">y</span></span> are positive, the slope is negative, so we need slope = &minus;1.</li><li>&minus;<span class="fr"><span class="n"><span class="rt">&radic;<span class="bar">y</span></span></span><span class="d"><span class="rt">&radic;<span class="bar">x</span></span></span></span> = &minus;1 gives y = x.</li><li>Substituting into the curve: 2<span class="rt">&radic;<span class="bar">x</span></span> = 4, so <span class="rt">&radic;<span class="bar">x</span></span> = 2 and x = 4, hence y = 4.</li></ol><p class="ansline"><span class="tag">Answer</span> (4, 4).</p></div>
+</div>
+<div class="prob" id="p53">
+<div class="pmeta"><span class="pn">P53</span><span class="marks">1 mark</span><span class="src">Heritage First Term 2024&ndash;25, Q1(vii)</span><button class="dtoggle">mark done</button></div>
+<div class="q">The slope of the tangent to the curve x = a sin t, y = a cos t at the point t = 0 is: (a) &minus;tan t &nbsp;(b) 0 &nbsp;(c) tan(t/2) &nbsp;(d) none of these.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = <span class="fr"><span class="n">dy/dt</span><span class="d">dx/dt</span></span> = <span class="fr"><span class="n">&minus;a sin t</span><span class="d">a cos t</span></span> = &minus;tan t.</li><li>The question asks for the slope <b>at t = 0</b>: &minus;tan 0 = 0.</li></ol><p class="ansline"><span class="tag">Answer</span> (b) 0.</p><p class="trap"><span class="tag">Trap</span> Option (a) is the slope as a <i>function</i> of t, not the slope at the given point. The question says &lsquo;at t = 0&rsquo; &mdash; substitute.</p></div>
+</div>
+<div class="prob" id="p54">
+<div class="pmeta"><span class="pn">P54</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the angle between the curves y = x<sup>2</sup> and x = y<sup>2</sup> at their points of intersection.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Solving simultaneously: x = (x<sup>2</sup>)<sup>2</sup> = x<sup>4</sup>, so x(x<sup>3</sup> &minus; 1) = 0, giving x = 0 or x = 1. The points are (0, 0) and (1, 1).</li><li>At (1, 1): for y = x<sup>2</sup>, m&#8321; = 2x = 2. For x = y<sup>2</sup>, <span class="fr"><span class="n">dy</span><span class="d">dx</span></span> = <span class="fr"><span class="n">1</span><span class="d">2y</span></span> = <span class="fr"><span class="n">1</span><span class="d">2</span></span>. So tan &theta; = |<span class="fr"><span class="n">m&#8321; &minus; m&#8322;</span><span class="d">1 + m&#8321;m&#8322;</span></span>| = |<span class="fr"><span class="n">2 &minus; <span class="fr"><span class="n">1</span><span class="d">2</span></span></span><span class="d">1 + 1</span></span>| = <span class="fr"><span class="n">3</span><span class="d">4</span></span>, hence &theta; = tan<sup>&minus;1</sup><span class="fr"><span class="n">3</span><span class="d">4</span></span>.</li><li>At (0, 0): y = x<sup>2</sup> has a horizontal tangent (y = 0) and x = y<sup>2</sup> has a vertical tangent (x = 0), so the angle is 90&deg;.</li></ol><p class="ansline"><span class="tag">Answer</span> tan<sup>&minus;1</sup>(3/4) at (1, 1), and 90&deg; at the origin.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 2 &middot; Rate of change</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Write the relation between the quantities, differentiate <b>with respect to t</b>, then substitute the given instantaneous values &mdash; never substitute before differentiating.</div>
+<div class="prob" id="p55">
+<div class="pmeta"><span class="pn">P55</span><span class="marks">2 marks</span><span class="src">NCERT Ch 6, standard</span><button class="dtoggle">mark done</button></div>
+<div class="q">A balloon which always remains spherical is being inflated by pumping in 900 cm<sup>3</sup> of gas per second. Find the rate at which the radius is increasing when the radius is 15 cm.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>V = <span class="fr"><span class="n">4</span><span class="d">3</span></span>&pi;r<sup>3</sup>, so <span class="fr"><span class="n">dV</span><span class="d">dt</span></span> = 4&pi;r<sup>2</sup>&middot;<span class="fr"><span class="n">dr</span><span class="d">dt</span></span>.</li><li>Substitute <span class="fr"><span class="n">dV</span><span class="d">dt</span></span> = 900 and r = 15: 900 = 4&pi;(225)<span class="fr"><span class="n">dr</span><span class="d">dt</span></span>.</li><li><span class="fr"><span class="n">dr</span><span class="d">dt</span></span> = <span class="fr"><span class="n">900</span><span class="d">900&pi;</span></span> = <span class="fr"><span class="n">1</span><span class="d">&pi;</span></span> cm/s.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">1</span><span class="d">&pi;</span></span> cm/s.</p></div>
+</div>
+<div class="prob" id="p56">
+<div class="pmeta"><span class="pn">P56</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Water is leaking from a conical vessel (vertex down) at 5 cm<sup>3</sup>/s. The semi-vertical angle is such that the radius is always half the depth. Find the rate at which the water level falls when the depth is 4 cm.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>r = h/2, so V = <span class="fr"><span class="n">1</span><span class="d">3</span></span>&pi;r<sup>2</sup>h = <span class="fr"><span class="n">1</span><span class="d">3</span></span>&pi;(<span class="fr"><span class="n">h</span><span class="d">2</span></span>)<sup>2</sup>h = <span class="fr"><span class="n">&pi;h<sup>3</sup></span><span class="d">12</span></span>.</li><li><span class="fr"><span class="n">dV</span><span class="d">dt</span></span> = <span class="fr"><span class="n">&pi;h<sup>2</sup></span><span class="d">4</span></span>&middot;<span class="fr"><span class="n">dh</span><span class="d">dt</span></span>.</li><li>The vessel is losing water, so <span class="fr"><span class="n">dV</span><span class="d">dt</span></span> = &minus;5. With h = 4: &minus;5 = <span class="fr"><span class="n">16&pi;</span><span class="d">4</span></span>&middot;<span class="fr"><span class="n">dh</span><span class="d">dt</span></span> = 4&pi;&middot;<span class="fr"><span class="n">dh</span><span class="d">dt</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">dh</span><span class="d">dt</span></span> = &minus;<span class="fr"><span class="n">5</span><span class="d">4&pi;</span></span> cm/s, i.e. the level falls at <span class="fr"><span class="n">5</span><span class="d">4&pi;</span></span> cm/s.</p><p class="trap"><span class="tag">Trap</span> A leak means <span class="fr"><span class="n">dV</span><span class="d">dt</span></span> is <b>negative</b>. Dropping the sign turns a falling level into a rising one.</p></div>
+</div>
+<div class="prob" id="p57">
+<div class="pmeta"><span class="pn">P57</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">A ladder 5 m long leans against a wall. Its foot is pulled away from the wall at 2 m/s. How fast is the top sliding down when the foot is 3 m from the wall?</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>x<sup>2</sup> + y<sup>2</sup> = 25, so 2x<span class="fr"><span class="n">dx</span><span class="d">dt</span></span> + 2y<span class="fr"><span class="n">dy</span><span class="d">dt</span></span> = 0.</li><li>When x = 3, y = <span class="rt">&radic;<span class="bar">25 &minus; 9</span></span> = 4.</li><li>3(2) + 4<span class="fr"><span class="n">dy</span><span class="d">dt</span></span> = 0, so <span class="fr"><span class="n">dy</span><span class="d">dt</span></span> = &minus;<span class="fr"><span class="n">3</span><span class="d">2</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> The top slides down at <span class="fr"><span class="n">3</span><span class="d">2</span></span> m/s.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 3 &middot; Increasing and decreasing functions</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Factorise f&prime;(x) completely, mark its zeros on a number line, and read off the sign in each interval. State the answer as <b>intervals</b>, not as inequalities on f&prime;.</div>
+<div class="prob" id="p58">
+<div class="pmeta"><span class="pn">P58</span><span class="marks">2 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q2 (OR)</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the interval in which f(x) = x<sup>2</sup>e<sup>&minus;x</sup> is strictly increasing.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>f&prime;(x) = 2xe<sup>&minus;x</sup> &minus; x<sup>2</sup>e<sup>&minus;x</sup> = xe<sup>&minus;x</sup>(2 &minus; x).</li><li>e<sup>&minus;x</sup> &gt; 0 always, so the sign of f&prime; is the sign of x(2 &minus; x).</li><li>x(2 &minus; x) &gt; 0 exactly when 0 &lt; x &lt; 2.</li></ol><p class="ansline"><span class="tag">Answer</span> f is strictly increasing on (0, 2).</p><p class="note"><span class="tag">Note</span> Verified: f&prime;(x) = &minus;x(x &minus; 2)e<sup>&minus;x</sup>.</p></div>
+</div>
+<div class="prob" id="p59">
+<div class="pmeta"><span class="pn">P59</span><span class="marks">1 mark</span><span class="src">Heritage FT Q1(x), restated unambiguously</span><button class="dtoggle">mark done</button></div>
+<div class="q"><b>Assertion (A):</b> f(x) = x<sup>3</sup> &minus; 3x<sup>2</sup> + 6x &minus; 100 is strictly increasing on &#8477;.<br><b>Reason (R):</b> every strictly increasing function is injective.<br>Choose: (a) both true, R explains A; (b) both true, R does not explain A; (c) both false; (d) A true, R false.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>f&prime;(x) = 3x<sup>2</sup> &minus; 6x + 6 = 3(x<sup>2</sup> &minus; 2x + 2) = 3[(x &minus; 1)<sup>2</sup> + 1] &ge; 3 &gt; 0 for every real x.</li><li>So the Assertion is <b>true</b> &mdash; and note f&prime; is never zero, so there is no turning point at all.</li><li>The Reason is a <b>true</b> theorem, but it goes the wrong way: it deduces injectivity <i>from</i> strict increase; it does not explain <i>why</i> f is increasing. That reason is f&prime; &gt; 0.</li></ol><p class="ansline"><span class="tag">Answer</span> (b) both true, but R is not the correct explanation of A.</p><p class="note"><span class="tag">Note</span> The original school paper wrote &lsquo;strictly increasing on &#8477; &minus; {1}&rsquo;, which is ambiguous since that set is not an interval. The clean statement is: f is strictly increasing on all of &#8477;.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 4 &middot; Maxima and minima on a closed interval</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Absolute extremes on [a, b] occur at a critical point <b>or at an endpoint</b>. List f at every critical point inside the interval and at both endpoints, then compare the numbers.</div>
+<div class="prob" id="p60">
+<div class="pmeta"><span class="pn">P60</span><span class="marks">1 mark</span><span class="src">Heritage First Term 2024&ndash;25, Q1(v)</span><button class="dtoggle">mark done</button></div>
+<div class="q">The maximum value of f(x) = <span class="fr"><span class="n">x</span><span class="d">4 + x + x<sup>2</sup></span></span> on [&minus;1, 1] is: (a) &minus;<span class="fr"><span class="n">1</span><span class="d">4</span></span> &nbsp;(b) &minus;<span class="fr"><span class="n">1</span><span class="d">3</span></span> &nbsp;(c) <span class="fr"><span class="n">1</span><span class="d">6</span></span> &nbsp;(d) <span class="fr"><span class="n">1</span><span class="d">5</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>f&prime;(x) = <span class="fr"><span class="n">(4 + x + x<sup>2</sup>) &minus; x(1 + 2x)</span><span class="d">(4 + x + x<sup>2</sup>)<sup>2</sup></span></span> = <span class="fr"><span class="n">4 &minus; x<sup>2</sup></span><span class="d">(4 + x + x<sup>2</sup>)<sup>2</sup></span></span>.</li><li>f&prime;(x) = 0 at x = &plusmn;2, both <b>outside</b> [&minus;1, 1].</li><li>On [&minus;1, 1], 4 &minus; x<sup>2</sup> &gt; 0, so f&prime; &gt; 0 and f is increasing throughout. The maximum is therefore at the right endpoint.</li><li>f(1) = <span class="fr"><span class="n">1</span><span class="d">4 + 1 + 1</span></span> = <span class="fr"><span class="n">1</span><span class="d">6</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> (c) <span class="fr"><span class="n">1</span><span class="d">6</span></span>.</p><p class="trap"><span class="tag">Trap</span> Both critical points fall outside the interval. When that happens the extremes are <b>both</b> at endpoints &mdash; do not report f(&plusmn;2).</p></div>
+</div>
+<div class="prob" id="p61">
+<div class="pmeta"><span class="pn">P61</span><span class="marks">6 marks</span><span class="src">NCERT Exemplar Ch 6, Q31 &middot; Heritage FT Q14 (OR)</span><button class="dtoggle">mark done</button></div>
+<div class="q">If the sum of the surface areas of a cube and a sphere is constant, find the ratio of an edge of the cube to the diameter of the sphere when the sum of their volumes is minimum.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Let the edge be e and the sphere&rsquo;s radius r. Constraint: 6e<sup>2</sup> + 4&pi;r<sup>2</sup> = k (constant).</li><li>Differentiate the constraint with respect to e: 12e + 8&pi;r<span class="fr"><span class="n">dr</span><span class="d">de</span></span> = 0, so <span class="fr"><span class="n">dr</span><span class="d">de</span></span> = &minus;<span class="fr"><span class="n">3e</span><span class="d">2&pi;r</span></span>.</li><li>Total volume V = e<sup>3</sup> + <span class="fr"><span class="n">4</span><span class="d">3</span></span>&pi;r<sup>3</sup>, so <span class="fr"><span class="n">dV</span><span class="d">de</span></span> = 3e<sup>2</sup> + 4&pi;r<sup>2</sup>&middot;<span class="fr"><span class="n">dr</span><span class="d">de</span></span> = 3e<sup>2</sup> + 4&pi;r<sup>2</sup>(&minus;<span class="fr"><span class="n">3e</span><span class="d">2&pi;r</span></span>) = 3e<sup>2</sup> &minus; 6er = 3e(e &minus; 2r).</li><li><span class="fr"><span class="n">dV</span><span class="d">de</span></span> = 0 gives e = 2r (as e &ne; 0).</li><li>Checking the sign of <span class="fr"><span class="n">dV</span><span class="d">de</span></span>: it is negative for e &lt; 2r and positive for e &gt; 2r, so e = 2r is a <b>minimum</b>.</li><li>The diameter of the sphere is 2r = e.</li></ol><p class="ansline"><span class="tag">Answer</span> edge : diameter = 1 : 1.</p><p class="note"><span class="tag">Note</span> Verified symbolically: dV/de = 3e(e &minus; 2r), zero exactly at e = 2r.</p></div>
+</div>
+<div class="prob" id="p62">
+<div class="pmeta"><span class="pn">P62</span><span class="marks">6 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Show that the largest right circular cylinder that can be inscribed in a sphere of radius R has volume <span class="fr"><span class="n">4&pi;R<sup>3</sup></span><span class="d">3<span class="rt">&radic;<span class="bar">3</span></span></span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Let the cylinder have radius &rho; and half-height h, so &rho;<sup>2</sup> + h<sup>2</sup> = R<sup>2</sup> by Pythagoras, i.e. &rho;<sup>2</sup> = R<sup>2</sup> &minus; h<sup>2</sup>.</li><li>Volume V = &pi;&rho;<sup>2</sup>&middot;(2h) = 2&pi;(R<sup>2</sup> &minus; h<sup>2</sup>)h.</li><li><span class="fr"><span class="n">dV</span><span class="d">dh</span></span> = 2&pi;(R<sup>2</sup> &minus; 3h<sup>2</sup>) = 0 gives h = <span class="fr"><span class="n">R</span><span class="d"><span class="rt">&radic;<span class="bar">3</span></span></span></span>.</li><li><span class="fr"><span class="n">d<sup>2</sup>V</span><span class="d">dh<sup>2</sup></span></span> = 2&pi;(&minus;6h) &lt; 0 there, so it is a maximum.</li><li>V = 2&pi;(R<sup>2</sup> &minus; <span class="fr"><span class="n">R<sup>2</sup></span><span class="d">3</span></span>)&middot;<span class="fr"><span class="n">R</span><span class="d"><span class="rt">&radic;<span class="bar">3</span></span></span></span> = 2&pi;&middot;<span class="fr"><span class="n">2R<sup>2</sup></span><span class="d">3</span></span>&middot;<span class="fr"><span class="n">R</span><span class="d"><span class="rt">&radic;<span class="bar">3</span></span></span></span> = <span class="fr"><span class="n">4&pi;R<sup>3</sup></span><span class="d">3<span class="rt">&radic;<span class="bar">3</span></span></span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> V<sub>max</sub> = <span class="fr"><span class="n">4&pi;R<sup>3</sup></span><span class="d">3<span class="rt">&radic;<span class="bar">3</span></span></span></span> = <span class="fr"><span class="n">4<span class="rt">&radic;<span class="bar">3</span></span>&pi;R<sup>3</sup></span><span class="d">9</span></span>.</p><p class="note"><span class="tag">Note</span> Verified symbolically. Note the full height of the cylinder is 2R/<span class="rt">&radic;<span class="bar">3</span></span>, not R/<span class="rt">&radic;<span class="bar">3</span></span>.</p></div>
+</div>
+</div>
+</section>
+<section class="ch" id="int">
+<div class="chhead"><span class="chnum">7</span><h2>Integrals</h2><span class="chctl"><button data-ch-reveal="int">reveal chapter</button><button data-ch-hide="int">hide</button></span></div>
+<p class="chscope">Integration by substitution, by partial fractions and by parts; the standard forms listed in the syllabus; fundamental theorem of calculus; properties of definite integrals.</p>
+<div class="type">
+<p class="tname">Type 1 &middot; Integration by partial fractions</p>
+<div class="strategy"><span class="lbl">How to attack it</span>First compare degrees. If deg(numerator) &ge; deg(denominator), <b>divide first</b>. Then split by the three syllabus patterns: distinct linear, repeated linear, and irreducible quadratic (which needs Ax + B on top).</div>
+<div class="prob" id="p63">
+<div class="pmeta"><span class="pn">P63</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">x + 2</span><span class="d">(x &minus; 3)(x + 1)</span></span> dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Write <span class="fr"><span class="n">x + 2</span><span class="d">(x &minus; 3)(x + 1)</span></span> = <span class="fr"><span class="n">A</span><span class="d">x &minus; 3</span></span> + <span class="fr"><span class="n">B</span><span class="d">x + 1</span></span>.</li><li>Then x + 2 = A(x + 1) + B(x &minus; 3). Put x = 3: 5 = 4A, so A = <span class="fr"><span class="n">5</span><span class="d">4</span></span>. Put x = &minus;1: 1 = &minus;4B, so B = &minus;<span class="fr"><span class="n">1</span><span class="d">4</span></span>.</li><li>Integrate term by term.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">5</span><span class="d">4</span></span> ln|x &minus; 3| &minus; <span class="fr"><span class="n">1</span><span class="d">4</span></span> ln|x + 1| + C.</p></div>
+</div>
+<div class="prob" id="p64">
+<div class="pmeta"><span class="pn">P64</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">x<sup>2</sup></span><span class="d">(x &minus; 1)(x &minus; 2)(x &minus; 3)</span></span> dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Degrees: numerator 2, denominator 3, so no division is needed.</li><li><span class="fr"><span class="n">x<sup>2</sup></span><span class="d">(x&minus;1)(x&minus;2)(x&minus;3)</span></span> = <span class="fr"><span class="n">A</span><span class="d">x &minus; 1</span></span> + <span class="fr"><span class="n">B</span><span class="d">x &minus; 2</span></span> + <span class="fr"><span class="n">C</span><span class="d">x &minus; 3</span></span>.</li><li>x = 1: 1 = A(&minus;1)(&minus;2) = 2A, so A = <span class="fr"><span class="n">1</span><span class="d">2</span></span>. x = 2: 4 = B(1)(&minus;1) = &minus;B, so B = &minus;4. x = 3: 9 = C(2)(1) = 2C, so C = <span class="fr"><span class="n">9</span><span class="d">2</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">1</span><span class="d">2</span></span> ln|x &minus; 1| &minus; 4 ln|x &minus; 2| + <span class="fr"><span class="n">9</span><span class="d">2</span></span> ln|x &minus; 3| + C.</p><p class="note"><span class="tag">Note</span> Verified symbolically.</p></div>
+</div>
+<div class="prob" id="p65">
+<div class="pmeta"><span class="pn">P65</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">x + 1</span><span class="d">(x<sup>2</sup> + 3)(x &minus; 1)</span></span> dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>x<sup>2</sup> + 3 is irreducible, so the numerator over it must be linear:<div class="disp"><span class="fr"><span class="n">x + 1</span><span class="d">(x<sup>2</sup> + 3)(x &minus; 1)</span></span> = <span class="fr"><span class="n">Ax + B</span><span class="d">x<sup>2</sup> + 3</span></span> + <span class="fr"><span class="n">C</span><span class="d">x &minus; 1</span></span></div></li><li>x + 1 = (Ax + B)(x &minus; 1) + C(x<sup>2</sup> + 3). Put x = 1: 2 = 4C, so C = <span class="fr"><span class="n">1</span><span class="d">2</span></span>.</li><li>Comparing x<sup>2</sup> coefficients: 0 = A + C, so A = &minus;<span class="fr"><span class="n">1</span><span class="d">2</span></span>. Comparing constants: 1 = &minus;B + 3C, so B = <span class="fr"><span class="n">1</span><span class="d">2</span></span>.</li><li>So the integrand is <span class="fr"><span class="n">&minus;<span class="fr"><span class="n">1</span><span class="d">2</span></span>x + <span class="fr"><span class="n">1</span><span class="d">2</span></span></span><span class="d">x<sup>2</sup> + 3</span></span> + <span class="fr"><span class="n"><span class="fr"><span class="n">1</span><span class="d">2</span></span></span><span class="d">x &minus; 1</span></span> = &minus;<span class="fr"><span class="n">1</span><span class="d">4</span></span>&middot;<span class="fr"><span class="n">2x</span><span class="d">x<sup>2</sup> + 3</span></span> + <span class="fr"><span class="n">1</span><span class="d">2</span></span>&middot;<span class="fr"><span class="n">1</span><span class="d">x<sup>2</sup> + 3</span></span> + <span class="fr"><span class="n"><span class="fr"><span class="n">1</span><span class="d">2</span></span></span><span class="d">x &minus; 1</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">1</span><span class="d">2</span></span> ln|x &minus; 1| &minus; <span class="fr"><span class="n">1</span><span class="d">4</span></span> ln(x<sup>2</sup> + 3) + <span class="fr"><span class="n">1</span><span class="d">2<span class="rt">&radic;<span class="bar">3</span></span></span></span> tan<sup>&minus;1</sup><span class="fr"><span class="n">x</span><span class="d"><span class="rt">&radic;<span class="bar">3</span></span></span></span> + C.</p><p class="note"><span class="tag">Note</span> Verified symbolically.</p></div>
+</div>
+<div class="prob" id="p66">
+<div class="pmeta"><span class="pn">P66</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">x<sup>2</sup> + 1</span><span class="d">x<sup>2</sup> + 3x + 2</span></span> dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Degrees are equal, so divide first: <span class="fr"><span class="n">x<sup>2</sup> + 1</span><span class="d">x<sup>2</sup> + 3x + 2</span></span> = 1 &minus; <span class="fr"><span class="n">3x + 1</span><span class="d">(x + 1)(x + 2)</span></span>.</li><li>Split the remainder: &minus;<span class="fr"><span class="n">3x + 1</span><span class="d">(x + 1)(x + 2)</span></span> = <span class="fr"><span class="n">2</span><span class="d">x + 1</span></span> &minus; <span class="fr"><span class="n">5</span><span class="d">x + 2</span></span>.</li><li>So the integrand is 1 + <span class="fr"><span class="n">2</span><span class="d">x + 1</span></span> &minus; <span class="fr"><span class="n">5</span><span class="d">x + 2</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> x + 2 ln|x + 1| &minus; 5 ln|x + 2| + C.</p><p class="trap"><span class="tag">Trap</span> Forgetting to divide when the degrees are equal is the single commonest error in partial fractions. Check degrees before anything else.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 2 &middot; The syllabus quadratic forms</p>
+<div class="strategy"><span class="lbl">How to attack it</span>For <span class="fr"><span class="n">px + q</span><span class="d">ax<sup>2</sup> + bx + c</span></span> and <span class="fr"><span class="n">px + q</span><span class="d"><span class="rt">&radic;<span class="bar">ax<sup>2</sup> + bx + c</span></span></span></span>, complete the square. For a linear numerator, split it as (a multiple of the derivative of the quadratic) + (a constant): the first part integrates to a log or a root, the second reduces to a standard form.</div>
+<div class="prob" id="p67">
+<div class="pmeta"><span class="pn">P67</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">2x + 3</span><span class="d"><span class="rt">&radic;<span class="bar">x<sup>2</sup> + 4x + 13</span></span></span></span> dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li><span class="fr"><span class="n">d</span><span class="d">dx</span></span>(x<sup>2</sup> + 4x + 13) = 2x + 4, so write 2x + 3 = (2x + 4) &minus; 1.</li><li>First part: <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">2x + 4</span><span class="d"><span class="rt">&radic;<span class="bar">x<sup>2</sup> + 4x + 13</span></span></span></span></span></span> = 2<span class="rt">&radic;<span class="bar">x<sup>2</sup> + 4x + 13</span></span> (of the form <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">f&prime;</span><span class="d"><span class="rt">&radic;<span class="bar">f</span></span></span></span></span></span>).</li><li>Second part: x<sup>2</sup> + 4x + 13 = (x + 2)<sup>2</sup> + 9, so <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">dx</span><span class="d"><span class="rt">&radic;<span class="bar">(x + 2)<sup>2</sup> + 9</span></span></span></span></span></span> = ln|(x + 2) + <span class="rt">&radic;<span class="bar">x<sup>2</sup> + 4x + 13</span></span>|.</li></ol><p class="ansline"><span class="tag">Answer</span> 2<span class="rt">&radic;<span class="bar">x<sup>2</sup> + 4x + 13</span></span> &minus; ln|(x + 2) + <span class="rt">&radic;<span class="bar">x<sup>2</sup> + 4x + 13</span></span>| + C.</p><p class="note"><span class="tag">Note</span> Verified symbolically (the computer writes the second term as an inverse hyperbolic sine, which is the same function).</p></div>
+</div>
+<div class="prob" id="p68">
+<div class="pmeta"><span class="pn">P68</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="body"><span class="rt">&radic;<span class="bar">x<sup>2</sup> + 4x + 13</span></span> dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Complete the square: x<sup>2</sup> + 4x + 13 = (x + 2)<sup>2</sup> + 3<sup>2</sup>.</li><li>Use the standard form <span class="ig"><span class="sym">&int;</span><span class="body"><span class="rt">&radic;<span class="bar">t<sup>2</sup> + a<sup>2</sup></span></span> dt</span></span> = <span class="fr"><span class="n">t</span><span class="d">2</span></span><span class="rt">&radic;<span class="bar">t<sup>2</sup> + a<sup>2</sup></span></span> + <span class="fr"><span class="n">a<sup>2</sup></span><span class="d">2</span></span> ln|t + <span class="rt">&radic;<span class="bar">t<sup>2</sup> + a<sup>2</sup></span></span>|.</li><li>With t = x + 2 and a = 3.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">x + 2</span><span class="d">2</span></span><span class="rt">&radic;<span class="bar">x<sup>2</sup> + 4x + 13</span></span> + <span class="fr"><span class="n">9</span><span class="d">2</span></span> ln|(x + 2) + <span class="rt">&radic;<span class="bar">x<sup>2</sup> + 4x + 13</span></span>| + C.</p><p class="note"><span class="tag">Note</span> Verified symbolically.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 3 &middot; Trigonometric denominators</p>
+<div class="strategy"><span class="lbl">How to attack it</span>For <span class="fr"><span class="n">dx</span><span class="d">a + b cos x</span></span> use the half-angle substitution t = tan(x/2), which turns sin x = <span class="fr"><span class="n">2t</span><span class="d">1 + t<sup>2</sup></span></span>, cos x = <span class="fr"><span class="n">1 &minus; t<sup>2</sup></span><span class="d">1 + t<sup>2</sup></span></span>, dx = <span class="fr"><span class="n">2 dt</span><span class="d">1 + t<sup>2</sup></span></span>. For <span class="fr"><span class="n">a cos x + b sin x</span><span class="d">c cos x + d sin x</span></span> use the f&prime;/f trick instead.</div>
+<div class="prob" id="p69">
+<div class="pmeta"><span class="pn">P69</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">dx</span><span class="d">3 + 2 cos x</span></span></span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Put t = tan(x/2). Then cos x = <span class="fr"><span class="n">1 &minus; t<sup>2</sup></span><span class="d">1 + t<sup>2</sup></span></span> and dx = <span class="fr"><span class="n">2 dt</span><span class="d">1 + t<sup>2</sup></span></span>.</li><li>Denominator: 3 + 2&middot;<span class="fr"><span class="n">1 &minus; t<sup>2</sup></span><span class="d">1 + t<sup>2</sup></span></span> = <span class="fr"><span class="n">3 + 3t<sup>2</sup> + 2 &minus; 2t<sup>2</sup></span><span class="d">1 + t<sup>2</sup></span></span> = <span class="fr"><span class="n">5 + t<sup>2</sup></span><span class="d">1 + t<sup>2</sup></span></span>.</li><li>The integral becomes <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">2 dt</span><span class="d">5 + t<sup>2</sup></span></span></span></span> = <span class="fr"><span class="n">2</span><span class="d"><span class="rt">&radic;<span class="bar">5</span></span></span></span> tan<sup>&minus;1</sup><span class="fr"><span class="n">t</span><span class="d"><span class="rt">&radic;<span class="bar">5</span></span></span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">2</span><span class="d"><span class="rt">&radic;<span class="bar">5</span></span></span></span> tan<sup>&minus;1</sup>( <span class="fr"><span class="n">tan(x/2)</span><span class="d"><span class="rt">&radic;<span class="bar">5</span></span></span></span> ) + C.</p><p class="note"><span class="tag">Note</span> Verified symbolically.</p></div>
+</div>
+<div class="prob" id="p70">
+<div class="pmeta"><span class="pn">P70</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">3 sin x &minus; 2 cos x</span><span class="d">3 cos x + 2 sin x</span></span> dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Note <span class="fr"><span class="n">d</span><span class="d">dx</span></span>(3 cos x + 2 sin x) = &minus;3 sin x + 2 cos x = &minus;(3 sin x &minus; 2 cos x).</li><li>So the integrand is &minus;<span class="fr"><span class="n">f&prime;</span><span class="d">f</span></span> with f = 3 cos x + 2 sin x.</li></ol><p class="ansline"><span class="tag">Answer</span> &minus;ln|3 cos x + 2 sin x| + C.</p><p class="note"><span class="tag">Note</span> Verified symbolically. Whenever the numerator is &plusmn; the derivative of the denominator, this is a one-line question &mdash; look for it before substituting anything.</p></div>
+</div>
+<div class="prob" id="p71">
+<div class="pmeta"><span class="pn">P71</span><span class="marks">4 marks</span><span class="src">Syllabus form</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">1 &minus; x<sup>2</sup></span><span class="d">1 + <sup></sup>x<sup>4</sup></span></span> dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Divide numerator and denominator by x<sup>2</sup>: the integrand becomes <span class="fr"><span class="n"><span class="fr"><span class="n">1</span><span class="d">x<sup>2</sup></span></span> &minus; 1</span><span class="d">x<sup>2</sup> + <span class="fr"><span class="n">1</span><span class="d">x<sup>2</sup></span></span></span></span>.</li><li>Put t = x + <span class="fr"><span class="n">1</span><span class="d">x</span></span>, so dt = (1 &minus; <span class="fr"><span class="n">1</span><span class="d">x<sup>2</sup></span></span>)dx = &minus;(<span class="fr"><span class="n">1</span><span class="d">x<sup>2</sup></span></span> &minus; 1)dx, and x<sup>2</sup> + <span class="fr"><span class="n">1</span><span class="d">x<sup>2</sup></span></span> = t<sup>2</sup> &minus; 2.</li><li>The integral becomes <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">dt</span><span class="d">t<sup>2</sup> &minus; 2</span></span></span></span> = <span class="fr"><span class="n">1</span><span class="d">2<span class="rt">&radic;<span class="bar">2</span></span></span></span> ln|<span class="fr"><span class="n">t &minus; <span class="rt">&radic;<span class="bar">2</span></span></span><span class="d">t + <span class="rt">&radic;<span class="bar">2</span></span></span></span>|.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">1</span><span class="d">2<span class="rt">&radic;<span class="bar">2</span></span></span></span> ln|<span class="fr"><span class="n">x<sup>2</sup> &minus; <span class="rt">&radic;<span class="bar">2</span></span>x + 1</span><span class="d">x<sup>2</sup> + <span class="rt">&radic;<span class="bar">2</span></span>x + 1</span></span>| + C.</p><p class="note"><span class="tag">Note</span> Verified symbolically. The companion form <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">1 + x<sup>2</sup></span><span class="d">1 + x<sup>4</sup></span></span></span></span> uses t = x &minus; 1/x instead.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 4 &middot; Integration by parts</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Choose u by ILATE: Inverse, Log, Algebraic, Trigonometric, Exponential &mdash; whichever comes first is u. For &int;e<sup>x</sup> sin x dx, apply parts twice and solve for the integral.</div>
+<div class="prob" id="p72">
+<div class="pmeta"><span class="pn">P72</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="body">e<sup>x</sup> sin x dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Let I = <span class="ig"><span class="sym">&int;</span><span class="body">e<sup>x</sup> sin x</span></span>. Taking u = sin x, dv = e<sup>x</sup> dx: I = e<sup>x</sup> sin x &minus; <span class="ig"><span class="sym">&int;</span><span class="body">e<sup>x</sup> cos x</span></span>.</li><li>Apply parts again to the second integral: <span class="ig"><span class="sym">&int;</span><span class="body">e<sup>x</sup> cos x</span></span> = e<sup>x</sup> cos x + <span class="ig"><span class="sym">&int;</span><span class="body">e<sup>x</sup> sin x</span></span> = e<sup>x</sup> cos x + I.</li><li>So I = e<sup>x</sup> sin x &minus; e<sup>x</sup> cos x &minus; I, giving 2I = e<sup>x</sup>(sin x &minus; cos x).</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">e<sup>x</sup></span><span class="d">2</span></span>(sin x &minus; cos x) + C.</p><p class="note"><span class="tag">Note</span> Verified symbolically.</p></div>
+</div>
+<div class="prob" id="p73">
+<div class="pmeta"><span class="pn">P73</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="body">x tan<sup>&minus;1</sup>x dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>ILATE puts the inverse function first, so u = tan<sup>&minus;1</sup>x, dv = x dx.</li><li>= <span class="fr"><span class="n">x<sup>2</sup></span><span class="d">2</span></span> tan<sup>&minus;1</sup>x &minus; <span class="ig"><span class="sym">&int;</span><span class="body"><span class="fr"><span class="n">x<sup>2</sup></span><span class="d">2(1 + x<sup>2</sup>)</span></span></span></span>.</li><li><span class="fr"><span class="n">x<sup>2</sup></span><span class="d">1 + x<sup>2</sup></span></span> = 1 &minus; <span class="fr"><span class="n">1</span><span class="d">1 + x<sup>2</sup></span></span>, so the second integral is <span class="fr"><span class="n">1</span><span class="d">2</span></span>(x &minus; tan<sup>&minus;1</sup>x).</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">x<sup>2</sup></span><span class="d">2</span></span> tan<sup>&minus;1</sup>x &minus; <span class="fr"><span class="n">x</span><span class="d">2</span></span> + <span class="fr"><span class="n">1</span><span class="d">2</span></span> tan<sup>&minus;1</sup>x + C.</p><p class="note"><span class="tag">Note</span> Verified symbolically.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 5 &middot; Definite integrals by properties</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Four properties do almost all the work: &int;<sub>0</sub><sup>a</sup>f(x)dx = &int;<sub>0</sub><sup>a</sup>f(a&minus;x)dx; odd/even over [&minus;a, a]; the [0, 2a] rule; and splitting at the point where a modulus changes sign.</div>
+<div class="prob" id="p74">
+<div class="pmeta"><span class="pn">P74</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi"><span class="fr"><span class="n">&pi;</span><span class="d">2</span></span></span><span class="lo">0</span></span><span class="body"><span class="fr"><span class="n">dx</span><span class="d">1 + tan x</span></span></span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Let I = <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi"><span class="fr"><span class="n">&pi;</span><span class="d">2</span></span></span><span class="lo">0</span></span><span class="body"><span class="fr"><span class="n">dx</span><span class="d">1 + tan x</span></span></span></span> = <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi"><span class="fr"><span class="n">&pi;</span><span class="d">2</span></span></span><span class="lo">0</span></span><span class="body"><span class="fr"><span class="n">cos x dx</span><span class="d">cos x + sin x</span></span></span></span>.</li><li>Apply f(x) &rarr; f(&pi;/2 &minus; x), which swaps sin and cos:<div class="disp">I = <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi"><span class="fr"><span class="n">&pi;</span><span class="d">2</span></span></span><span class="lo">0</span></span><span class="body"><span class="fr"><span class="n">sin x dx</span><span class="d">sin x + cos x</span></span></span></span></div></li><li>Adding the two expressions: 2I = <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi"><span class="fr"><span class="n">&pi;</span><span class="d">2</span></span></span><span class="lo">0</span></span><span class="body"><span class="fr"><span class="n">cos x + sin x</span><span class="d">cos x + sin x</span></span></span></span> = <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi"><span class="fr"><span class="n">&pi;</span><span class="d">2</span></span></span><span class="lo">0</span></span><span class="body">1</span></span> = <span class="fr"><span class="n">&pi;</span><span class="d">2</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> I = <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span>.</p><p class="note"><span class="tag">Note</span> Verified symbolically. The same trick gives <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi"><span class="fr"><span class="n">&pi;</span><span class="d">2</span></span></span><span class="lo">0</span></span><span class="body"><span class="fr"><span class="n">sin x</span><span class="d">sin x + cos x</span></span></span></span> = <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> as well.</p></div>
+</div>
+<div class="prob" id="p75">
+<div class="pmeta"><span class="pn">P75</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi"><span class="fr"><span class="n">&pi;</span><span class="d">4</span></span></span><span class="lo">0</span></span><span class="body">log(1 + tan x) dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Let I be the integral. Replace x by <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> &minus; x:<div class="disp">I = <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi"><span class="fr"><span class="n">&pi;</span><span class="d">4</span></span></span><span class="lo">0</span></span><span class="body">log(1 + tan(<span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> &minus; x)) dx</span></span></div></li><li>tan(<span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> &minus; x) = <span class="fr"><span class="n">1 &minus; tan x</span><span class="d">1 + tan x</span></span>, so 1 + tan(<span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> &minus; x) = <span class="fr"><span class="n">2</span><span class="d">1 + tan x</span></span>.</li><li>Hence I = <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi"><span class="fr"><span class="n">&pi;</span><span class="d">4</span></span></span><span class="lo">0</span></span><span class="body">[log 2 &minus; log(1 + tan x)]</span></span> = <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> log 2 &minus; I.</li><li>So 2I = <span class="fr"><span class="n">&pi;</span><span class="d">4</span></span> log 2.</li></ol><p class="ansline"><span class="tag">Answer</span> I = <span class="fr"><span class="n">&pi;</span><span class="d">8</span></span> log 2.</p><p class="note"><span class="tag">Note</span> Verified numerically: both sides equal 0.2721982613.</p></div>
+</div>
+<div class="prob" id="p76">
+<div class="pmeta"><span class="pn">P76</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">2</span><span class="lo">&minus;1</span></span><span class="body">|x| dx</span></span> and <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">2</span><span class="lo">0</span></span><span class="body">|x &minus; 1| dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Split where the modulus changes sign. For the first, at x = 0:<div class="disp"><span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">0</span><span class="lo">&minus;1</span></span><span class="body">(&minus;x)</span></span> + <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">2</span><span class="lo">0</span></span><span class="body">x</span></span> = <span class="fr"><span class="n">1</span><span class="d">2</span></span> + 2 = <span class="fr"><span class="n">5</span><span class="d">2</span></span></div></li><li>For the second, at x = 1: both pieces are triangles of base 1 and height 1, giving <span class="fr"><span class="n">1</span><span class="d">2</span></span> + <span class="fr"><span class="n">1</span><span class="d">2</span></span> = 1.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">5</span><span class="d">2</span></span> and 1.</p><p class="trap"><span class="tag">Trap</span> Never integrate |x| as <span class="fr"><span class="n">x<sup>2</sup></span><span class="d">2</span></span>. Split the interval at every point where the expression inside the modulus vanishes.</p></div>
+</div>
+<div class="prob" id="p77">
+<div class="pmeta"><span class="pn">P77</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Evaluate <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">a</span><span class="lo">&minus;a</span></span><span class="body">x<sup>3</sup> cos x dx</span></span> and <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">&pi;</span><span class="lo">0</span></span><span class="body">x sin x dx</span></span>.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>x<sup>3</sup> cos x is odd &times; even = odd, and the interval is symmetric about 0, so the first integral is 0 with no computation.</li><li>For the second, integrate by parts: [&minus;x cos x]<sub>0</sub><sup>&pi;</sup> + <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">&pi;</span><span class="lo">0</span></span><span class="body">cos x</span></span> = &pi; + [sin x]<sub>0</sub><sup>&pi;</sup> = &pi; + 0.</li></ol><p class="ansline"><span class="tag">Answer</span> 0 and &pi;.</p><p class="note"><span class="tag">Note</span> Always test for odd/even symmetry <b>before</b> integrating over [&minus;a, a]. It converts a four-mark question into a one-line one.</p></div>
+</div>
+</div>
+</section>
+<section class="ch" id="aoi">
+<div class="chhead"><span class="chnum">8</span><h2>Application of Integrals</h2><span class="chctl"><button data-ch-reveal="aoi">reveal chapter</button><button data-ch-hide="aoi">hide</button></span></div>
+<p class="chscope">Area bounded by simple curves, lines and the coordinate axes; area enclosed between two curves. Simple curves: lines, circles, parabolas, ellipses, polynomials, modulus and exponential functions.</p>
+<div class="type">
+<p class="tname">Type 1 &middot; Area under a curve and the axes</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Sketch first, always. Decide whether to integrate in x or in y &mdash; integrating in y is often far shorter for a sideways parabola. Where the curve dips below the axis, integrate |y|.</div>
+<div class="prob" id="p78">
+<div class="pmeta"><span class="pn">P78</span><span class="marks">2 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the area bounded by y = x<sup>2</sup>, the x-axis and the lines x = 1, x = 2.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>The curve is above the axis on [1, 2], so the area is <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">2</span><span class="lo">1</span></span><span class="body">x<sup>2</sup></span></span>.</li><li>= [<span class="fr"><span class="n">x<sup>3</sup></span><span class="d">3</span></span>]<sub>1</sub><sup>2</sup> = <span class="fr"><span class="n">8</span><span class="d">3</span></span> &minus; <span class="fr"><span class="n">1</span><span class="d">3</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">7</span><span class="d">3</span></span> square units.</p></div>
+</div>
+<div class="prob" id="p79">
+<div class="pmeta"><span class="pn">P79</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the area of the region bounded by y = |x + 1|, the x-axis, x = &minus;3 and x = 0.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>y = |x + 1| is V-shaped with its vertex at (&minus;1, 0). Split at x = &minus;1.</li><li>On [&minus;3, &minus;1], |x + 1| = &minus;(x + 1); on [&minus;1, 0], |x + 1| = x + 1.<div class="disp"><span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">&minus;1</span><span class="lo">&minus;3</span></span><span class="body">&minus;(x + 1)</span></span> + <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">0</span><span class="lo">&minus;1</span></span><span class="body">(x + 1)</span></span> = 2 + <span class="fr"><span class="n">1</span><span class="d">2</span></span></div></li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">5</span><span class="d">2</span></span> square units.</p><p class="note"><span class="tag">Note</span> Verified symbolically. Both pieces are right triangles &mdash; the first has legs 2 and 2 (area 2), the second legs 1 and 1 (area <span class="fr"><span class="n">1</span><span class="d">2</span></span>).</p></div>
+</div>
+<div class="prob" id="p80">
+<div class="pmeta"><span class="pn">P80</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the area enclosed by the ellipse <span class="fr"><span class="n">x<sup>2</sup></span><span class="d">9</span></span> + <span class="fr"><span class="n">y<sup>2</sup></span><span class="d">4</span></span> = 1.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>By symmetry the total area is 4 &times; (area in the first quadrant).</li><li>In the first quadrant y = 2<span class="rt">&radic;<span class="bar">1 &minus; <span class="fr"><span class="n">x<sup>2</sup></span><span class="d">9</span></span></span></span>, so the area is 4&middot;<span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">3</span><span class="lo">0</span></span><span class="body">2<span class="rt">&radic;<span class="bar">1 &minus; <span class="fr"><span class="n">x<sup>2</sup></span><span class="d">9</span></span></span></span></span></span>.</li><li>Substituting x = 3 sin &theta; reduces this to the standard quarter-ellipse integral.</li></ol><p class="ansline"><span class="tag">Answer</span> 6&pi; square units.</p><p class="note"><span class="tag">Note</span> Verified symbolically. In general the ellipse <span class="fr"><span class="n">x<sup>2</sup></span><span class="d">a<sup>2</sup></span></span> + <span class="fr"><span class="n">y<sup>2</sup></span><span class="d">b<sup>2</sup></span></span> = 1 has area &pi;ab &mdash; worth memorising, but show the integral.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 2 &middot; Area between two curves</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Find the intersections first &mdash; they are the limits. Then integrate (upper &minus; lower) in x, or (right &minus; left) in y. Choosing the y-direction avoids splitting the region in most parabola-and-line problems.</div>
+<div class="prob" id="p81">
+<div class="pmeta"><span class="pn">P81</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the area of the region bounded by y<sup>2</sup> = 4x and the line y = 2x &minus; 4.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Intersections: substitute x = <span class="fr"><span class="n">1</span><span class="d">2</span></span>(y + 4) into y<sup>2</sup> = 4x, giving y<sup>2</sup> = 2(y + 4), i.e. y<sup>2</sup> &minus; 2y &minus; 8 = 0, so y = 4 or y = &minus;2.</li><li>Integrate in y: the line gives x = <span class="fr"><span class="n">y + 4</span><span class="d">2</span></span> and the parabola x = <span class="fr"><span class="n">y<sup>2</sup></span><span class="d">4</span></span>. For &minus;2 &le; y &le; 4 the line is to the right.<div class="disp">Area = <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">4</span><span class="lo">&minus;2</span></span><span class="body">[<span class="fr"><span class="n">y + 4</span><span class="d">2</span></span> &minus; <span class="fr"><span class="n">y<sup>2</sup></span><span class="d">4</span></span>] dy</span></span></div></li><li>= [<span class="fr"><span class="n">y<sup>2</sup></span><span class="d">4</span></span> + 2y &minus; <span class="fr"><span class="n">y<sup>3</sup></span><span class="d">12</span></span>]<sub>&minus;2</sub><sup>4</sup> = (4 + 8 &minus; <span class="fr"><span class="n">16</span><span class="d">3</span></span>) &minus; (1 &minus; 4 + <span class="fr"><span class="n">2</span><span class="d">3</span></span>) = <span class="fr"><span class="n">20</span><span class="d">3</span></span> &minus; (&minus;<span class="fr"><span class="n">7</span><span class="d">3</span></span>).</li></ol><p class="ansline"><span class="tag">Answer</span> 9 square units.</p><p class="note"><span class="tag">Note</span> Verified symbolically. Integrating in x would need the region split at x = 1 &mdash; three times the work.</p></div>
+</div>
+<div class="prob" id="p82">
+<div class="pmeta"><span class="pn">P82</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the area between y = x<sup>2</sup> and y = x, and between y = x<sup>2</sup> and y = |x|.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>y = x<sup>2</sup> and y = x meet at x = 0 and x = 1; on (0, 1) the line is above.<div class="disp"><span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">1</span><span class="lo">0</span></span><span class="body">(x &minus; x<sup>2</sup>)</span></span> = <span class="fr"><span class="n">1</span><span class="d">2</span></span> &minus; <span class="fr"><span class="n">1</span><span class="d">3</span></span> = <span class="fr"><span class="n">1</span><span class="d">6</span></span></div></li><li>For y = |x|, the region is symmetric about the y-axis, so the area is 2 &times; <span class="fr"><span class="n">1</span><span class="d">6</span></span> = <span class="fr"><span class="n">1</span><span class="d">3</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">1</span><span class="d">6</span></span> and <span class="fr"><span class="n">1</span><span class="d">3</span></span> square units.</p><p class="note"><span class="tag">Note</span> Verified symbolically.</p></div>
+</div>
+<div class="prob" id="p83">
+<div class="pmeta"><span class="pn">P83</span><span class="marks">6 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the area enclosed between the parabolas y<sup>2</sup> = 4ax and x<sup>2</sup> = 4ay (a &gt; 0).</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Intersections: from x<sup>2</sup> = 4ay, y = <span class="fr"><span class="n">x<sup>2</sup></span><span class="d">4a</span></span>. Substituting into y<sup>2</sup> = 4ax gives <span class="fr"><span class="n">x<sup>4</sup></span><span class="d">16a<sup>2</sup></span></span> = 4ax, so x<sup>4</sup> = 64a<sup>3</sup>x, i.e. x(x<sup>3</sup> &minus; 64a<sup>3</sup>) = 0 and x = 0 or x = 4a.</li><li>On (0, 4a), y<sup>2</sup> = 4ax gives the upper curve y = 2<span class="rt">&radic;<span class="bar">ax</span></span> and x<sup>2</sup> = 4ay the lower y = <span class="fr"><span class="n">x<sup>2</sup></span><span class="d">4a</span></span>.<div class="disp">Area = <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">4a</span><span class="lo">0</span></span><span class="body">[2<span class="rt">&radic;<span class="bar">ax</span></span> &minus; <span class="fr"><span class="n">x<sup>2</sup></span><span class="d">4a</span></span>]</span></span></div></li><li>= [<span class="fr"><span class="n">4</span><span class="d">3</span></span><span class="rt">&radic;<span class="bar">a</span></span>x<sup>3/2</sup> &minus; <span class="fr"><span class="n">x<sup>3</sup></span><span class="d">12a</span></span>]<sub>0</sub><sup>4a</sup> = <span class="fr"><span class="n">32a<sup>2</sup></span><span class="d">3</span></span> &minus; <span class="fr"><span class="n">16a<sup>2</sup></span><span class="d">3</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> <span class="fr"><span class="n">16a<sup>2</sup></span><span class="d">3</span></span> square units.</p><p class="note"><span class="tag">Note</span> Verified symbolically for a &gt; 0.</p></div>
+</div>
+<div class="prob" id="p84">
+<div class="pmeta"><span class="pn">P84</span><span class="marks">4 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the area of the part of the circle x<sup>2</sup> + y<sup>2</sup> = 16 lying in the first quadrant.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Area = <span class="ig"><span class="sym">&int;</span><span class="lim"><span class="hi">4</span><span class="lo">0</span></span><span class="body"><span class="rt">&radic;<span class="bar">16 &minus; x<sup>2</sup></span></span></span></span>.</li><li>Standard form: <span class="ig"><span class="sym">&int;</span><span class="body"><span class="rt">&radic;<span class="bar">a<sup>2</sup> &minus; x<sup>2</sup></span></span></span></span> = <span class="fr"><span class="n">x</span><span class="d">2</span></span><span class="rt">&radic;<span class="bar">a<sup>2</sup> &minus; x<sup>2</sup></span></span> + <span class="fr"><span class="n">a<sup>2</sup></span><span class="d">2</span></span> sin<sup>&minus;1</sup><span class="fr"><span class="n">x</span><span class="d">a</span></span>.</li><li>At x = 4 with a = 4: the first term vanishes and the second is 8 sin<sup>&minus;1</sup>(1) = 8&middot;<span class="fr"><span class="n">&pi;</span><span class="d">2</span></span>.</li></ol><p class="ansline"><span class="tag">Answer</span> 4&pi; square units &mdash; a quarter of the circle, as expected.</p><p class="note"><span class="tag">Note</span> Verified symbolically. Use the quarter-circle shortcut to check your integration, but present the integral.</p></div>
+</div>
+</div>
+</section>
+<section class="ch" id="lpp">
+<div class="chhead"><span class="chnum">12</span><h2>Linear Programming</h2><span class="chctl"><button data-ch-reveal="lpp">reveal chapter</button><button data-ch-hide="lpp">hide</button></span></div>
+<p class="chscope">Terminology; mathematical formulation; graphical solution in two variables; feasible and infeasible regions (bounded and unbounded); optimal feasible solutions, up to three non-trivial constraints.</p>
+<div class="type">
+<p class="tname">Type 1 &middot; Objective questions on regions and corner points</p>
+<div class="strategy"><span class="lbl">How to attack it</span>For an inequality, test the origin: if it satisfies the inequality the region is the half plane containing the origin. Strict inequality &rArr; open half plane (boundary excluded).</div>
+<div class="prob" id="p85">
+<div class="pmeta"><span class="pn">P85</span><span class="marks">1 mark</span><span class="src">Heritage First Term 2024&ndash;25, Q19(ii)</span><button class="dtoggle">mark done</button></div>
+<div class="q">The solution set of the inequation 3x + 5y &lt; 4 is: (a) an open half plane not containing the origin; (b) the whole xy-plane except the points on 3x + 5y = 4; (c) an open half plane containing the origin; (d) none of these.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Test the origin: 3(0) + 5(0) = 0 &lt; 4 &nbsp;&#10003; So the origin satisfies the inequality and lies in the solution set.</li><li>The inequality is <b>strict</b>, so the boundary line 3x + 5y = 4 is excluded &mdash; the region is <i>open</i>.</li></ol><p class="ansline"><span class="tag">Answer</span> (c) an open half plane containing the origin.</p><p class="note"><span class="tag">Note</span> &lsquo;Open&rsquo; means boundary excluded (&lt; or &gt;); &lsquo;closed&rsquo; means boundary included (&le; or &ge;).</p></div>
+</div>
+<div class="prob" id="p86">
+<div class="pmeta"><span class="pn">P86</span><span class="marks">1 mark</span><span class="src">NCERT Exemplar Ch 12, Q34 &middot; Heritage FT Q19(v)</span><button class="dtoggle">mark done</button></div>
+<div class="q">The corner points of the feasible region are (0, 3), (1, 1) and (3, 0). Let Z = px + qy with p, q &gt; 0. Find the condition on p and q so that the minimum of Z occurs at both (3, 0) and (1, 1).</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Z(3, 0) = 3p, Z(1, 1) = p + q, Z(0, 3) = 3q.</li><li>The minimum is attained at both (3, 0) and (1, 1), so these values are equal: 3p = p + q, giving <b>q = 2p</b>, i.e. p = <span class="fr"><span class="n">q</span><span class="d">2</span></span>.</li><li>Check it really is the minimum: then Z(0,3) = 3q = 6p, which exceeds 3p. &nbsp;&#10003;</li></ol><p class="ansline"><span class="tag">Answer</span> p = <span class="fr"><span class="n">q</span><span class="d">2</span></span> (equivalently q = 2p).</p><p class="note"><span class="tag">Note</span> When two corner points give the same optimal value, every point on the segment joining them is also optimal &mdash; the problem has infinitely many optimal solutions.</p></div>
+</div>
+<div class="prob" id="p87">
+<div class="pmeta"><span class="pn">P87</span><span class="marks">2 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q20</span><button class="dtoggle">mark done</button></div>
+<div class="q">Find the number of feasible solutions of the LPP: maximise Z = 15x + 30y subject to 3x + y &le; 12, x + 2y &le; 10, x &ge; 0, y &ge; 0.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>The constraints define a bounded region in the first quadrant with corner points (0, 0), (4, 0), (0, 5) and the intersection of 3x + y = 12 with x + 2y = 10.</li><li>Solving those two: from the first y = 12 &minus; 3x, so x + 24 &minus; 6x = 10, giving x = <span class="fr"><span class="n">14</span><span class="d">5</span></span> and y = <span class="fr"><span class="n">18</span><span class="d">5</span></span>.</li><li>A <b>feasible solution</b> is <i>any</i> point of the feasible region, not just a corner. The region is a two-dimensional polygon.</li></ol><p class="ansline"><span class="tag">Answer</span> Infinitely many feasible solutions.</p><p class="trap"><span class="tag">Trap</span> Do not answer &lsquo;4&rsquo;. There are four <b>corner points</b>, but infinitely many feasible solutions. Read which of the two is being asked for.</p></div>
+</div>
+</div>
+<div class="type">
+<p class="tname">Type 2 &middot; Formulating and solving a word problem graphically</p>
+<div class="strategy"><span class="lbl">How to attack it</span>Four lines, always: (1) define the variables with units; (2) write the objective; (3) write the constraints including x, y &ge; 0; (4) tabulate Z at every corner point and pick the best. State the answer in the words of the problem.</div>
+<div class="prob" id="p88">
+<div class="pmeta"><span class="pn">P88</span><span class="marks">4 marks</span><span class="src">Heritage First Term 2024&ndash;25, Q22</span><button class="dtoggle">mark done</button></div>
+<div class="q">Every gram of rice provides 0&middot;1 g of protein and 0&middot;25 g of carbohydrates; for wheat the values are 0&middot;05 g and 0&middot;5 g. Rice costs &#8377;40 per kg and wheat &#8377;60 per kg. The minimum daily requirement for a child is 50 g of protein and 200 g of carbohydrates. In what quantities should rice and wheat be mixed to meet the requirement at least cost? Formulate and solve graphically.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Let the daily diet contain x kg of rice and y kg of wheat (so 1000x g and 1000y g).</li><li><b>Protein:</b> 0&middot;1(1000x) + 0&middot;05(1000y) = 100x + 50y &ge; 50.</li><li><b>Carbohydrates:</b> 0&middot;25(1000x) + 0&middot;5(1000y) = 250x + 500y &ge; 200.</li><li>Dividing through: <b>2x + y &ge; 1</b> and <b>x + 2y &ge; 0&middot;8</b>, with x, y &ge; 0. Minimise <b>Z = 40x + 60y</b>.</li><li>The region is unbounded above. Its corner points are (0, 1), (0&middot;4, 0&middot;2) and (0&middot;8, 0):<div class="tw"><table class=""><thead><tr><th>Corner point</th><th>Z = 40x + 60y</th></tr></thead><tbody><tr><td>(0, 1)</td><td>&#8377;60</td></tr><tr><td>(0&middot;4, 0&middot;2)</td><td><b>&#8377;28</b></td></tr><tr><td>(0&middot;8, 0)</td><td>&#8377;32</td></tr></tbody></table></div></li><li>Because the region is unbounded we must confirm the minimum: the open half plane 40x + 60y &lt; 28 has no point in common with the feasible region, so &#8377;28 is genuinely the minimum.</li></ol><p class="ansline"><span class="tag">Answer</span> 400 g of rice and 200 g of wheat daily, at a minimum cost of &#8377;28.</p><p class="note"><span class="tag">Note</span> Verified: the three corner values are 60, 28 and 32. The unboundedness check is worth a mark and is nearly always omitted.</p></div>
+</div>
+<div class="prob" id="p89">
+<div class="pmeta"><span class="pn">P89</span><span class="marks">6 marks</span><span class="src">Standard ISC type</span><button class="dtoggle">mark done</button></div>
+<div class="q">A manufacturer makes two products A and B. Each unit of A needs 2 hours on machine I and 1 hour on machine II; each unit of B needs 1 hour on I and 2 hours on II. Machine I is available for 10 hours and machine II for 8 hours a day. Profits are &#8377;30 per unit of A and &#8377;20 per unit of B. Find the daily production plan maximising profit.</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>Let x units of A and y units of B be made daily.</li><li>Machine I: 2x + y &le; 10. Machine II: x + 2y &le; 8. x, y &ge; 0.</li><li>Maximise Z = 30x + 20y.</li><li>Corner points: (0, 0), (5, 0), (0, 4) and the intersection of 2x + y = 10, x + 2y = 8. Solving: y = 10 &minus; 2x, so x + 20 &minus; 4x = 8, x = 4, y = 2.<div class="tw"><table class=""><thead><tr><th>Corner point</th><th>Z = 30x + 20y</th></tr></thead><tbody><tr><td>(0, 0)</td><td>0</td></tr><tr><td>(5, 0)</td><td>&#8377;150</td></tr><tr><td>(4, 2)</td><td><b>&#8377;160</b></td></tr><tr><td>(0, 4)</td><td>&#8377;80</td></tr></tbody></table></div></li></ol><p class="ansline"><span class="tag">Answer</span> Make 4 units of A and 2 units of B daily for a maximum profit of &#8377;160.</p></div>
+</div>
+<div class="prob" id="p90">
+<div class="pmeta"><span class="pn">P90</span><span class="marks">2 marks</span><span class="src">Exemplar-style</span><button class="dtoggle">mark done</button></div>
+<div class="q">The feasible region of an LPP is unbounded and Z = 3x + 4y is to be maximised. What can you conclude?</div>
+<button class="sbtn" aria-expanded="false">Show solution</button>
+<div class="sol"><ol class="steps"><li>For an unbounded region a maximum need not exist. Let M be the largest value of Z at a corner point.</li><li>M is the maximum <b>only if</b> the open half plane 3x + 4y &gt; M has no point in common with the feasible region.</li><li>If that half plane does meet the region, Z can be made arbitrarily large and there is <b>no maximum</b>.</li></ol><p class="ansline"><span class="tag">Answer</span> Z may have no maximum; the corner-point value must be tested against the open half plane 3x + 4y &gt; M.</p><p class="trap"><span class="tag">Trap</span> With an unbounded region, quoting the largest corner value without that test is incomplete. With a <i>bounded</i> region the corner point method always works.</p></div>
+</div>
+</div>
+</section>
+
+<footer>
+  <p><b>Sources.</b> Problems are drawn from the NCERT Exemplar, the NCERT textbook, ISC
+  board and specimen papers, and the Heritage School First Term paper of 2024&ndash;25,
+  with each problem tagged. Where a school-paper question was ambiguous or misprinted it
+  has been restated and the change noted.</p>
+  <p><b>Answers.</b> Every numerical and algebraic answer in this document was checked
+  against a computer algebra system.</p>
+  <p>Rebuild with <code>python3 src/build_revision.py</code>.</p>
+</footer>
+</div>
+<button class="up" id="up" title="Back to top" aria-label="Back to top">&uarr;</button>
+<script>
+(function(){
+  var KEY='isc-maths-ft-revision-v1';
+  var store={};
+  try{ store=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ store={}; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+
+  var probs=[].slice.call(document.querySelectorAll('.prob'));
+
+  function setOpen(p,on){
+    p.classList.toggle('open',on);
+    var b=p.querySelector('.sbtn');
+    if(b){ b.textContent = on ? 'Hide solution' : 'Show solution';
+           b.setAttribute('aria-expanded', on?'true':'false'); }
+    tally();
+  }
+  function tally(){
+    var open=document.querySelectorAll('.prob.open').length;
+    var done=document.querySelectorAll('.prob.done').length;
+    var el=document.getElementById('prog');
+    if(el) el.textContent = done+' of '+probs.length+' marked done · '+open+' solution'+(open===1?'':'s')+' showing';
+  }
+
+  probs.forEach(function(p){
+    var btn=p.querySelector('.sbtn');
+    if(btn) btn.addEventListener('click',function(){ setOpen(p,!p.classList.contains('open')); });
+    var d=p.querySelector('.dtoggle');
+    if(d) d.addEventListener('click',function(){
+      var on=!p.classList.contains('done');
+      p.classList.toggle('done',on);
+      d.textContent = on ? '✓ done' : 'mark done';
+      store[p.id]=on?1:0; if(!on) delete store[p.id];
+      save(); tally();
+    });
+    if(store[p.id]){ p.classList.add('done');
+      var dd=p.querySelector('.dtoggle'); if(dd) dd.textContent='✓ done'; }
+  });
+
+  function bulk(scope,on){
+    (scope||document).querySelectorAll('.prob').forEach(function(p){ setOpen(p,on); });
+  }
+  var ra=document.getElementById('revealAll'), ha=document.getElementById('hideAll');
+  if(ra) ra.addEventListener('click',function(){ bulk(document,true); });
+  if(ha) ha.addEventListener('click',function(){ bulk(document,false); });
+  var cd=document.getElementById('clearDone');
+  if(cd) cd.addEventListener('click',function(){
+    probs.forEach(function(p){ p.classList.remove('done');
+      var d=p.querySelector('.dtoggle'); if(d) d.textContent='mark done'; });
+    store={}; save(); tally();
+  });
+  document.querySelectorAll('[data-ch-reveal]').forEach(function(b){
+    b.addEventListener('click',function(){
+      bulk(document.getElementById(b.getAttribute('data-ch-reveal')),true); });
+  });
+  document.querySelectorAll('[data-ch-hide]').forEach(function(b){
+    b.addEventListener('click',function(){
+      bulk(document.getElementById(b.getAttribute('data-ch-hide')),false); });
+  });
+
+  /* toc highlight + back-to-top */
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  var secs=links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        var i=secs.indexOf(e.target);
+        if(i<0) return;
+        links.forEach(function(l){ l.classList.remove('on'); });
+        links[i].classList.add('on');
+        try{ links[i].scrollIntoView({block:'nearest',inline:'nearest'}); }catch(x){}
+      });
+    },{rootMargin:'-15% 0px -75% 0px'});
+    secs.forEach(function(s){ if(s) io.observe(s); });
+  }
+  var up=document.getElementById('up');
+  if(up){
+    up.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+    window.addEventListener('scroll',function(){ up.classList.toggle('show', window.scrollY>700); },{passive:true});
+  }
+  tally();
+})();
+</script>
+</body>
+</html>
