@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ISC Physics &mdash; First Term Practice</title>
 <style>
-/* Shared design tokens — keep in step with src/build_revision.py.
+/* Light only, by request: no dark palette, no
+   prefers-color-scheme override, no theme toggle. Do not reintroduce them.
+   Shared design tokens — keep in step with src/build_revision.py.
    Copied from ../Maths/index.html; the two pages are deliberately
    identical in style and differ only in content. */
 :root{
@@ -17,22 +19,6 @@
   --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;
   --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --mono:ui-monospace,"SF Mono","Cascadia Mono","JetBrains Mono",Menlo,Consolas,monospace;
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#0C1017; --surface:#141A24; --surface-2:#1A222E;
-    --ink:#E5EAF2; --muted:#94A1B5; --rule:#26303E; --rule-strong:#48566B;
-    --accent:#7EA6EE; --accent-soft:#182741; --accent-ink:#A8C4F5;
-    --warm:#E0B36A; --warm-soft:#2C2314;
-    --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px -20px rgba(0,0,0,.85);
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0C1017; --surface:#141A24; --surface-2:#1A222E;
-  --ink:#E5EAF2; --muted:#94A1B5; --rule:#26303E; --rule-strong:#48566B;
-  --accent:#7EA6EE; --accent-soft:#182741; --accent-ink:#A8C4F5;
-  --warm:#E0B36A; --warm-soft:#2C2314;
-  --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px -20px rgba(0,0,0,.85);
 }
 
 *{box-sizing:border-box}
@@ -63,13 +49,6 @@ h1{
   line-height:1.1; margin:0; letter-spacing:-.014em; text-wrap:balance;
 }
 .standfirst{margin:0; color:var(--muted); max-width:60ch; font-size:1.02rem}
-.themeBtn{
-  position:absolute; top:2.6rem; right:1.25rem;
-  font-family:var(--sans); font-size:.78rem; font-weight:550;
-  background:var(--surface); border:1px solid var(--rule); border-radius:2px;
-  padding:.38rem .8rem; color:var(--muted); transition:border-color .15s, color .15s;
-}
-.themeBtn:hover{border-color:var(--rule-strong); color:var(--ink)}
 
 /* ---------- layout ---------- */
 main{flex:1 0 auto; max-width:56rem; margin:0 auto; padding:2.2rem 1.25rem 1rem; width:100%}
@@ -132,6 +111,9 @@ main{flex:1 0 auto; max-width:56rem; margin:0 auto; padding:2.2rem 1.25rem 1rem;
 .stats b{font-variant-numeric:tabular-nums; font-weight:650; color:var(--ink); margin-right:.15rem}
 .stats .sep{color:var(--rule-strong)}
 .chips{display:flex; flex-wrap:wrap; gap:.35rem; margin:.7rem 0 0}
+kbd{font-family:var(--mono); font-size:.78em; border:1px solid var(--rule-strong);
+    border-bottom-width:2px; border-radius:4px; padding:.05em .32em;
+    background:var(--surface-2)}
 .chip{
   font-family:var(--sans); font-size:.72rem; color:var(--accent-ink);
   background:var(--accent-soft); border:1px solid var(--accent-soft);
@@ -190,24 +172,14 @@ footer a:hover{text-decoration:underline}
 @media (max-width:560px){
   body{font-size:16px}
   .masthead .inner{padding-top:3.6rem}
-  .themeBtn{top:1.1rem}
   .set,.paperblock{padding:1.15rem 1.1rem}
 }
 </style>
-<script>
-/* Apply the remembered theme before first paint, so there is no flash of the
-   wrong palette. Shares its storage key with the revision page. */
-try {
-  var t = localStorage.getItem('isc-physics-theme');
-  if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-} catch (e) {}
-</script>
 </head>
 <body>
 
 <header class="masthead">
   <div class="inner">
-    <button class="themeBtn" id="themeBtn" type="button">Dark</button>
     <div class="eyebrow">The Heritage School &middot; Class 12 &middot; First Term 2026&ndash;27</div>
     <h1>Physics First Term</h1>
     <p class="standfirst">One revision document to work through and three full papers to sit.
@@ -266,13 +238,17 @@ try {
       <a class="set" href="First-Term-Revision-Learn.html">
         <span class="kicker">Learn &middot; solutions hidden until you ask</span>
         <h2>First Term Revision <span class="go">Open &rarr;</span></h2>
-        <p>A hundred and forty-six worked problems over the six First Term chapters, each
-        tagged with its marks and its source. Every solution sits behind a <i>Show
-        solution</i> button, with <i>reveal chapter</i> and <i>reveal all</i> when you want
-        them. Solutions carry an <b>Answer</b> line, a <b>Note</b> on method, and a
-        <b>Trap</b> naming the specific error the examiner is testing for &mdash; in Physics
-        that is most often a sign convention, a missing unit, or a formula applied outside
-        the conditions it was derived under.</p>
+        <p>A hundred and forty-six worked problems over the six First Term chapters, shown
+        as a <b>slide show &mdash; one problem at a time</b>. <b>Next</b> and <b>Prev</b>
+        move through the deck, as do the <kbd>&larr;</kbd> and <kbd>&rarr;</kbd> keys, and
+        each chapter opens with its own title slide. Every solution sits behind a <i>Show
+        solution</i> button (or the <kbd>s</kbd> key), and solutions carry an <b>Answer</b>
+        line, a <b>Note</b> on method, and a <b>Trap</b> naming the specific error the
+        examiner is testing for &mdash; in Physics that is most often a sign convention, a
+        missing unit, or a formula applied outside the conditions it was derived under.
+        Each chapter has its own accent colour and card treatment, so you can see at a
+        glance where you are. Printing falls back to the whole document, every solution
+        revealed.</p>
         <!-- Counts below are the real per-section totals; recompute with
              python3 src/build_revision.py, which prints the totals it wrote. -->
         <div class="chips">
@@ -286,11 +262,11 @@ try {
         </div>
         <p class="stats">
           <span><b>146</b> problems</span> <span class="sep">&middot;</span>
+          <span><b>153</b> slides</span> <span class="sep">&middot;</span>
           <span><b>37</b> problem types</span> <span class="sep">&middot;</span>
           <span><b>7</b> sections</span> <span class="sep">&middot;</span>
           <span><b>6</b> sources drawn on</span> <span class="sep">&middot;</span>
-          <span>no clock, no score</span> <span class="sep">&middot;</span>
-          <span>printing reveals everything</span>
+          <span>no clock, no score</span>
         </p>
       </a>
     </li>
@@ -486,29 +462,10 @@ try {
   them. <code>python3 src/build_papers.py</code> rebuilds all three papers, or pass a number
   for one of them; it refuses to write a paper that does not total 70 marks or that has the
   wrong number of internal choices. <code>python3 src/verify_papers.py</code> re-checks the
-  arithmetic. This page is maintained by hand.</p>
+  arithmetic, and <code>python3 src/verify_revision.py --print</code> drives the deck
+  in a headless browser to check the navigation, the per-chapter templates and the
+  print path. This page is maintained by hand.</p>
 </footer>
 
-<script>
-/* Remember the reader's light / dark choice across this page and the revision
-   page. The stored value is applied by the small script in <head>. */
-var KEY = 'isc-physics-theme';
-function save(v){ try { localStorage.setItem(KEY, v); } catch(e){} }
-
-function isDark(){
-  var set = document.documentElement.getAttribute('data-theme');
-  if (set) return set === 'dark';
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
-}
-var btn = document.getElementById('themeBtn');
-function syncBtn(){ btn.textContent = isDark() ? 'Light' : 'Dark'; }
-btn.addEventListener('click', function(){
-  var next = isDark() ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  save(next);
-  syncBtn();
-});
-syncBtn();
-</script>
 </body>
 </html>
