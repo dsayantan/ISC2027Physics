@@ -478,7 +478,7 @@ footer a:hover{text-decoration:underline}
         <span><b>90</b> minutes</span> <span class="sep">&middot;</span>
         <span><b>12</b> questions</span> <span class="sep">&middot;</span>
         <span>6 pages</span> <span class="sep">&middot;</span>
-        <span>answer key included</span>
+        <span>key, marking scheme <i>and</i> worked solutions</span>
       </p>
       <div class="ways">
         <a class="way" href="First-Term-Unit-Test-1.pdf">
@@ -487,6 +487,25 @@ footer a:hover{text-decoration:underline}
           <span class="wd">The key starts on page&nbsp;4 and is marked <i>do not read
             before attempting</i>. Electromagnetic Induction, EM Waves and Optics are not
             examined here.</span>
+          <span class="go">Open &rarr;</span>
+        </a>
+        <a class="way" href="First-Term-Unit-Test-1-Solutions.html">
+          <span class="wk">Slide show &middot; question and answer</span>
+          <b>Open the Worked Solutions</b>
+          <span class="wd">One question to a slide, answer hidden until you ask, with
+            <b>13 drawn diagrams</b> &mdash; the Gaussian surface, the Wheatstone bridge,
+            the potentiometer circuit, the dielectric slab, the Amp&egrave;rian loop and
+            the rest. Marks are shown against each step, and both alternatives are worked
+            wherever the paper offers a choice.</span>
+          <span class="go">Open &rarr;</span>
+        </a>
+        <a class="way" href="First-Term-Unit-Test-1-Marking-Scheme.pdf">
+          <span class="wk">PDF &middot; ISC-style marking scheme</span>
+          <b>Open the Marking Scheme</b>
+          <span class="wd">The full expected answer for every question, broken into steps
+            with the marks allocated against each &mdash; both alternatives where a choice
+            is offered &mdash; plus notes for the examiner on what earns credit and what
+            does not. Mark it yourself after you have sat the paper.</span>
           <span class="go">Open &rarr;</span>
         </a>
       </div>
@@ -538,10 +557,13 @@ footer a:hover{text-decoration:underline}
   <p><code>python3 src/build_revision.py</code> rebuilds the revision page and prints the
   section, type and problem counts it wrote &mdash; the chips above should be kept in step with
   them. <code>python3 src/build_papers.py</code> rebuilds all three papers, or pass a number
-  for one of them &mdash; <code>u1</code> for the unit test; it refuses to write a paper that does not total 70 marks or that has the
+  for one of them &mdash; <code>u1</code> for the unit test;
+  <code>python3 src/build_scheme.py u1</code> rebuilds its marking scheme and
+  <code>python3 src/build_solutions.py u1</code> the worked-solutions deck; it refuses to write a paper that does not total 70 marks or that has the
   wrong number of internal choices. <code>python3 src/verify_papers.py</code> re-checks the
-  arithmetic, and <code>python3 src/verify_revision.py --print</code> drives the deck
-  in a headless browser to check the navigation, the per-chapter templates and the
+  arithmetic, and <code>python3 src/verify_revision.py --print</code> and
+  <code>python3 src/verify_solutions.py --print</code> drive the two decks in a
+  headless browser to check the navigation, the templates, the diagrams and the
   print path. This page is maintained by hand.</p>
 </footer>
 

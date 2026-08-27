@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISC Physics Class 12 &mdash; Unit Test 1 &middot; Worked Solutions</title>
+<style>
+/* Light only, by request: there is deliberately no dark palette and no
+   prefers-color-scheme override here. Do not reintroduce one. */
+:root{
+  --bg:#EEF1F6; --surface:#FFFFFF; --surface-2:#F6F8FC; --surface-3:#EDF1F8;
+  --ink:#151B26; --muted:#5A6577; --rule:#D5DCE7; --rule-strong:#A3AFC2;
+  --accent:#2A4B8D; --accent-soft:#DFE7F6; --accent-ink:#1D3667;
+  --warm:#8A5A12; --warm-soft:#FBF0DC;
+  --figfill:#E7ECF5;
+  --ok:#186B45; --ok-soft:#DDF0E6; --danger:#B0402F;
+  --shadow:0 1px 2px rgba(21,27,38,.05), 0 10px 28px -20px rgba(21,27,38,.4);
+  --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+  --maxw:53rem;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.15rem 5rem}
+
+/* ---------------------------------------------------------------- masthead */
+header.mast{padding:1.7rem 0 1rem;border-bottom:1px solid var(--rule);margin-bottom:.9rem}
+.kicker{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+        color:var(--warm);font-weight:650;margin:0 0 .7rem}
+h1{font-family:var(--serif);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.16;
+   margin:0 0 .6rem;color:var(--accent-ink);font-weight:700;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0;max-width:44rem}
+.statrow{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
+.stat{background:var(--surface);border:1px solid var(--rule);border-radius:9px;
+      padding:.5rem .8rem;box-shadow:var(--shadow)}
+.stat b{display:block;font-family:var(--serif);font-size:1.2rem;color:var(--accent);
+        line-height:1.1}
+.stat span{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* ------------------------------------------------------------------ panels */
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:12px;
+       padding:1.1rem 1.2rem;margin:1.3rem 0;box-shadow:var(--shadow)}
+.panel.warm{background:var(--warm-soft);border-color:color-mix(in srgb,var(--warm) 32%,transparent)}
+.panel h2{font-size:.95rem;margin:0 0 .55rem;color:var(--warm);font-weight:700;
+          letter-spacing:.01em}
+.panel.plain h2{color:var(--accent)}
+.panel ul{margin:.3rem 0 0;padding-left:1.15rem}
+.panel li{margin:.3rem 0}
+.panel p{margin:.35rem 0}
+.scopegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.9rem}
+.scopecol h3{font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;
+             margin:0 0 .4rem;color:var(--muted)}
+.scopecol.in h3{color:var(--ok)}
+.scopecol.out h3{color:var(--danger)}
+.scopecol ol{margin:0;padding-left:1.3rem;font-size:.9rem}
+.scopecol li{margin:.15rem 0}
+
+/* --------------------------------------------------------------------- toc */
+nav.toc{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);
+        backdrop-filter:blur(9px);border-bottom:1px solid var(--rule);
+        margin:1.4rem -1.15rem 1.8rem;padding:.55rem 1.15rem}
+.tocinner{max-width:var(--maxw);margin:0 auto;display:flex;gap:.35rem;overflow-x:auto;
+          scrollbar-width:thin}
+nav.toc a{flex:0 0 auto;font-size:.78rem;text-decoration:none;color:var(--muted);
+          padding:.3rem .6rem;border-radius:999px;border:1px solid transparent;
+          white-space:nowrap}
+nav.toc a:hover{color:var(--accent);background:var(--accent-soft)}
+nav.toc a.on{color:var(--accent-ink);background:var(--accent-soft);
+             border-color:color-mix(in srgb,var(--accent) 35%,transparent);font-weight:600}
+
+/* ---------------------------------------------------------------- controls */
+.gcontrol{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.9rem 0 0}
+button{font:inherit;font-size:.83rem;cursor:pointer;border-radius:8px;
+       border:1px solid var(--rule-strong);background:var(--surface);color:var(--ink);
+       padding:.42rem .85rem;transition:background .13s,border-color .13s,color .13s}
+button:hover{border-color:var(--accent);color:var(--accent)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button.primary:hover{filter:brightness(1.1);color:#fff}
+.prog{margin-left:auto;font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* ---------------------------------------------------------------- chapters */
+section.ch{margin:2.6rem 0 0;scroll-margin-top:4rem}
+.chhead{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;
+        border-bottom:2px solid var(--accent);padding-bottom:.5rem;margin-bottom:.2rem}
+.chnum{font-family:var(--serif);font-size:2.1rem;line-height:1;color:var(--accent);
+       font-weight:700;opacity:.55}
+.chhead h2{font-family:var(--serif);font-size:1.42rem;margin:0;color:var(--accent-ink);
+           font-weight:700;flex:1 1 12rem}
+.chhead .chctl{display:flex;gap:.35rem}
+.chhead button{font-size:.74rem;padding:.28rem .6rem}
+.chscope{font-size:.86rem;color:var(--muted);margin:.6rem 0 1.4rem;
+         padding-left:.8rem;border-left:2px solid var(--rule)}
+
+/* ------------------------------------------------------------------- types */
+.type{margin:1.7rem 0}
+.tname{font-size:1rem;font-weight:700;color:var(--ink);margin:0 0 .5rem;
+       font-family:var(--serif);letter-spacing:.005em}
+.strategy{background:var(--surface-3);border-left:3px solid var(--accent);
+          border-radius:0 9px 9px 0;padding:.6rem .85rem;font-size:.88rem;
+          color:var(--ink);margin:0 0 .9rem}
+.strategy b::before{content:""}
+.strategy .lbl{display:block;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+               color:var(--accent);font-weight:700;margin-bottom:.2rem}
+
+/* ---------------------------------------------------------------- problems */
+.prob{background:var(--surface);border:1px solid var(--rule);border-radius:11px;
+      padding:.95rem 1.05rem;margin:.75rem 0;box-shadow:var(--shadow);position:relative}
+.prob.done{border-color:color-mix(in srgb,var(--ok) 50%,transparent)}
+.pmeta{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem}
+.pn{font-family:var(--mono);font-size:.72rem;font-weight:700;color:#fff;
+    background:var(--accent);border-radius:5px;padding:.1rem .42rem;letter-spacing:.02em}
+.marks{font-size:.7rem;color:var(--accent-ink);background:var(--accent-soft);
+       border-radius:999px;padding:.1rem .5rem;font-weight:650}
+.src{font-size:.71rem;color:var(--muted);font-style:italic}
+.dtoggle{margin-left:auto;font-size:.7rem;padding:.18rem .5rem;border-radius:999px}
+.prob.done .dtoggle{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.q{margin:.15rem 0 .7rem}
+.q p{margin:.35rem 0}
+.sbtn{font-size:.8rem}
+.sol{display:none;margin-top:.85rem;padding-top:.85rem;border-top:1px dashed var(--rule-strong)}
+.prob.open .sol{display:block}
+.sol > :first-child{margin-top:0}
+
+ol.steps{margin:.2rem 0;padding-left:1.35rem}
+ol.steps li{margin:.4rem 0}
+ul.bul{margin:.2rem 0;padding-left:1.2rem}
+.disp{text-align:center;margin:.7rem 0;font-family:var(--serif);font-size:1.03em}
+p.note,p.trap,p.ansline{margin:.7rem 0 0;font-size:.89rem;padding:.5rem .7rem;
+                        border-radius:8px;line-height:1.55}
+p.ansline{background:var(--ok-soft);border:1px solid color-mix(in srgb,var(--ok) 30%,transparent)}
+p.note{background:var(--surface-2);border:1px solid var(--rule)}
+p.trap{background:var(--warm-soft);border:1px solid color-mix(in srgb,var(--warm) 30%,transparent)}
+.tag{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+     margin-right:.45rem;vertical-align:.05em}
+p.ansline .tag{color:var(--ok)}
+p.note .tag{color:var(--muted)}
+p.trap .tag{color:var(--warm)}
+
+.tw{overflow-x:auto;margin:.6rem 0}
+table{border-collapse:collapse;font-size:.87rem;min-width:16rem}
+th,td{border:1px solid var(--rule);padding:.32rem .6rem;text-align:left}
+th{background:var(--surface-3);font-size:.78rem;letter-spacing:.02em}
+
+/* ------------------------------------------------------------------- math */
+.fr{display:inline-block;vertical-align:middle;text-align:center;font-size:.92em;
+    margin:0 .16em;line-height:1.22}
+.fr .n{display:block;border-bottom:1px solid currentColor;padding:0 .26em}
+.fr .d{display:block;padding:0 .26em}
+/* physics: vectors carry a real arrow glyph above the symbol, because the
+   combining arrow U+20D7 is unreliable across fonts. Units stay upright. */
+.vec{position:relative; display:inline-block; font-style:italic; font-weight:600}
+.vec::after{content:"\2192"; position:absolute; left:0; right:0; top:-.62em;
+  font-size:.62em; font-weight:400; font-style:normal; line-height:1;
+  text-align:center}
+.u{font-style:normal}
+.rt{white-space:nowrap}
+.rt .bar{border-top:1px solid currentColor;padding:0 .14em 0 .05em;margin-left:-.03em}
+.rt .ridx{font-size:.6em;margin-right:-.25em}
+.ig{display:inline-flex;align-items:center;vertical-align:middle;gap:.06em}
+.ig .sym{font-size:1.55em;line-height:.85;font-family:var(--serif)}
+.ig .lim{display:inline-flex;flex-direction:column;font-size:.62em;line-height:1.15;
+         margin:0 .1em 0 -.1em}
+.ig .hi{margin-bottom:.75em}
+.ig .lo{margin-top:-.75em}
+.mx{position:relative;display:inline-grid;vertical-align:middle;justify-items:center;
+    gap:.16em .7em;padding:.3em .5em;margin:0 .16em;font-size:.94em;line-height:1.2}
+.mx::before,.mx::after{content:"";position:absolute;top:0;bottom:0;width:.3em;
+                       border:1.5px solid currentColor}
+.mx::before{left:0;border-right:none}
+.mx::after{right:0;border-left:none}
+.mx.det::before,.mx.det::after{width:0;border-top:none;border-bottom:none}
+.mx.det::before{border-right:none}
+.mx.det::after{border-left:1.5px solid currentColor;border-right:none}
+.pw{display:inline-flex;align-items:center;vertical-align:middle;gap:.3em;margin:0 .1em}
+.pw .brace{font-size:2.3em;line-height:.75;font-weight:200;font-family:var(--serif)}
+.pw .cases{display:inline-grid;grid-template-columns:auto auto;gap:.12em .9em;
+           font-size:.94em;line-height:1.25;text-align:left}
+.pw .c{color:var(--muted);font-size:.94em}
+.lm{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;
+    line-height:1.05;margin:0 .1em}
+.lm .op{font-size:.95em}
+.lm .to{font-size:.66em;color:inherit}
+sup,sub{font-size:.72em;line-height:0}
+
+footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--rule);
+       font-size:.8rem;color:var(--muted)}
+footer p{margin:.3rem 0}
+.up{position:fixed;right:1rem;bottom:1rem;z-index:30;border-radius:999px;
+    width:2.6rem;height:2.6rem;padding:0;font-size:1rem;box-shadow:var(--shadow);
+    opacity:0;pointer-events:none;transition:opacity .2s}
+.up.show{opacity:1;pointer-events:auto}
+
+/* ---------------- slideshow ---------------- */
+/* One problem to a slide. Only .slide.on is in flow; print shows them all. */
+#deck{min-height:24rem;margin-top:1rem}
+.slide{display:none}
+.slide.on{display:block;animation:slidein .16s ease-out}
+@keyframes slidein{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+.crumb{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+       color:var(--muted);margin:0 0 .55rem}
+.tctx{margin:0 0 .85rem}
+
+/* the "How to attack it" note, now a disclosure so it cannot crowd out the
+   problem; it starts open on the first problem of each type */
+details.strategy{background:var(--surface-3);border-left:3px solid var(--accent);
+  border-radius:0 8px 8px 0;padding:.5rem .8rem;margin:.5rem 0 0;font-size:.9rem}
+details.strategy summary{cursor:pointer;font-size:.66rem;letter-spacing:.1em;
+  text-transform:uppercase;font-weight:700;color:var(--accent);list-style:none}
+details.strategy summary::-webkit-details-marker{display:none}
+details.strategy summary::after{content:"  \25B8";font-size:.9em}
+details.strategy[open] summary::after{content:"  \25BE"}
+details.strategy .sbody{margin-top:.45rem}
+details.strategy .sbody > :first-child{margin-top:0}
+
+/* chapter-opening slide */
+.chslide{background:var(--surface);border:1px solid var(--rule);border-radius:14px;
+  padding:2rem 1.7rem 1.7rem;box-shadow:var(--shadow)}
+.ceyebrow{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  color:var(--accent);margin:0 0 .9rem}
+.chslide .chhead{border:0;margin:0;padding:0}
+.chslide .chscope{margin:.9rem 0 1.3rem}
+.chtypes{border-top:1px solid var(--rule);padding-top:.9rem}
+.chtypes .lbl{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--muted);margin:0 0 .5rem}
+.chtypes ol{margin:0;padding-left:1.4rem;font-size:.88rem}
+.chtypes li{margin:.22rem 0}
+.chtypes .tc{color:var(--muted);font-size:.82em}
+.chfoot{margin:1.2rem 0 0;font-size:.85rem;color:var(--muted)}
+.chctl{display:flex;gap:.35rem;margin-top:1rem}
+.chctl button{font-size:.74rem;padding:.28rem .6rem}
+
+/* bottom navigation bar */
+.navbar{position:sticky;bottom:0;z-index:25;margin-top:1.5rem;padding:.65rem 0 .7rem;
+  background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(7px);
+  border-top:1px solid var(--rule);display:flex;align-items:center;gap:.6rem}
+.navbar .bar{position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--accent);
+  transition:width .18s ease-out}
+.nbtn{font-size:.85rem;padding:.42rem .95rem;min-width:6.2rem}
+.nbtn:disabled{opacity:.35;cursor:not-allowed}
+.counter{flex:1 1 auto;text-align:center;font-size:.8rem;color:var(--muted);
+  font-variant-numeric:tabular-nums;line-height:1.35}
+.counter b{color:var(--ink)}
+.counter .cwhere{display:block;font-size:.72rem}
+kbd{font-family:var(--mono);font-size:.72em;border:1px solid var(--rule-strong);
+  border-bottom-width:2px;border-radius:4px;padding:.05em .32em;background:var(--surface)}
+
+/* the scope and how-to-use panels, folded away so the deck is what you land on */
+details.intro{margin:.2rem 0 .9rem}
+details.intro > summary{cursor:pointer;list-style:none;font-size:.8rem;font-weight:600;
+  color:var(--accent);padding:.5rem .8rem;border:1px dashed var(--rule-strong);
+  border-radius:9px;background:var(--surface)}
+details.intro > summary::-webkit-details-marker{display:none}
+details.intro > summary::after{content:"  \25B8"}
+details.intro[open] > summary::after{content:"  \25BE"}
+
+/* ---------------- figures ----------------
+   Figures are inline SVG drawn in currentColor, so each one takes the colour of
+   the chapter it sits in. No external images and no CDN, as everywhere else. */
+figure.fg{margin:.85rem 0;padding:.6rem .5rem .45rem;background:var(--surface-2);
+  border:1px solid var(--rule);border-radius:9px;text-align:center;
+  color:var(--c,var(--accent))}
+figure.fg svg.figsvg{max-width:100%;height:auto;display:inline-block;
+  overflow:visible}
+figure.fg figcaption{margin-top:.35rem;font-size:.78rem;line-height:1.45;
+  color:var(--muted);text-align:center}
+figure.fg.fgrow{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.fgcell{flex:1 1 13rem;min-width:11rem}
+.fgcell figcaption{margin-top:.25rem}
+/* the solution body sets the text colour back, so only the drawing is accented */
+figure.fg figcaption,figure.fg .plain{color:var(--muted)}
+@media print{
+  figure.fg{background:transparent;border-color:#bbb;break-inside:avoid}
+}
+
+/* ---------------- per-chapter slide templates ----------------
+   --c / --cs / --ci come from the .slide[data-ch=...] rules that ch_css()
+   generates. Every use carries an --accent fallback so a slide without a
+   chapter still renders. The .v-* class on the slide picks the treatment. */
+.slide .pn{background:var(--c,var(--accent))}
+.slide .marks{color:var(--ci,var(--accent-ink));background:var(--cs,var(--accent-soft))}
+.slide .crumb{color:var(--ci,var(--muted))}
+.slide .crumb::before{content:"";display:inline-block;width:.5em;height:.5em;
+  margin-right:.5em;vertical-align:.05em;background:var(--c,var(--accent));border-radius:1px}
+.slide details.strategy{border-left-color:var(--c,var(--accent))}
+.slide details.strategy summary{color:var(--c,var(--accent))}
+.slide .tname{border-bottom-color:color-mix(in srgb,var(--c,var(--accent)) 30%,transparent)}
+.slide .sol{border-top-color:color-mix(in srgb,var(--c,var(--accent)) 45%,transparent)}
+.slide .ceyebrow{color:var(--c,var(--accent))}
+.slide .chnum{color:var(--c,var(--accent))}
+.slide .chhead h2{color:var(--ci,var(--accent-ink))}
+.slide .chtypes li::marker{color:var(--c,var(--accent))}
+.slide .chslide{border-top:3px solid var(--c,var(--accent))}
+
+/* Electrostatics -- a plain left rule, the quietest of the seven */
+.v-rule .prob{border-left:3px solid var(--c)}
+
+/* Current Electricity -- a bar across the top, like a rail carrying current */
+.v-topbar .prob{border-top:3px solid var(--c);border-radius:3px 3px 11px 11px}
+
+/* Magnetism -- the whole card ringed, as a field encircles a wire */
+.v-ring .prob{border:1.5px solid color-mix(in srgb,var(--c) 55%,transparent);
+  border-radius:14px}
+
+/* EMI and AC -- rules top and bottom, the two sides of a coil */
+.v-brace .prob{border-top:2px solid var(--c);
+  border-bottom:2px solid color-mix(in srgb,var(--c) 45%,transparent);border-radius:4px}
+.v-brace .pmeta .src{margin-left:.1rem}
+
+/* Electromagnetic Waves -- dashed, for a wave that is not there to touch */
+.v-dashed .prob{border:1.5px dashed color-mix(in srgb,var(--c) 60%,transparent)}
+
+/* Ray Optics -- the chapter numeral watermarked behind the card */
+.v-numeral .prob{border-left:3px solid var(--c);overflow:hidden}
+.v-numeral .prob::after{content:attr(data-chnum);position:absolute;right:.7rem;bottom:-1.3rem;
+  font-family:var(--serif);font-size:6rem;line-height:1;font-weight:600;
+  color:color-mix(in srgb,var(--c) 15%,transparent);pointer-events:none;z-index:0}
+.v-numeral .prob > *{position:relative;z-index:1}
+
+/* Wave Optics -- a fringe pattern along the top edge */
+.v-stripe .prob{border-radius:3px 3px 11px 11px;padding-top:1.15rem}
+.v-stripe .prob::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;
+  border-radius:3px 3px 0 0;
+  background:repeating-linear-gradient(90deg,var(--c) 0 6px,transparent 6px 12px)}
+
+@media print{
+  /* the flourishes are ink; keep the accent but drop the heavy fills */
+  .v-numeral .prob::after{display:none}
+}
+
+@media (max-width:34rem){
+  .nbtn{min-width:0;padding:.42rem .7rem}
+  .chslide{padding:1.4rem 1.1rem}
+}
+
+@media print{
+  body{background:#fff;font-size:10.5pt}
+  nav.toc,.gcontrol,.chctl,.navbar,button,.up{display:none !important}
+  details.intro > summary,details.strategy summary{display:none !important}
+  /* every slide prints, so the deck reads as the document it was before */
+  .slide,.slide.on{display:block !important;animation:none !important;
+                   opacity:1 !important;transform:none !important}
+  .prob .sol{display:block !important}
+  details.strategy .sbody{display:block !important}
+  .prob,.panel,.chslide{break-inside:avoid;box-shadow:none}
+  .chslide{break-before:page}
+  #deck > .chslide:first-child{break-before:auto}
+  .crumb{display:none}
+}
+
+.slide[data-ch="seca"]{--c:#2A4B8D;--cs:#DFE7F6;--ci:#1D3667}
+.slide[data-ch="secb"]{--c:#0B6A55;--cs:#D6EDE5;--ci:#08503F}
+.slide[data-ch="secc"]{--c:#8A5A12;--cs:#FBEFD9;--ci:#66410A}
+.slide[data-ch="secd"]{--c:#8E2F63;--cs:#F7DDEA;--ci:#6B1F48}
+
+/* ---------------- worked solutions ---------------- */
+.msteps{margin:.6rem 0 0}
+.mrow{display:flex;gap:.7rem;align-items:flex-start;padding:.42rem 0;
+  border-top:1px dashed var(--rule)}
+.mrow:first-child{border-top:0}
+.mrow .mtext{flex:1 1 auto;min-width:0}
+.mrow .mk{flex:0 0 auto;font-family:var(--mono);font-size:.74rem;font-weight:700;
+  color:#fff;background:var(--c,var(--accent));border-radius:5px;
+  padding:.1rem .4rem;line-height:1.5;min-width:1.5rem;text-align:center}
+.mtot{display:flex;justify-content:flex-end;gap:.5rem;align-items:center;
+  margin-top:.5rem;padding-top:.45rem;border-top:1px solid var(--rule-strong);
+  font-size:.82rem}
+.mtot b{font-family:var(--mono)}
+.orbar{display:flex;align-items:center;gap:.6rem;margin:1.1rem 0 .5rem;
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  color:var(--c,var(--accent))}
+.orbar::before,.orbar::after{content:"";flex:1 1 auto;height:1px;
+  background:var(--rule-strong)}
+.qor{margin-top:.5rem;padding-top:.5rem;border-top:1px dashed var(--rule-strong)}
+.enote{margin-top:.6rem;padding:.5rem .7rem;background:var(--surface-2);
+  border-left:3px solid var(--rule-strong);border-radius:0 7px 7px 0;
+  font-size:.85rem;color:var(--muted)}
+.enote .lbl{display:block;font-size:.64rem;letter-spacing:.1em;
+  text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:.15rem}
+.opts{margin:.35rem 0 0;padding-left:.2rem;list-style:none}
+.opts li{margin:.16rem 0}
+.opts .ol{font-family:var(--mono);font-size:.8rem;color:var(--muted);
+  margin-right:.35rem}
+.secblurb{font-size:.9rem;color:var(--muted);margin:.9rem 0 1.2rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <p class="kicker">The Heritage School &middot; Class 12 &middot; 2026&ndash;27 &middot; First Term</p>
+  <h1>Unit Test 1 &mdash; Worked Solutions</h1>
+  <p class="sub">One question to a slide, with the answer hidden until you ask.
+  Marks are shown against each step, as the marking scheme allocates them.</p>
+  <div class="statrow">
+    <div class="stat"><b>40</b><span>marks</span></div>
+    <div class="stat"><b>12</b><span>questions</span></div>
+    <div class="stat"><b>23</b><span>slides</span></div>
+    <div class="stat"><b>13</b><span>diagrams</span></div>
+  </div>
+</header>
+
+<details class="intro">
+<summary>How to use this deck</summary>
+
+<div class="panel warm">
+  <h2>How to use this deck</h2>
+  <ul>
+    <li><b>Sit the paper first.</b> These are the answers; reading them before
+        you have attempted the questions tells you only that they look easy.</li>
+    <li><b>Move with <kbd>&larr;</kbd> and <kbd>&rarr;</kbd></b>, or the
+        <b>Next</b> and <b>Prev</b> buttons. <kbd>s</kbd> shows or hides the
+        solution, <kbd>d</kbd> marks a question done, and the contents bar jumps
+        to a section. On a phone, swipe.</li>
+    <li><b>The marks beside each step are the marks.</b> They come from the same
+        table as the printed marking scheme, so if your working stops halfway you
+        can see exactly what it was worth.</li>
+    <li><b>Where a question offers a choice</b>, both alternatives are given, the
+        second under an <i>or</i> rule. In the examination you would answer only
+        one.</li>
+    <li><b>Read the examiner&rsquo;s notes.</b> They say what earns partial
+        credit and name the mistake each question is set to catch.</li>
+    <li>Printing lays every slide out in order with the solutions revealed, so it
+        doubles as a printable solution booklet.</li>
+  </ul>
+</div>
+</details>
+
+<nav class="toc"><div class="tocinner"><a href="#seca">Section A</a><a href="#secb">Section B</a><a href="#secc">Section C</a><a href="#secd">Section D</a></div></nav>
+
+<div id="deck">
+<section class="slide chslide v-rule" data-ch="seca"><p class="ceyebrow">Section A of D &middot; 8 marks &middot; worked solutions</p><div class="chhead"><span class="chnum">A</span><h2>Section A</h2></div><p class="secblurb">Eight sub-parts of one mark each. The first four are multiple choice or assertion&ndash;reason; the last four want a sentence, not an essay. No part marks are available here.</p><div class="chtypes"><p class="lbl">In this section</p><ol><li><b>8</b> sub-parts of <b>1</b> mark</li><li><b>8</b> marks in all</li></ol></div><p class="chfoot">Chapters examined: Current Electricity, Electrostatics, Magnetic Effect of Current and Magnetism. Press <kbd>&rarr;</kbd> or <b>Next</b> to begin.</p><div class="chctl"><button data-ch-reveal="seca">reveal this section</button><button data-ch-hide="seca">hide again</button></div></section>
+<section class="slide pslide v-rule" data-ch="seca"><p class="crumb">Section A &middot; Electrostatics</p><div class="prob" id="a1" data-chnum="A"><div class="pmeta"><span class="pn">Q1 (i)</span><span class="marks">1 mark</span><span class="src">Electrostatics</span><button class="dtoggle">mark done</button></div><div class="q"><p>Two identical conducting spheres carrying charges +<i>q</i> and &#8722;3<i>q</i> are brought into contact and then separated so that their centres are a distance <i>r</i> apart. The force between them is:</p><ul class="opts"><li><span class="ol">(a)</span>attractive, of magnitude <i>kq</i><super>2</super>/<i>r</i><super>2</super>.</li><li><span class="ol">(b)</span>repulsive, of magnitude <i>kq</i><super>2</super>/<i>r</i><super>2</super>.</li><li><span class="ol">(c)</span>repulsive, of magnitude 3<i>kq</i><super>2</super>/<i>r</i><super>2</super>.</li><li><span class="ol">(d)</span>zero.</li></ul></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><figure class="fg fgrow"><div class="fgcell"><svg class="figsvg" viewBox="-6.00 -6.00 132.00 86.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:257px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><circle cx="30.00" cy="38.00" r="13.00" fill="none" stroke="currentColor" stroke-width="1.40"/><text x="30.00" y="41.50" text-anchor="middle" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">+<tspan font-style="italic">q</tspan></text><circle cx="90.00" cy="38.00" r="13.00" fill="none" stroke="currentColor" stroke-width="1.40"/><text x="90.00" y="41.50" text-anchor="middle" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">&minus;3<tspan font-style="italic">q</tspan></text><line x1="30.00" y1="63.00" x2="30.00" y2="69.00" stroke="currentColor" stroke-width="0.85"/><line x1="90.00" y1="63.00" x2="90.00" y2="69.00" stroke="currentColor" stroke-width="0.85"/><line x1="30.00" y1="66.00" x2="90.00" y2="66.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)" marker-start="url(#ah)"/><text x="60.00" y="76.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic"><tspan font-style="italic">r</tspan></text></svg><figcaption><b>Before contact</b> &mdash; unlike charges, so the force is attractive.</figcaption></div><div class="fgcell"><svg class="figsvg" viewBox="-6.00 -6.00 132.00 86.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:257px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><circle cx="30.00" cy="38.00" r="13.00" fill="none" stroke="currentColor" stroke-width="1.40"/><text x="30.00" y="41.50" text-anchor="middle" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">&minus;<tspan font-style="italic">q</tspan></text><circle cx="90.00" cy="38.00" r="13.00" fill="none" stroke="currentColor" stroke-width="1.40"/><text x="90.00" y="41.50" text-anchor="middle" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">&minus;<tspan font-style="italic">q</tspan></text><line x1="30.00" y1="63.00" x2="30.00" y2="69.00" stroke="currentColor" stroke-width="0.85"/><line x1="90.00" y1="63.00" x2="90.00" y2="69.00" stroke="currentColor" stroke-width="0.85"/><line x1="30.00" y1="66.00" x2="90.00" y2="66.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)" marker-start="url(#ah)"/><text x="60.00" y="76.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic"><tspan font-style="italic">r</tspan></text><line x1="15.00" y1="38.00" x2="-4.00" y2="38.00" stroke="currentColor" stroke-width="1.60" marker-end="url(#ah)"/><line x1="105.00" y1="38.00" x2="124.00" y2="38.00" stroke="currentColor" stroke-width="1.60" marker-end="url(#ah)"/><text x="4.00" y="32.00" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">F</tspan></text><text x="116.00" y="32.00" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">F</tspan></text></svg><figcaption><b>After contact</b> &mdash; the charge is shared equally, (<i>q</i>&minus;3<i>q</i>)/2 = &minus;<i>q</i> each, so the force is <b>repulsive</b>.</figcaption></div></figure><div class="msteps"><div class="mrow"><div class="mtext"><b>(b)</b> repulsive, of magnitude <i>kq</i><super>2</super>/<i>r</i><super>2</super>. <i>(On contact each sphere carries </i>(<i>q</i>&minus;3<i>q</i>)/2 = &minus;<i>q</i><i>, so both are negative.)</i></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>1</b></div></div></div></section>
+<section class="slide pslide v-rule" data-ch="seca"><p class="crumb">Section A &middot; Current Electricity</p><div class="prob" id="a2" data-chnum="A"><div class="pmeta"><span class="pn">Q1 (ii)</span><span class="marks">1 mark</span><span class="src">Current Electricity</span><button class="dtoggle">mark done</button></div><div class="q"><p>A wire of resistance <i>R</i> is cut into four equal parts, which are then joined in parallel. The resistance of the combination is:</p><ul class="opts"><li><span class="ol">(a)</span><i>R</i>/4</li><li><span class="ol">(b)</span><i>R</i>/8</li><li><span class="ol">(c)</span><i>R</i>/16</li><li><span class="ol">(d)</span>4<i>R</i></li></ul></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><div class="msteps"><div class="mrow"><div class="mtext"><b>(c)</b> <i>R</i>/16</div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>1</b></div></div></div></section>
+<section class="slide pslide v-rule" data-ch="seca"><p class="crumb">Section A &middot; Magnetic Effect of Current and Magnetism</p><div class="prob" id="a3" data-chnum="A"><div class="pmeta"><span class="pn">Q1 (iii)</span><span class="marks">1 mark</span><span class="src">Magnetic Effect of Current and Magnetism</span><button class="dtoggle">mark done</button></div><div class="q"><p>The magnetic flux density well inside a long current-carrying solenoid is <i>B</i>. At a point on its axis at one <b>end</b> of the solenoid it is:</p><ul class="opts"><li><span class="ol">(a)</span><i>B</i></li><li><span class="ol">(b)</span><i>B</i>/2</li><li><span class="ol">(c)</span>2<i>B</i></li><li><span class="ol">(d)</span>zero</li></ul></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><div class="msteps"><div class="mrow"><div class="mtext"><b>(b)</b> <i>B</i>/2</div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>1</b></div></div></div></section>
+<section class="slide pslide v-rule" data-ch="seca"><p class="crumb">Section A &middot; Magnetic Effect of Current and Magnetism</p><div class="prob" id="a4" data-chnum="A"><div class="pmeta"><span class="pn">Q1 (iv)</span><span class="marks">1 mark</span><span class="src">Magnetic Effect of Current and Magnetism</span><button class="dtoggle">mark done</button></div><div class="q"><p><b>Assertion:</b> a current-carrying solenoid behaves like a bar magnet. <b>Reason:</b> the magnetic field lines outside a finite solenoid are of the same form as those of a bar magnet, leaving one face and entering the other.</p><ul class="opts"><li><span class="ol">(a)</span>Both Assertion and Reason are true and Reason is the correct explanation for Assertion.</li><li><span class="ol">(b)</span>Both Assertion and Reason are true but Reason is not the correct explanation for Assertion.</li><li><span class="ol">(c)</span>Assertion is true and Reason is false.</li><li><span class="ol">(d)</span>Assertion is false and Reason is true.</li></ul></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><div class="msteps"><div class="mrow"><div class="mtext"><b>(a)</b> Both Assertion and Reason are true and Reason is the correct explanation for Assertion.</div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>1</b></div></div></div></section>
+<section class="slide pslide v-rule" data-ch="seca"><p class="crumb">Section A &middot; Electrostatics</p><div class="prob" id="a5" data-chnum="A"><div class="pmeta"><span class="pn">Q1 (v)</span><span class="marks">1 mark</span><span class="src">Electrostatics</span><button class="dtoggle">mark done</button></div><div class="q"><p>Why must the electrostatic field at the surface of a charged conductor be normal to the surface at every point?</p></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><div class="msteps"><div class="mrow"><div class="mtext">A tangential component would drive a current along the surface; in electrostatic equilibrium no current flows, so the tangential component is zero and the field is wholly normal. <i>Accept any answer making the point that a tangential field would move the free charges.</i></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>1</b></div></div></div></section>
+<section class="slide pslide v-rule" data-ch="seca"><p class="crumb">Section A &middot; Electrostatics</p><div class="prob" id="a6" data-chnum="A"><div class="pmeta"><span class="pn">Q1 (vi)</span><span class="marks">1 mark</span><span class="src">Electrostatics</span><button class="dtoggle">mark done</button></div><div class="q"><p>A dielectric slab is introduced between the plates of an <b>isolated</b> charged parallel plate capacitor. State what happens to the potential difference across it.</p></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><div class="msteps"><div class="mrow"><div class="mtext">It <b>decreases</b> (to <i>V</i>/<i>K</i>). <i>Award the mark for &lsquo;decreases&rsquo; alone; the factor is not required.</i></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>1</b></div></div></div></section>
+<section class="slide pslide v-rule" data-ch="seca"><p class="crumb">Section A &middot; Current Electricity</p><div class="prob" id="a7" data-chnum="A"><div class="pmeta"><span class="pn">Q1 (vii)</span><span class="marks">1 mark</span><span class="src">Current Electricity</span><button class="dtoggle">mark done</button></div><div class="q"><p>Why is manganin preferred to copper for making standard resistance coils?</p></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><div class="msteps"><div class="mrow"><div class="mtext">Manganin has a very low temperature coefficient of resistance, so its resistance barely changes in use. <i>Accept also: high resistivity, so a short length suffices.</i></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>1</b></div></div></div></section>
+<section class="slide pslide v-rule" data-ch="seca"><p class="crumb">Section A &middot; Current Electricity</p><div class="prob" id="a8" data-chnum="A"><div class="pmeta"><span class="pn">Q1 (viii)</span><span class="marks">1 mark</span><span class="src">Current Electricity</span><button class="dtoggle">mark done</button></div><div class="q"><p>State how the resistance of a semiconductor changes when its temperature is raised, and give the reason.</p></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><div class="msteps"><div class="mrow"><div class="mtext">It <b>decreases</b>, because raising the temperature releases many more charge carriers, so <i>n</i> rises much faster than &tau; falls. <i>Both the direction and a reason are needed for the mark.</i></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>1</b></div></div></div></section>
+<section class="slide chslide v-topbar" data-ch="secb"><p class="ceyebrow">Section B of D &middot; 10 marks &middot; worked solutions</p><div class="chhead"><span class="chnum">B</span><h2>Section B</h2></div><p class="secblurb">Five questions of two marks. Two of them offer a choice, and both alternatives are worked below.</p><div class="chtypes"><p class="lbl">In this section</p><ol><li><b>5</b> questions of <b>2</b> marks</li><li><b>10</b> marks in all</li><li>internal choice in <b>2</b></li></ol></div><p class="chfoot">Chapters examined: Current Electricity, Electrostatics, Magnetic Effect of Current and Magnetism. Press <kbd>&rarr;</kbd> or <b>Next</b> to begin.</p><div class="chctl"><button data-ch-reveal="secb">reveal this section</button><button data-ch-hide="secb">hide again</button></div></section>
+<section class="slide pslide v-topbar" data-ch="secb"><p class="crumb">Section B &middot; Electrostatics</p><div class="prob" id="q2" data-chnum="B"><div class="pmeta"><span class="pn">Question 2</span><span class="marks">2 marks</span><span class="src">Electrostatics</span><button class="dtoggle">mark done</button></div><div class="q"><p>Capacitors of 4&#183;0 &#956;F and 12 &#956;F are connected in series across a 100 V supply. Calculate the charge on each capacitor and the potential difference across the 4&#183;0 &#956;F capacitor.</p></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><figure class="fg "><svg class="figsvg" viewBox="-6.00 -6.00 212.00 120.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:413px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><line x1="24.00" y1="28.00" x2="176.00" y2="28.00" stroke="currentColor" stroke-width="1.20"/><line x1="24.00" y1="28.00" x2="24.00" y2="88.00" stroke="currentColor" stroke-width="1.20"/><line x1="176.00" y1="28.00" x2="176.00" y2="88.00" stroke="currentColor" stroke-width="1.20"/><line x1="24.00" y1="88.00" x2="176.00" y2="88.00" stroke="currentColor" stroke-width="1.20"/><line x1="71.75" y1="21.50" x2="71.75" y2="34.50" stroke="currentColor" stroke-width="1.40"/><line x1="76.25" y1="21.50" x2="76.25" y2="34.50" stroke="currentColor" stroke-width="1.40"/><text x="74.00" y="17.50" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">4&#183;0 &micro;F</text><line x1="131.75" y1="21.50" x2="131.75" y2="34.50" stroke="currentColor" stroke-width="1.40"/><line x1="136.25" y1="21.50" x2="136.25" y2="34.50" stroke="currentColor" stroke-width="1.40"/><text x="134.00" y="17.50" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">12 &micro;F</text><line x1="97.50" y1="81.50" x2="97.50" y2="94.50" stroke="currentColor" stroke-width="1.50"/><line x1="102.50" y1="84.50" x2="102.50" y2="91.50" stroke="currentColor" stroke-width="1.10"/><text x="100.00" y="104.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">100 V</text><line x1="38.00" y1="21.00" x2="58.00" y2="21.00" stroke="currentColor" stroke-width="1.10" marker-end="url(#ah)"/><text x="48.00" y="16.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">Q</tspan></text><text x="104.00" y="4.00" text-anchor="middle" font-size="8.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">the same <tspan font-style="italic">Q</tspan> on each &mdash; series</text></svg><figcaption>In series the plates carry the <b>same charge</b>. The equivalent capacitance is 3&#183;0 &micro;F, so <i>Q</i> = <i>CV</i> = 300 &micro;C, and the smaller capacitor takes the larger share of the voltage.</figcaption></figure><div class="msteps"><div class="mrow"><div class="mtext"><i>C</i> = <i>C</i><sub>1</sub><i>C</i><sub>2</sub>/(<i>C</i><sub>1</sub>+<i>C</i><sub>2</sub>) = (4)(12)/16 = 3&#183;0 &#956;F</div><span class="mk">&#189;</span></div><div class="mrow"><div class="mtext"><i>Q</i> = <i>CV</i> = (3&#183;0 &#956;F)(100 V) = <b>300 &#956;C</b>, and it is the <b>same on each</b> capacitor</div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><i>V</i><sub>4</sub> = <i>Q</i>/<i>C</i><sub>4</sub> = 300/4&#183;0 = <b>75 V</b></div><span class="mk">&#189;</span></div></div><div class="mtot">Total for this question <b>2</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>If a candidate finds <i>V</i><sub>4</sub> by the ratio <i>V</i><sub>4</sub>/<i>V</i> = <i>C</i><sub>2</sub>/(<i>C</i><sub>1</sub>+<i>C</i><sub>2</sub>), award the same marks. Do not give credit for 300 &#956;C stated for the series combination but then divided between the capacitors.</div></div></div></section>
+<section class="slide pslide v-topbar" data-ch="secb"><p class="crumb">Section B &middot; Current Electricity</p><div class="prob" id="q3" data-chnum="B"><div class="pmeta"><span class="pn">Question 3</span><span class="marks">2 marks</span><span class="src">Current Electricity</span><button class="dtoggle">mark done</button></div><div class="q"><p>A cell of emf 1&#183;5 V and internal resistance 0&#183;50 &#937; is short-circuited. Calculate the current that flows and state the terminal potential difference.</p><div class="qor"><div class="orbar">or</div><p>State any two factors on which the internal resistance of a cell depends.</p></div></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><div class="msteps"><div class="mrow"><div class="mtext"><i>I</i> = &epsilon;/<i>r</i> = 1&#183;5/0&#183;50 = <b>3&#183;0 A</b></div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><i>V</i> = &epsilon; &minus; <i>Ir</i> = 1&#183;5 &minus; 1&#183;5 = <b>zero</b></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>2</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>The second mark is for <b>zero</b>, however obtained &mdash; by the equation, or by arguing that the terminals are joined by a conductor of no resistance.</div><div class="orbar">the alternative</div><div class="msteps"><div class="mrow"><div class="mtext">Any <b>one</b> of: separation of the electrodes; area of the electrodes dipped in the electrolyte; concentration of the electrolyte; temperature</div><span class="mk">1</span></div><div class="mrow"><div class="mtext">Any <b>second</b> factor from the same list</div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>2</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>Award nothing for &lsquo;the material of the electrodes&rsquo; alone, and nothing for factors of the <i>external</i> circuit.</div></div></div></section>
+<section class="slide pslide v-topbar" data-ch="secb"><p class="crumb">Section B &middot; Current Electricity</p><div class="prob" id="q4" data-chnum="B"><div class="pmeta"><span class="pn">Question 4</span><span class="marks">2 marks</span><span class="src">Current Electricity</span><button class="dtoggle">mark done</button></div><div class="q"><p>Resistors of 4&#183;0 &#937; and 6&#183;0 &#937; are joined in series across a 20 V supply of negligible internal resistance. Calculate the potential difference across the 6&#183;0 &#937; resistor.</p></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><div class="msteps"><div class="mrow"><div class="mtext"><i>I</i> = <i>V</i>/(<i>R</i><sub>1</sub>+<i>R</i><sub>2</sub>) = 20/10 = 2&#183;0 A, the same in both</div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><i>V</i><sub>6</sub> = <i>IR</i> = (2&#183;0)(6&#183;0) = <b>12 V</b></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>2</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>Accept the potential-divider form <i>V</i><sub>6</sub> = <i>V</i> &#215; 6/(4+6) = 12 V for the full 2 marks.</div></div></div></section>
+<section class="slide pslide v-topbar" data-ch="secb"><p class="crumb">Section B &middot; Magnetic Effect of Current and Magnetism</p><div class="prob" id="q5" data-chnum="B"><div class="pmeta"><span class="pn">Question 5</span><span class="marks">2 marks</span><span class="src">Magnetic Effect of Current and Magnetism</span><button class="dtoggle">mark done</button></div><div class="q"><p>A moving coil galvanometer of resistance 50 &#937; gives a full-scale deflection for a current of 2&#183;0 mA. How would you convert it into a voltmeter reading up to 10 V?</p></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><figure class="fg "><svg class="figsvg" viewBox="-6.00 -6.00 222.00 104.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:433px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><line x1="16.00" y1="44.00" x2="62.00" y2="44.00" stroke="currentColor" stroke-width="1.20"/><rect x="62.00" y="38.00" width="42.00" height="12.00" rx="0.00" fill="var(--figfill)" stroke="currentColor" stroke-width="1.10"/><text x="83.00" y="34.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">R</tspan> = 4950 &#937;</text><line x1="104.00" y1="44.00" x2="130.00" y2="44.00" stroke="currentColor" stroke-width="1.20"/><circle cx="146.00" cy="44.00" r="13.00" fill="none" stroke="currentColor" stroke-width="1.10"/><text x="146.00" y="47.24" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic">G</text><line x1="159.00" y1="44.00" x2="194.00" y2="44.00" stroke="currentColor" stroke-width="1.20"/><circle cx="16.00" cy="44.00" r="2.40" fill="currentColor"/><circle cx="194.00" cy="44.00" r="2.40" fill="currentColor"/><text x="146.00" y="70.00" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">G</tspan> = 50 &#937;,&#160; <tspan font-style="italic">I</tspan><tspan baseline-shift="-24%" font-size="70%">g</tspan> = 2&#183;0 mA</text><line x1="16.00" y1="75.00" x2="16.00" y2="81.00" stroke="currentColor" stroke-width="0.85"/><line x1="194.00" y1="75.00" x2="194.00" y2="81.00" stroke="currentColor" stroke-width="0.85"/><line x1="16.00" y1="78.00" x2="194.00" y2="78.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)" marker-start="url(#ah)"/><text x="105.00" y="88.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic">range 0 &ndash; 10 V</text></svg><figcaption><i>R</i> carries the same current as the galvanometer, so <i>V</i> = <i>I</i><sub>g</sub>(<i>G</i>+<i>R</i>). The voltmeter's resistance is 5000 &#937; &mdash; high, so it draws almost nothing from the circuit it measures.</figcaption></figure><div class="msteps"><div class="mrow"><div class="mtext">Connect a <b>high resistance in series</b> with the galvanometer, <i>R</i> = <i>V</i>/<i>I</i><sub>g</sub> &minus; <i>G</i></div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><i>R</i> = 10/(2&#183;0 &#215; 10<super>&#8722;3</super>) &minus; 50 = 5000 &minus; 50 = <b>4950 &#937;</b></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>2</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>The first mark requires <b>in series</b>; a candidate who computes 4950 &#937; but calls it a shunt scores 1 only. Accept &#8776; 5000 &#937; if the working shows the 50 &#937; subtracted.</div></div></div></section>
+<section class="slide pslide v-topbar" data-ch="secb"><p class="crumb">Section B &middot; Magnetic Effect of Current and Magnetism</p><div class="prob" id="q6" data-chnum="B"><div class="pmeta"><span class="pn">Question 6</span><span class="marks">2 marks</span><span class="src">Magnetic Effect of Current and Magnetism</span><button class="dtoggle">mark done</button></div><div class="q"><p>State Amp&egrave;re's circuital law.</p><div class="qor"><div class="orbar">or</div><p>Two identical circular coils, each of radius <i>R</i> and carrying a current <i>I</i>, are placed concentrically with their planes at right angles to each other. Find the magnetic flux density at their common centre.</p></div></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><div class="msteps"><div class="mrow"><div class="mtext">The line integral of <b>B</b> round any <b>closed loop</b> equals &#956;<sub>0</sub> times the <b>net current threading</b> the loop</div><span class="mk">1</span></div><div class="mrow"><div class="mtext">&#8750;<b>B</b>&#183;<i>d</i><b>l</b> = &#956;<sub>0</sub><i>I</i></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>2</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>A candidate who writes only the equation, correctly, scores 1. The words &lsquo;closed loop&rsquo; and &lsquo;current threading it&rsquo; are what earn the first mark.</div><div class="orbar">the alternative</div><figure class="fg fgrow"><div class="fgcell"><svg class="figsvg" viewBox="-6.00 -6.00 128.00 112.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:250px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><circle cx="56.00" cy="50.00" r="30.00" fill="none" stroke="currentColor" stroke-width="1.50"/><ellipse cx="56.00" cy="50.00" rx="10.00" ry="30.00" fill="none" stroke="currentColor" stroke-width="1.50"/><line x1="86.00" y1="55.00" x2="86.00" y2="42.00" stroke="currentColor" stroke-width="1.20" marker-end="url(#ah)"/><line x1="66.00" y1="55.00" x2="66.00" y2="42.00" stroke="currentColor" stroke-width="1.20" marker-end="url(#ah)"/><circle cx="56.00" cy="50.00" r="2.20" fill="currentColor"/><text x="90.00" y="72.00" text-anchor="start" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic"><tspan font-style="italic">I</tspan></text><text x="56.00" y="96.00" text-anchor="middle" font-size="7.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">planes at right angles</text></svg><figcaption>Each coil gives <i>B</i><sub>0</sub> = &micro;<sub>0</sub><i>I</i>/2<i>R</i> along its own axis.</figcaption></div><div class="fgcell"><svg class="figsvg" viewBox="-6.00 -6.00 128.00 112.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:250px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><line x1="26.00" y1="78.00" x2="72.00" y2="78.00" stroke="currentColor" stroke-width="1.60" marker-end="url(#ah)"/><line x1="26.00" y1="78.00" x2="26.00" y2="32.00" stroke="currentColor" stroke-width="1.60" marker-end="url(#ah)"/><line x1="26.00" y1="78.00" x2="72.00" y2="32.00" stroke="currentColor" stroke-width="1.80" marker-end="url(#ah)"/><line x1="72.00" y1="78.00" x2="72.00" y2="32.00" stroke="currentColor" stroke-width="0.70" stroke-dasharray="3 2"/><line x1="26.00" y1="32.00" x2="72.00" y2="32.00" stroke="currentColor" stroke-width="0.70" stroke-dasharray="3 2"/><text x="75.00" y="82.00" text-anchor="start" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">B</tspan><tspan baseline-shift="-24%" font-size="70%">1</tspan></text><text x="23.00" y="29.00" text-anchor="end" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">B</tspan><tspan baseline-shift="-24%" font-size="70%">2</tspan></text><text x="53.60" y="42.12" text-anchor="end" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">B</tspan></text><path d="M 42.00 78.00 A 16.00 16.00 0 0 0 37.31 66.69" fill="none" stroke="currentColor" stroke-width="0.80"/><text x="48.00" y="71.00" text-anchor="start" font-size="7.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">45&deg;</text></svg><figcaption>The axes are perpendicular, so <i>B</i> = &radic;2 &#183; &micro;<sub>0</sub><i>I</i>/2<i>R</i>, at 45&deg; to each.</figcaption></div></figure><div class="msteps"><div class="mrow"><div class="mtext">Each coil alone gives <i>B</i><sub>0</sub> = &#956;<sub>0</sub><i>I</i>/2<i>R</i> at the centre</div><span class="mk">1</span></div><div class="mrow"><div class="mtext">The two fields are <b>perpendicular</b>, so they add vectorially: <i>B</i> = &radic;2 &#183; &#956;<sub>0</sub><i>I</i>/2<i>R</i></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>2</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>Award the second mark only if the perpendicularity is used. A candidate who adds the two fields as scalars (2&#956;<sub>0</sub><i>I</i>/2<i>R</i>) scores 1.</div></div></div></section>
+<section class="slide chslide v-brace" data-ch="secc"><p class="ceyebrow">Section C of D &middot; 12 marks &middot; worked solutions</p><div class="chhead"><span class="chnum">C</span><h2>Section C</h2></div><p class="secblurb">Four questions of three marks &mdash; the derivations and the circuit diagram. One offers a choice.</p><div class="chtypes"><p class="lbl">In this section</p><ol><li><b>4</b> questions of <b>3</b> marks</li><li><b>12</b> marks in all</li><li>internal choice in <b>1</b></li></ol></div><p class="chfoot">Chapters examined: Current Electricity, Electrostatics, Magnetic Effect of Current and Magnetism. Press <kbd>&rarr;</kbd> or <b>Next</b> to begin.</p><div class="chctl"><button data-ch-reveal="secc">reveal this section</button><button data-ch-hide="secc">hide again</button></div></section>
+<section class="slide pslide v-brace" data-ch="secc"><p class="crumb">Section C &middot; Electrostatics</p><div class="prob" id="q7" data-chnum="C"><div class="pmeta"><span class="pn">Question 7</span><span class="marks">3 marks</span><span class="src">Electrostatics</span><button class="dtoggle">mark done</button></div><div class="q"><p>Using Gauss' theorem, derive an expression for the electric field intensity due to an infinite plane sheet of charge of surface charge density &sigma;. Hence write down the field just outside a charged conductor.</p></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><figure class="fg "><svg class="figsvg" viewBox="-6.00 -6.00 230.00 134.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:448px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><line x1="108.00" y1="8.00" x2="108.00" y2="114.00" stroke="currentColor" stroke-width="2.00"/><text x="101.00" y="21.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">+</text><text x="101.00" y="33.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">+</text><text x="101.00" y="45.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">+</text><text x="101.00" y="57.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">+</text><text x="101.00" y="69.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">+</text><text x="101.00" y="81.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">+</text><text x="101.00" y="93.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">+</text><text x="101.00" y="105.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">+</text><text x="113.00" y="16.00" text-anchor="start" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic">&sigma;</text><line x1="56.00" y1="44.00" x2="160.00" y2="44.00" stroke="currentColor" stroke-width="1.10" stroke-dasharray="4 3"/><line x1="56.00" y1="82.00" x2="160.00" y2="82.00" stroke="currentColor" stroke-width="1.10" stroke-dasharray="4 3"/><ellipse cx="56.00" cy="63.00" rx="6.00" ry="19.00" fill="none" stroke="currentColor" stroke-width="1.10" stroke-dasharray="4 3"/><ellipse cx="160.00" cy="63.00" rx="6.00" ry="19.00" fill="none" stroke="currentColor" stroke-width="1.10" stroke-dasharray="4 3"/><line x1="52.00" y1="63.00" x2="22.00" y2="63.00" stroke="currentColor" stroke-width="1.60" marker-end="url(#ah)"/><line x1="164.00" y1="63.00" x2="194.00" y2="63.00" stroke="currentColor" stroke-width="1.60" marker-end="url(#ah)"/><text x="36.00" y="56.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-weight="600">E</tspan></text><text x="180.00" y="56.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-weight="600">E</tspan></text><text x="46.00" y="96.00" text-anchor="middle" font-size="8.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">area <tspan font-style="italic">A</tspan></text><text x="172.00" y="96.00" text-anchor="middle" font-size="8.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">area <tspan font-style="italic">A</tspan></text><text x="109.00" y="120.00" text-anchor="middle" font-size="8.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">no flux through the curved surface</text></svg><figcaption>Only the two flat faces contribute, and by symmetry equally: &Phi; = 2<i>EA</i> = &sigma;<i>A</i>/&epsilon;<sub>0</sub>, giving <i>E</i> = &sigma;/2&epsilon;<sub>0</sub>. For a <b>conductor</b> the field is on one side only, so <i>E</i> = &sigma;/&epsilon;<sub>0</sub>.</figcaption></figure><div class="msteps"><div class="mrow"><div class="mtext">Gaussian surface: a cylinder of cross-section <i>A</i> piercing the sheet symmetrically. By symmetry <b>E</b> is normal to the sheet and equal on the two flat faces; the flux through the curved surface is <b>zero</b></div><span class="mk">1</span></div><div class="mrow"><div class="mtext">&Phi; = 2<i>EA</i> = <i>q</i>/&epsilon;<sub>0</sub> = &sigma;<i>A</i>/&epsilon;<sub>0</sub></div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><b><i>E</i> = &sigma;/2&epsilon;<sub>0</sub></b>, independent of distance; just outside a charged <b>conductor</b> <b><i>E</i> = &sigma;/&epsilon;<sub>0</sub></b></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>3</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>The third mark is split: &#189; for &sigma;/2&epsilon;<sub>0</sub> and &#189; for the conductor result &sigma;/&epsilon;<sub>0</sub>. A candidate who omits the factor 2 in the flux, and so obtains &sigma;/&epsilon;<sub>0</sub> for the sheet, loses the second mark but may still earn the third if the conductor case is right.</div></div></div></section>
+<section class="slide pslide v-brace" data-ch="secc"><p class="crumb">Section C &middot; Current Electricity</p><div class="prob" id="q8" data-chnum="C"><div class="pmeta"><span class="pn">Question 8</span><span class="marks">3 marks</span><span class="src">Current Electricity</span><button class="dtoggle">mark done</button></div><div class="q"><p>State Kirchhoff's two laws for an electrical network, and use them to obtain the condition of balance of a Wheatstone bridge.</p><div class="qor"><div class="orbar">or</div><p>Resistors of 6&#183;0 &#937; and 3&#183;0 &#937; are connected in parallel across a battery of emf 12 V and internal resistance 1&#183;0 &#937;. Calculate the current drawn from the battery and the current in each resistor.</p></div></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><figure class="fg "><svg class="figsvg" viewBox="-6.00 -6.00 234.00 164.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:456px" xmlns="http://www.w3.org/2000/svg"><line x1="38.00" y1="62.00" x2="100.00" y2="24.00" stroke="currentColor" stroke-width="1.30"/><text x="59.00" y="35.00" text-anchor="middle" font-size="9.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">P</tspan></text><line x1="100.00" y1="24.00" x2="162.00" y2="62.00" stroke="currentColor" stroke-width="1.30"/><text x="141.00" y="35.00" text-anchor="middle" font-size="9.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">Q</tspan></text><line x1="38.00" y1="62.00" x2="100.00" y2="100.00" stroke="currentColor" stroke-width="1.30"/><text x="59.00" y="91.00" text-anchor="middle" font-size="9.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">R</tspan></text><line x1="100.00" y1="100.00" x2="162.00" y2="62.00" stroke="currentColor" stroke-width="1.30"/><text x="141.00" y="91.00" text-anchor="middle" font-size="9.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">S</tspan></text><line x1="100.00" y1="24.00" x2="100.00" y2="50.00" stroke="currentColor" stroke-width="1.20"/><circle cx="100.00" cy="62.00" r="12.00" fill="none" stroke="currentColor" stroke-width="1.10"/><text x="100.00" y="65.24" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic">G</text><line x1="100.00" y1="74.00" x2="100.00" y2="100.00" stroke="currentColor" stroke-width="1.20"/><circle cx="38.00" cy="62.00" r="2.40" fill="currentColor"/><circle cx="100.00" cy="24.00" r="2.40" fill="currentColor"/><circle cx="162.00" cy="62.00" r="2.40" fill="currentColor"/><circle cx="100.00" cy="100.00" r="2.40" fill="currentColor"/><text x="31.00" y="65.00" text-anchor="end" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">A</text><text x="100.00" y="17.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">B</text><text x="169.00" y="65.00" text-anchor="start" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">C</text><text x="100.00" y="114.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">D</text><line x1="38.00" y1="62.00" x2="16.00" y2="62.00" stroke="currentColor" stroke-width="1.20"/><line x1="16.00" y1="62.00" x2="16.00" y2="136.00" stroke="currentColor" stroke-width="1.20"/><line x1="16.00" y1="136.00" x2="206.00" y2="136.00" stroke="currentColor" stroke-width="1.20"/><line x1="206.00" y1="136.00" x2="206.00" y2="62.00" stroke="currentColor" stroke-width="1.20"/><line x1="206.00" y1="62.00" x2="162.00" y2="62.00" stroke="currentColor" stroke-width="1.20"/><line x1="91.50" y1="129.50" x2="91.50" y2="142.50" stroke="currentColor" stroke-width="1.50"/><line x1="96.50" y1="132.50" x2="96.50" y2="139.50" stroke="currentColor" stroke-width="1.10"/><text x="94.00" y="150.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic">&epsilon;</text><line x1="140.00" y1="136.00" x2="152.00" y2="130.00" stroke="currentColor" stroke-width="1.20"/><circle cx="140.00" cy="136.00" r="1.80" fill="currentColor"/><text x="146.00" y="124.00" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">K</text></svg><figcaption>At balance the galvanometer reads zero, so no current flows through BD: <i>I</i><sub>1</sub> goes through <i>P</i> and <i>Q</i>, <i>I</i><sub>2</sub> through <i>R</i> and <i>S</i>, and B and D are at the same potential. Hence <i>P</i>/<i>Q</i> = <i>R</i>/<i>S</i>.</figcaption></figure><div class="msteps"><div class="mrow"><div class="mtext"><b>Junction rule:</b> the algebraic sum of the currents at a junction is zero (conservation of charge). <b>Loop rule:</b> the algebraic sum of the potential differences round any closed loop is zero (conservation of energy)</div><span class="mk">1</span></div><div class="mrow"><div class="mtext">At balance <b>no current flows through the galvanometer</b>, so <i>I</i><sub>1</sub> passes through <i>P</i> and <i>Q</i>, and <i>I</i><sub>2</sub> through <i>R</i> and <i>S</i>; applying the loop rule to the two halves gives <i>I</i><sub>1</sub><i>P</i> = <i>I</i><sub>2</sub><i>R</i> and <i>I</i><sub>1</sub><i>Q</i> = <i>I</i><sub>2</sub><i>S</i></div><span class="mk">1</span></div><div class="mrow"><div class="mtext">Dividing: <b><i>P</i>/<i>Q</i> = <i>R</i>/<i>S</i></b></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>3</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>Both laws are needed for the first mark, &#189; each. The balance condition quoted without the no-galvanometer-current argument scores 1 of the last 2.</div><div class="orbar">the alternative</div><figure class="fg "><svg class="figsvg" viewBox="-6.00 -6.00 218.00 150.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:425px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><line x1="26.00" y1="30.00" x2="178.00" y2="30.00" stroke="currentColor" stroke-width="1.20"/><line x1="26.00" y1="112.00" x2="178.00" y2="112.00" stroke="currentColor" stroke-width="1.20"/><line x1="26.00" y1="30.00" x2="26.00" y2="112.00" stroke="currentColor" stroke-width="1.20"/><line x1="19.50" y1="63.50" x2="32.50" y2="63.50" stroke="currentColor" stroke-width="1.50"/><line x1="22.50" y1="68.50" x2="29.50" y2="68.50" stroke="currentColor" stroke-width="1.10"/><text x="17.00" y="69.00" text-anchor="end" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">12 V</text><rect x="21.50" y="36.00" width="9.00" height="20.00" rx="0.00" fill="var(--figfill)" stroke="currentColor" stroke-width="1.10"/><text x="17.50" y="49.00" text-anchor="end" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">r</tspan> = 1 &#937;</text><line x1="112.00" y1="30.00" x2="112.00" y2="58.00" stroke="currentColor" stroke-width="1.20"/><rect x="107.00" y="58.00" width="10.00" height="26.00" rx="0.00" fill="var(--figfill)" stroke="currentColor" stroke-width="1.10"/><text x="121.00" y="74.00" text-anchor="start" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">6&#183;0 &#937;</text><line x1="112.00" y1="84.00" x2="112.00" y2="112.00" stroke="currentColor" stroke-width="1.20"/><line x1="112.00" y1="40.00" x2="112.00" y2="52.00" stroke="currentColor" stroke-width="1.10" marker-end="url(#ah)"/><text x="107.00" y="48.00" text-anchor="end" font-size="8.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">I</tspan><tspan baseline-shift="-24%" font-size="70%">6</tspan></text><line x1="158.00" y1="30.00" x2="158.00" y2="58.00" stroke="currentColor" stroke-width="1.20"/><rect x="153.00" y="58.00" width="10.00" height="26.00" rx="0.00" fill="var(--figfill)" stroke="currentColor" stroke-width="1.10"/><text x="167.00" y="74.00" text-anchor="start" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">3&#183;0 &#937;</text><line x1="158.00" y1="84.00" x2="158.00" y2="112.00" stroke="currentColor" stroke-width="1.20"/><line x1="158.00" y1="40.00" x2="158.00" y2="52.00" stroke="currentColor" stroke-width="1.10" marker-end="url(#ah)"/><text x="153.00" y="48.00" text-anchor="end" font-size="8.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">I</tspan><tspan baseline-shift="-24%" font-size="70%">3</tspan></text><line x1="52.00" y1="23.00" x2="76.00" y2="23.00" stroke="currentColor" stroke-width="1.20" marker-end="url(#ah)"/><text x="64.00" y="18.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">I</tspan></text><text x="103.00" y="132.00" text-anchor="middle" font-size="8.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">the two resistors share the same pair of nodes</text></svg><figcaption>The pair is 2&#183;0 &#937;, so the total is 3&#183;0 &#937; and <i>I</i> = 4&#183;0 A. Both branches sit across the same 8&#183;0 V, giving 1&#183;3 A and 2&#183;7 A &mdash; which add back to 4&#183;0 A.</figcaption></figure><div class="msteps"><div class="mrow"><div class="mtext">Parallel pair: (6)(3)/9 = 2&#183;0 &#937;; total resistance 2&#183;0 + 1&#183;0 = 3&#183;0 &#937;</div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><i>I</i> = &epsilon;/<i>R</i><sub>total</sub> = 12/3&#183;0 = <b>4&#183;0 A</b>; p.d. across the pair = (4&#183;0)(2&#183;0) = 8&#183;0 V</div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><i>I</i><sub>6</sub> = 8&#183;0/6&#183;0 = <b>1&#183;3 A</b> and <i>I</i><sub>3</sub> = 8&#183;0/3&#183;0 = <b>2&#183;7 A</b></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>3</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>Accept 1&#183;33 A and 2&#183;67 A. A candidate who forgets the internal resistance gets <i>I</i> = 6&#183;0 A and loses the second and third marks; if the <i>method</i> for splitting the current is then correct, award &#189; of the third.</div></div></div></section>
+<section class="slide pslide v-brace" data-ch="secc"><p class="crumb">Section C &middot; Current Electricity</p><div class="prob" id="q9" data-chnum="C"><div class="pmeta"><span class="pn">Question 9</span><span class="marks">3 marks</span><span class="src">Current Electricity</span><button class="dtoggle">mark done</button></div><div class="q"><p>Draw a labelled circuit diagram of a potentiometer used to compare the emfs of two cells, and write the working formula, explaining the symbols. (Derivation is not required.)</p></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><figure class="fg "><svg class="figsvg" viewBox="-6.00 -6.00 250.00 198.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:488px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><line x1="34.00" y1="96.00" x2="200.00" y2="96.00" stroke="currentColor" stroke-width="2.60"/><text x="26.00" y="100.00" text-anchor="end" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">A</text><text x="208.00" y="100.00" text-anchor="start" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">B</text><line x1="34.00" y1="96.00" x2="34.00" y2="34.00" stroke="currentColor" stroke-width="1.20"/><line x1="34.00" y1="34.00" x2="200.00" y2="34.00" stroke="currentColor" stroke-width="1.20"/><line x1="200.00" y1="34.00" x2="200.00" y2="96.00" stroke="currentColor" stroke-width="1.20"/><line x1="77.50" y1="27.50" x2="77.50" y2="40.50" stroke="currentColor" stroke-width="1.50"/><line x1="82.50" y1="30.50" x2="82.50" y2="37.50" stroke="currentColor" stroke-width="1.10"/><text x="80.00" y="24.00" text-anchor="middle" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">&epsilon;<tspan baseline-shift="-24%" font-size="70%">0</tspan></text><line x1="116.00" y1="34.00" x2="128.00" y2="28.00" stroke="currentColor" stroke-width="1.20"/><circle cx="116.00" cy="34.00" r="1.80" fill="currentColor"/><text x="122.00" y="22.00" text-anchor="middle" font-size="8.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">K</text><rect x="150.00" y="28.50" width="34.00" height="11.00" rx="0.00" fill="var(--figfill)" stroke="currentColor" stroke-width="1.10"/><text x="167.00" y="24.50" text-anchor="middle" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">rheostat</text><line x1="34.00" y1="96.00" x2="34.00" y2="152.00" stroke="currentColor" stroke-width="1.20"/><line x1="34.00" y1="128.00" x2="64.00" y2="128.00" stroke="currentColor" stroke-width="1.20"/><line x1="34.00" y1="152.00" x2="64.00" y2="152.00" stroke="currentColor" stroke-width="1.20"/><line x1="75.50" y1="121.50" x2="75.50" y2="134.50" stroke="currentColor" stroke-width="1.50"/><line x1="80.50" y1="124.50" x2="80.50" y2="131.50" stroke="currentColor" stroke-width="1.10"/><text x="78.00" y="118.00" text-anchor="middle" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">&epsilon;<tspan baseline-shift="-24%" font-size="70%">1</tspan></text><line x1="75.50" y1="145.50" x2="75.50" y2="158.50" stroke="currentColor" stroke-width="1.50"/><line x1="80.50" y1="148.50" x2="80.50" y2="155.50" stroke="currentColor" stroke-width="1.10"/><text x="78.00" y="166.00" text-anchor="middle" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">&epsilon;<tspan baseline-shift="-24%" font-size="70%">2</tspan></text><line x1="92.00" y1="128.00" x2="122.00" y2="128.00" stroke="currentColor" stroke-width="1.20"/><line x1="92.00" y1="152.00" x2="122.00" y2="152.00" stroke="currentColor" stroke-width="1.20"/><rect x="122.00" y="122.00" width="20.00" height="36.00" rx="0.00" fill="var(--figfill)" stroke="currentColor" stroke-width="1.20"/><text x="132.00" y="143.00" text-anchor="middle" font-size="8.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">K<tspan baseline-shift="-24%" font-size="70%">2</tspan></text><line x1="142.00" y1="140.00" x2="168.00" y2="140.00" stroke="currentColor" stroke-width="1.20"/><circle cx="180.00" cy="140.00" r="12.00" fill="none" stroke="currentColor" stroke-width="1.10"/><text x="180.00" y="143.17" text-anchor="middle" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic">G</text><line x1="192.00" y1="140.00" x2="206.00" y2="140.00" stroke="currentColor" stroke-width="1.20"/><line x1="206.00" y1="140.00" x2="206.00" y2="118.00" stroke="currentColor" stroke-width="1.20"/><line x1="206.00" y1="118.00" x2="138.00" y2="118.00" stroke="currentColor" stroke-width="1.20"/><line x1="138.00" y1="118.00" x2="138.00" y2="104.00" stroke="currentColor" stroke-width="1.20"/><polygon points="133.00,104.00 143.00,104.00 138.00,97.00" fill="none" stroke="currentColor" stroke-width="1.20"/><text x="146.00" y="112.00" text-anchor="start" font-size="8.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">jockey</text><line x1="34.00" y1="87.00" x2="34.00" y2="81.00" stroke="currentColor" stroke-width="0.85"/><line x1="138.00" y1="87.00" x2="138.00" y2="81.00" stroke="currentColor" stroke-width="0.85"/><line x1="34.00" y1="84.00" x2="138.00" y2="84.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)" marker-start="url(#ah)"/><text x="86.00" y="80.50" text-anchor="middle" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic"><tspan font-style="italic">l</tspan></text></svg><figcaption>The driver cell &epsilon;<sub>0</sub> maintains a steady potential gradient along AB, and &epsilon;<sub>0</sub> must exceed both cells or no balance point exists. With the two-way key K<sub>2</sub> selecting each cell in turn, balancing lengths <i>l</i><sub>1</sub> and <i>l</i><sub>2</sub> give &epsilon;<sub>1</sub>/&epsilon;<sub>2</sub> = <i>l</i><sub>1</sub>/<i>l</i><sub>2</sub>. Note that <b>like terminals are joined at A</b>.</figcaption></figure><div class="msteps"><div class="mrow"><div class="mtext"><b>Circuit diagram:</b> driver cell with key and rheostat in series with the potentiometer wire AB; the two cells &epsilon;<sub>1</sub>, &epsilon;<sub>2</sub> with their positive terminals joined to A through a two-way key; the other ends taken through a galvanometer to the jockey</div><span class="mk">2</span></div><div class="mrow"><div class="mtext"><b>&epsilon;<sub>1</sub>/&epsilon;<sub>2</sub> = <i>l</i><sub>1</sub>/<i>l</i><sub>2</sub></b>, where <i>l</i><sub>1</sub>, <i>l</i><sub>2</sub> are the balancing lengths for the two cells</div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>3</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>The diagram marks are &#189; for the driver circuit, &#189; for the two-way key, &#189; for the galvanometer and jockey, and &#189; for correct polarity (like terminals joined at A). A diagram with the cells opposed cannot balance and loses the polarity &#189;.</div></div></div></section>
+<section class="slide pslide v-brace" data-ch="secc"><p class="crumb">Section C &middot; Magnetic Effect of Current and Magnetism</p><div class="prob" id="q10" data-chnum="C"><div class="pmeta"><span class="pn">Question 10</span><span class="marks">3 marks</span><span class="src">Magnetic Effect of Current and Magnetism</span><button class="dtoggle">mark done</button></div><div class="q"><p>Derive an expression for the force per unit length between two long, straight, parallel conductors carrying currents <i>I</i><sub>1</sub> and <i>I</i><sub>2</sub>, separated by a distance <i>r</i>. Hence define the ampere.</p></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><figure class="fg "><svg class="figsvg" viewBox="-6.00 -6.00 218.00 154.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:425px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><line x1="62.00" y1="16.00" x2="62.00" y2="110.00" stroke="currentColor" stroke-width="2.00"/><line x1="62.00" y1="44.00" x2="62.00" y2="26.00" stroke="currentColor" stroke-width="1.50" marker-end="url(#ah)"/><text x="56.00" y="22.00" text-anchor="end" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">I</tspan><tspan baseline-shift="-24%" font-size="70%">1</tspan></text><line x1="144.00" y1="16.00" x2="144.00" y2="110.00" stroke="currentColor" stroke-width="2.00"/><line x1="144.00" y1="44.00" x2="144.00" y2="26.00" stroke="currentColor" stroke-width="1.50" marker-end="url(#ah)"/><text x="138.00" y="22.00" text-anchor="end" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">I</tspan><tspan baseline-shift="-24%" font-size="70%">2</tspan></text><line x1="62.00" y1="119.00" x2="62.00" y2="125.00" stroke="currentColor" stroke-width="0.85"/><line x1="144.00" y1="119.00" x2="144.00" y2="125.00" stroke="currentColor" stroke-width="0.85"/><line x1="62.00" y1="122.00" x2="144.00" y2="122.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)" marker-start="url(#ah)"/><text x="103.00" y="132.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic"><tspan font-style="italic">r</tspan></text><line x1="140.60" y1="70.60" x2="147.40" y2="77.40" stroke="currentColor" stroke-width="0.95"/><line x1="140.60" y1="77.40" x2="147.40" y2="70.60" stroke="currentColor" stroke-width="0.95"/><text x="153.00" y="78.00" text-anchor="start" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-weight="600">B</tspan><tspan baseline-shift="-24%" font-size="70%">1</tspan></text><line x1="68.00" y1="92.00" x2="92.00" y2="92.00" stroke="currentColor" stroke-width="1.80" marker-end="url(#ah)"/><line x1="138.00" y1="92.00" x2="114.00" y2="92.00" stroke="currentColor" stroke-width="1.80" marker-end="url(#ah)"/><text x="82.00" y="86.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">F</tspan></text><text x="124.00" y="86.00" text-anchor="middle" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">F</tspan></text><text x="103.00" y="138.00" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">parallel currents <tspan font-weight="600">attract</tspan></text></svg><figcaption>Wire 1 puts <i>B</i><sub>1</sub> = &micro;<sub>0</sub><i>I</i><sub>1</sub>/2&pi;<i>r</i> at wire 2, perpendicular to it, so a length <i>l</i> of wire 2 feels <i>B</i><sub>1</sub><i>I</i><sub>2</sub><i>l</i>. Hence <i>F</i>/<i>l</i> = &micro;<sub>0</sub><i>I</i><sub>1</sub><i>I</i><sub>2</sub>/2&pi;<i>r</i>.</figcaption></figure><div class="msteps"><div class="mrow"><div class="mtext">The first wire produces at the second a field <i>B</i><sub>1</sub> = &#956;<sub>0</sub><i>I</i><sub>1</sub>/2&pi;<i>r</i>, perpendicular to it</div><span class="mk">1</span></div><div class="mrow"><div class="mtext">A length <i>l</i> of the second wire feels <i>F</i> = <i>B</i><sub>1</sub><i>I</i><sub>2</sub><i>l</i>, so <b><i>F</i>/<i>l</i> = &#956;<sub>0</sub><i>I</i><sub>1</sub><i>I</i><sub>2</sub>/2&pi;<i>r</i></b> &mdash; attractive for parallel currents</div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><b>Definition:</b> one ampere is that steady current which, in each of two infinitely long parallel conductors of negligible cross-section 1 m apart in vacuum, produces a force of 2 &#215; 10<super>&#8722;7</super> N per metre of length</div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>3</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>The direction (attractive / repulsive) is worth &#189; of the second mark. In the definition, all of &lsquo;1 m apart&rsquo;, &lsquo;in vacuum&rsquo; and the figure 2 &#215; 10<super>&#8722;7</super> N m<super>&minus;1</super> are required for the full mark; omitting one costs &#189;.</div></div></div></section>
+<section class="slide chslide v-stripe" data-ch="secd"><p class="ceyebrow">Section D of D &middot; 10 marks &middot; worked solutions</p><div class="chhead"><span class="chnum">D</span><h2>Section D</h2></div><p class="secblurb">Two questions of five marks, each split 3 + 2 between a derivation and a numerical, and each offering a whole alternative.</p><div class="chtypes"><p class="lbl">In this section</p><ol><li><b>2</b> questions of <b>5</b> marks</li><li><b>10</b> marks in all</li><li>internal choice in <b>2</b></li></ol></div><p class="chfoot">Chapters examined: Electrostatics, Magnetic Effect of Current and Magnetism. Press <kbd>&rarr;</kbd> or <b>Next</b> to begin.</p><div class="chctl"><button data-ch-reveal="secd">reveal this section</button><button data-ch-hide="secd">hide again</button></div></section>
+<section class="slide pslide v-stripe" data-ch="secd"><p class="crumb">Section D &middot; Electrostatics</p><div class="prob" id="q11" data-chnum="D"><div class="pmeta"><span class="pn">Question 11</span><span class="marks">5 marks</span><span class="src">Electrostatics</span><button class="dtoggle">mark done</button></div><div class="q"><p><b>(a)</b> Derive an expression for the capacitance of a parallel plate capacitor when a dielectric slab of thickness <i>t</i> and dielectric constant <i>K</i> is introduced between its plates, the plate separation being <i>d</i> (<i>t</i> &lt; <i>d</i>). <b>[3]</b></p><p><b>(b)</b> A parallel plate air capacitor has a capacitance of 8&#183;0 pF. Its plate separation is halved and the space between the plates is completely filled with a medium of dielectric constant 5&#183;0. Calculate the new capacitance. <b>[2]</b></p><div class="qor"><div class="orbar">or</div><p><b>(a)</b> Derive an expression for the potential energy of an electric dipole of moment <i>p</i> placed at an angle &theta; to a uniform electric field <i>E</i>, and state the positions of stable and unstable equilibrium. <b>[3]</b></p><p><b>(b)</b> A dipole of moment 2&#183;0 &#215; 10<super>&#8722;9</super> C m is held in a uniform field of 3&#183;0 &#215; 10<super>5</super> N C<super>&minus;1</super>. Calculate the work done in rotating it from the position of stable equilibrium through 180&deg;. <b>[2]</b></p></div></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><figure class="fg "><svg class="figsvg" viewBox="-6.00 -6.00 234.00 150.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:456px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><line x1="44.00" y1="24.00" x2="44.00" y2="96.00" stroke="currentColor" stroke-width="2.60"/><line x1="178.00" y1="24.00" x2="178.00" y2="96.00" stroke="currentColor" stroke-width="2.60"/><text x="36.00" y="20.00" text-anchor="end" font-size="11.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">+</text><text x="186.00" y="20.00" text-anchor="start" font-size="11.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">&minus;</text><rect x="96.00" y="24.00" width="42.00" height="72.00" rx="0.00" fill="var(--figfill)" stroke="currentColor" stroke-width="1.20"/><line x1="99.00" y1="96.00" x2="94.00" y2="101.00" stroke="currentColor" stroke-width="0.60"/><line x1="105.00" y1="96.00" x2="100.00" y2="101.00" stroke="currentColor" stroke-width="0.60"/><line x1="111.00" y1="96.00" x2="106.00" y2="101.00" stroke="currentColor" stroke-width="0.60"/><line x1="117.00" y1="96.00" x2="112.00" y2="101.00" stroke="currentColor" stroke-width="0.60"/><line x1="123.00" y1="96.00" x2="118.00" y2="101.00" stroke="currentColor" stroke-width="0.60"/><line x1="129.00" y1="96.00" x2="124.00" y2="101.00" stroke="currentColor" stroke-width="0.60"/><line x1="135.00" y1="96.00" x2="130.00" y2="101.00" stroke="currentColor" stroke-width="0.60"/><text x="117.00" y="64.00" text-anchor="middle" font-size="9.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">K</tspan></text><line x1="48.00" y1="40.00" x2="92.00" y2="40.00" stroke="currentColor" stroke-width="1.30" marker-end="url(#ah)"/><line x1="100.00" y1="40.00" x2="134.00" y2="40.00" stroke="currentColor" stroke-width="1.30" marker-end="url(#ah)"/><line x1="142.00" y1="40.00" x2="174.00" y2="40.00" stroke="currentColor" stroke-width="1.30" marker-end="url(#ah)"/><line x1="48.00" y1="60.00" x2="92.00" y2="60.00" stroke="currentColor" stroke-width="1.30" marker-end="url(#ah)"/><line x1="100.00" y1="60.00" x2="134.00" y2="60.00" stroke="currentColor" stroke-width="1.30" marker-end="url(#ah)"/><line x1="142.00" y1="60.00" x2="174.00" y2="60.00" stroke="currentColor" stroke-width="1.30" marker-end="url(#ah)"/><line x1="48.00" y1="80.00" x2="92.00" y2="80.00" stroke="currentColor" stroke-width="1.30" marker-end="url(#ah)"/><line x1="100.00" y1="80.00" x2="134.00" y2="80.00" stroke="currentColor" stroke-width="1.30" marker-end="url(#ah)"/><line x1="142.00" y1="80.00" x2="174.00" y2="80.00" stroke="currentColor" stroke-width="1.30" marker-end="url(#ah)"/><text x="70.00" y="18.00" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">E</tspan><tspan baseline-shift="-24%" font-size="70%">0</tspan></text><text x="117.00" y="18.00" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">E</tspan><tspan baseline-shift="-24%" font-size="70%">0</tspan>/<tspan font-style="italic">K</tspan></text><text x="158.00" y="18.00" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">E</tspan><tspan baseline-shift="-24%" font-size="70%">0</tspan></text><line x1="96.00" y1="107.00" x2="96.00" y2="113.00" stroke="currentColor" stroke-width="0.85"/><line x1="138.00" y1="107.00" x2="138.00" y2="113.00" stroke="currentColor" stroke-width="0.85"/><line x1="96.00" y1="110.00" x2="138.00" y2="110.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)" marker-start="url(#ah)"/><text x="117.00" y="120.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic"><tspan font-style="italic">t</tspan></text><line x1="44.00" y1="127.00" x2="44.00" y2="133.00" stroke="currentColor" stroke-width="0.85"/><line x1="178.00" y1="127.00" x2="178.00" y2="133.00" stroke="currentColor" stroke-width="0.85"/><line x1="44.00" y1="130.00" x2="178.00" y2="130.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)" marker-start="url(#ah)"/><text x="111.00" y="140.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic"><tspan font-style="italic">d</tspan></text></svg><figcaption>The slab weakens the field inside it to <i>E</i><sub>0</sub>/<i>K</i> while leaving it unchanged in the air gaps, so <i>V</i> = <i>E</i><sub>0</sub>[(<i>d</i>&minus;<i>t</i>) + <i>t</i>/<i>K</i>] &mdash; smaller than <i>E</i><sub>0</sub><i>d</i>, which is why the capacitance rises.</figcaption></figure><div class="msteps"><div class="mrow"><div class="mtext"><b>(a)</b> The field is <i>E</i><sub>0</sub> = &sigma;/&epsilon;<sub>0</sub> across the air gap of thickness (<i>d</i>&minus;<i>t</i>) and is reduced to <i>E</i><sub>0</sub>/<i>K</i> inside the slab</div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><i>V</i> = <i>E</i><sub>0</sub>(<i>d</i>&minus;<i>t</i>) + (<i>E</i><sub>0</sub>/<i>K</i>)<i>t</i> = <i>E</i><sub>0</sub>[(<i>d</i>&minus;<i>t</i>) + <i>t</i>/<i>K</i>]</div><span class="mk">1</span></div><div class="mrow"><div class="mtext">With <i>C</i> = <i>Q</i>/<i>V</i> and <i>E</i><sub>0</sub> = <i>Q</i>/&epsilon;<sub>0</sub><i>A</i>: <b><i>C</i> = &epsilon;<sub>0</sub><i>A</i>/[<i>d</i> &minus; <i>t</i>(1 &minus; 1/<i>K</i>)]</b></div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><b>(b)</b> Halving <i>d</i> doubles <i>C</i>, and filling with <i>K</i> = 5&#183;0 multiplies it by five: <i>C</i>&#8242; = 2<i>KC</i></div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><i>C</i>&#8242; = (2)(5&#183;0)(8&#183;0) = <b>80 pF</b></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>5</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>In (a), a candidate who checks the result by putting <i>t</i> = <i>d</i> or <i>t</i> = 0 has earned nothing extra but has done the right thing. In (b), award the fourth mark for recognising <i>C</i> &#8733; <i>K</i>/<i>d</i> even if the arithmetic then slips.</div><div class="orbar">the alternative</div><figure class="fg "><svg class="figsvg" viewBox="-6.00 -6.00 226.00 142.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:441px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><line x1="12.00" y1="18.00" x2="202.00" y2="18.00" stroke="currentColor" stroke-width="0.85"/><line x1="27.20" y1="18.00" x2="53.80" y2="18.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)"/><line x1="12.00" y1="40.00" x2="202.00" y2="40.00" stroke="currentColor" stroke-width="0.85"/><line x1="27.20" y1="40.00" x2="53.80" y2="40.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)"/><line x1="12.00" y1="62.00" x2="202.00" y2="62.00" stroke="currentColor" stroke-width="0.85"/><line x1="27.20" y1="62.00" x2="53.80" y2="62.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)"/><line x1="12.00" y1="84.00" x2="202.00" y2="84.00" stroke="currentColor" stroke-width="0.85"/><line x1="27.20" y1="84.00" x2="53.80" y2="84.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)"/><line x1="12.00" y1="106.00" x2="202.00" y2="106.00" stroke="currentColor" stroke-width="0.85"/><line x1="27.20" y1="106.00" x2="53.80" y2="106.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)"/><line x1="74.90" y1="87.86" x2="141.10" y2="36.14" stroke="currentColor" stroke-width="2.80"/><circle cx="141.10" cy="36.14" r="3.40" fill="currentColor"/><circle cx="74.90" cy="87.86" r="3.40" fill="currentColor"/><text x="148.10" y="33.14" text-anchor="start" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">+<tspan font-style="italic">q</tspan></text><text x="67.90" y="93.86" text-anchor="end" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">&minus;<tspan font-style="italic">q</tspan></text><line x1="141.10" y1="36.14" x2="175.10" y2="36.14" stroke="currentColor" stroke-width="1.90" marker-end="url(#ah)"/><line x1="74.90" y1="87.86" x2="40.90" y2="87.86" stroke="currentColor" stroke-width="1.90" marker-end="url(#ah)"/><text x="161.10" y="30.14" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">qE</tspan></text><text x="54.90" y="99.86" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">qE</tspan></text><line x1="78.00" y1="62.00" x2="138.00" y2="62.00" stroke="currentColor" stroke-width="0.70" stroke-dasharray="3 2"/><path d="M 130.00 62.00 A 22.00 22.00 0 0 0 125.34 48.46" fill="none" stroke="currentColor" stroke-width="0.80"/><text x="136.00" y="56.00" text-anchor="start" font-size="8.80" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">&theta;</text><text x="107.00" y="126.00" text-anchor="middle" font-size="8.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">equal, opposite, not collinear &mdash; a <tspan font-weight="600">couple</tspan></text></svg><figcaption>The two forces cancel as a resultant but not as a moment. Turning the dipole through <i>d</i>&theta; needs work <i>pE</i> sin &theta; <i>d</i>&theta;, and integrating from &theta; = 90&deg; gives <i>U</i> = &minus;<i>pE</i> cos &theta;.</figcaption></figure><div class="msteps"><div class="mrow"><div class="mtext"><b>(a)</b> The torque holding the dipole at &theta; is &tau; = <i>pE</i> sin &theta;, so <i>dW</i> = <i>pE</i> sin &theta; <i>d</i>&theta;</div><span class="mk">1</span></div><div class="mrow"><div class="mtext">Integrating from the reference position &theta; = 90&deg;, where <i>U</i> is taken as zero: <b><i>U</i> = &minus;<i>pE</i> cos &theta; = &minus;<b>p</b>&#183;<b>E</b></b></div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><i>U</i> is least (&minus;<i>pE</i>) at &theta; = 0 &mdash; <b>stable</b>; greatest (+<i>pE</i>) at &theta; = 180&deg; &mdash; <b>unstable</b></div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><b>(b)</b> <i>W</i> = <i>U</i><sub>180&deg;</sub> &minus; <i>U</i><sub>0&deg;</sub> = <i>pE</i> &minus; (&minus;<i>pE</i>) = 2<i>pE</i></div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><i>W</i> = 2(2&#183;0 &#215; 10<super>&#8722;9</super>)(3&#183;0 &#215; 10<super>5</super>) = <b>1&#183;2 &#215; 10<super>&#8722;3</super> J</b></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>5</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>The third mark is &#189; for each equilibrium position, and requires the words stable and unstable. In (b) a candidate who writes <i>W</i> = <i>pE</i> (forgetting the factor 2) loses the fourth mark but keeps the fifth if the arithmetic matches their own expression.</div></div></div></section>
+<section class="slide pslide v-stripe" data-ch="secd"><p class="crumb">Section D &middot; Magnetic Effect of Current and Magnetism</p><div class="prob" id="q12" data-chnum="D"><div class="pmeta"><span class="pn">Question 12</span><span class="marks">5 marks</span><span class="src">Magnetic Effect of Current and Magnetism</span><button class="dtoggle">mark done</button></div><div class="q"><p><b>(a)</b> Using Amp&egrave;re's circuital law, derive an expression for the magnetic flux density inside a long straight solenoid carrying a current <i>I</i>, having <i>n</i> turns per unit length. <b>[3]</b></p><p><b>(b)</b> A solenoid 50 cm long has 500 turns and carries a current of 2&#183;0 A. Calculate the magnetic flux density near its centre. <b>[2]</b></p><div class="qor"><div class="orbar">or</div><p><b>(a)</b> Derive an expression for the torque on a rectangular coil of <i>N</i> turns and area <i>A</i>, carrying a current <i>I</i>, placed in a uniform magnetic field <i>B</i>. <b>[3]</b></p><p><b>(b)</b> A coil of 50 turns and area 2&#183;0 &#215; 10<super>&#8722;2</super> m<super>2</super> carries a current of 3&#183;0 A in a uniform field of 0&#183;10 T, with the <b>plane of the coil parallel</b> to the field. Calculate the torque on it. <b>[2]</b></p></div></div><button class="sbtn" aria-expanded="false">Show solution</button><div class="sol"><figure class="fg "><svg class="figsvg" viewBox="-6.00 -6.00 242.00 164.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:472px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><line x1="18.00" y1="58.00" x2="212.00" y2="58.00" stroke="currentColor" stroke-width="1.30"/><line x1="18.00" y1="112.00" x2="212.00" y2="112.00" stroke="currentColor" stroke-width="1.30"/><circle cx="26.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="23.00" y1="109.00" x2="29.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="23.00" y1="115.00" x2="29.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="40.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="37.00" y1="109.00" x2="43.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="37.00" y1="115.00" x2="43.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="54.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="51.00" y1="109.00" x2="57.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="51.00" y1="115.00" x2="57.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="68.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="65.00" y1="109.00" x2="71.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="65.00" y1="115.00" x2="71.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="82.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="79.00" y1="109.00" x2="85.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="79.00" y1="115.00" x2="85.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="96.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="93.00" y1="109.00" x2="99.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="93.00" y1="115.00" x2="99.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="110.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="107.00" y1="109.00" x2="113.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="107.00" y1="115.00" x2="113.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="124.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="121.00" y1="109.00" x2="127.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="121.00" y1="115.00" x2="127.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="138.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="135.00" y1="109.00" x2="141.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="135.00" y1="115.00" x2="141.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="152.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="149.00" y1="109.00" x2="155.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="149.00" y1="115.00" x2="155.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="166.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="163.00" y1="109.00" x2="169.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="163.00" y1="115.00" x2="169.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="180.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="177.00" y1="109.00" x2="183.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="177.00" y1="115.00" x2="183.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="194.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="191.00" y1="109.00" x2="197.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="191.00" y1="115.00" x2="197.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><circle cx="208.00" cy="58.00" r="3.20" fill="none" stroke="currentColor" stroke-width="1.00"/><line x1="205.00" y1="109.00" x2="211.00" y2="115.00" stroke="currentColor" stroke-width="0.90"/><line x1="205.00" y1="115.00" x2="211.00" y2="109.00" stroke="currentColor" stroke-width="0.90"/><text x="115.00" y="16.00" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">outside the solenoid <tspan font-weight="600">B</tspan> &#8776; 0</text><line x1="72.00" y1="76.00" x2="158.00" y2="76.00" stroke="currentColor" stroke-width="1.30" stroke-dasharray="5 3"/><line x1="72.00" y1="28.00" x2="158.00" y2="28.00" stroke="currentColor" stroke-width="1.30" stroke-dasharray="5 3"/><line x1="72.00" y1="76.00" x2="72.00" y2="28.00" stroke="currentColor" stroke-width="1.30" stroke-dasharray="5 3"/><line x1="158.00" y1="76.00" x2="158.00" y2="28.00" stroke="currentColor" stroke-width="1.30" stroke-dasharray="5 3"/><text x="115.00" y="72.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic"><tspan font-style="italic">L</tspan></text><text x="164.00" y="32.00" text-anchor="start" font-size="8.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">Amp&egrave;rian loop</text><line x1="40.00" y1="92.00" x2="190.00" y2="92.00" stroke="currentColor" stroke-width="1.10"/><line x1="94.00" y1="92.00" x2="115.00" y2="92.00" stroke="currentColor" stroke-width="1.10" marker-end="url(#ah)"/><line x1="40.00" y1="102.00" x2="190.00" y2="102.00" stroke="currentColor" stroke-width="1.10"/><line x1="94.00" y1="102.00" x2="115.00" y2="102.00" stroke="currentColor" stroke-width="1.10" marker-end="url(#ah)"/><text x="115.00" y="140.00" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-weight="600">B</tspan> = &micro;<tspan baseline-shift="-24%" font-size="70%">0</tspan><tspan font-style="italic">nI</tspan>, the same everywhere inside</text></svg><figcaption>The two short sides are perpendicular to <b>B</b> and the far side lies where <b>B</b> is negligible, so only the inner side contributes: <i>BL</i> = &micro;<sub>0</sub>(<i>nL</i>)<i>I</i>, giving <i>B</i> = &micro;<sub>0</sub><i>nI</i> &mdash; independent of where the loop sits, which is what &lsquo;uniform&rsquo; means.</figcaption></figure><div class="msteps"><div class="mrow"><div class="mtext"><b>(a)</b> Amp&egrave;rian loop: a rectangle with one long side of length <i>L</i> inside the solenoid, parallel to the axis, the opposite side well outside</div><span class="mk">1</span></div><div class="mrow"><div class="mtext">Outside a long solenoid the field is negligible, and on the two short sides <b>B</b> &#8869; <i>d</i><b>l</b>, so only the inner side contributes: &#8750;<b>B</b>&#183;<i>d</i><b>l</b> = <i>BL</i></div><span class="mk">1</span></div><div class="mrow"><div class="mtext">Current threading the loop = <i>nLI</i>, so <i>BL</i> = &#956;<sub>0</sub><i>nLI</i>, giving <b><i>B</i> = &#956;<sub>0</sub><i>nI</i></b> &mdash; independent of position, i.e. the field inside is uniform</div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><b>(b)</b> <i>n</i> = 500/0&#183;50 = 1000 turns m<super>&minus;1</super></div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><i>B</i> = (4&pi; &#215; 10<super>&#8722;7</super>)(1000)(2&#183;0) = <b>2&#183;5 &#215; 10<super>&#8722;3</super> T</b></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>5</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>A candidate who uses <i>N</i> = 500 in place of <i>n</i> and obtains 1&#183;3 &#215; 10<super>0</super> T loses the fourth mark; the fifth is then available only if the substitution is consistent with their own <i>n</i>. Accept 2&#183;51 &#215; 10<super>&#8722;3</super> T or 2&#183;5 mT.</div><div class="orbar">the alternative</div><figure class="fg "><svg class="figsvg" viewBox="-6.00 -6.00 226.00 152.00" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:441px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><line x1="10.00" y1="20.00" x2="204.00" y2="20.00" stroke="currentColor" stroke-width="0.85"/><line x1="17.76" y1="20.00" x2="44.92" y2="20.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)"/><line x1="10.00" y1="44.00" x2="204.00" y2="44.00" stroke="currentColor" stroke-width="0.85"/><line x1="17.76" y1="44.00" x2="44.92" y2="44.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)"/><line x1="10.00" y1="68.00" x2="204.00" y2="68.00" stroke="currentColor" stroke-width="0.85"/><line x1="17.76" y1="68.00" x2="44.92" y2="68.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)"/><line x1="10.00" y1="92.00" x2="204.00" y2="92.00" stroke="currentColor" stroke-width="0.85"/><line x1="17.76" y1="92.00" x2="44.92" y2="92.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)"/><line x1="10.00" y1="116.00" x2="204.00" y2="116.00" stroke="currentColor" stroke-width="0.85"/><line x1="17.76" y1="116.00" x2="44.92" y2="116.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)"/><rect x="76.00" y="40.00" width="64.00" height="60.00" rx="0.00" fill="none" stroke="currentColor" stroke-width="1.80"/><line x1="90.00" y1="40.00" x2="110.00" y2="40.00" stroke="currentColor" stroke-width="1.20" marker-end="url(#ah)"/><text x="100.00" y="35.00" text-anchor="middle" font-size="8.40" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">I</tspan></text><circle cx="76.00" cy="70.00" r="4.40" fill="none" stroke="currentColor" stroke-width="0.95"/><circle cx="76.00" cy="70.00" r="0.95" fill="currentColor"/><line x1="136.00" y1="66.00" x2="144.00" y2="74.00" stroke="currentColor" stroke-width="0.95"/><line x1="136.00" y1="74.00" x2="144.00" y2="66.00" stroke="currentColor" stroke-width="0.95"/><text x="65.00" y="62.00" text-anchor="end" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">F</tspan></text><text x="151.00" y="62.00" text-anchor="start" font-size="8.60" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif"><tspan font-style="italic">F</tspan></text><line x1="39.00" y1="40.00" x2="45.00" y2="40.00" stroke="currentColor" stroke-width="0.85"/><line x1="39.00" y1="100.00" x2="45.00" y2="100.00" stroke="currentColor" stroke-width="0.85"/><line x1="42.00" y1="40.00" x2="42.00" y2="100.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)" marker-start="url(#ah)"/><text x="37.00" y="73.00" text-anchor="end" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic"><tspan font-style="italic">l</tspan></text><line x1="76.00" y1="111.00" x2="76.00" y2="117.00" stroke="currentColor" stroke-width="0.85"/><line x1="140.00" y1="111.00" x2="140.00" y2="117.00" stroke="currentColor" stroke-width="0.85"/><line x1="76.00" y1="114.00" x2="140.00" y2="114.00" stroke="currentColor" stroke-width="0.85" marker-end="url(#ah)" marker-start="url(#ah)"/><text x="108.00" y="124.00" text-anchor="middle" font-size="9.00" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif" font-style="italic"><tspan font-style="italic">b</tspan></text><text x="107.00" y="134.00" text-anchor="middle" font-size="8.20" fill="currentColor" font-family="STIX Two Text, Liberation Serif, serif">plane of the coil contains <tspan font-weight="600">B</tspan>, so &theta; = 90&deg; and the torque is a maximum</text></svg><figcaption>The two sides of length <i>l</i> carry forces <i>BIl</i> <b>out of</b> and <b>into</b> the page &mdash; equal, opposite and separated by <i>b</i>, so they form a couple <i>BIA</i> sin &theta;. The other two sides carry collinear forces that cancel.</figcaption></figure><div class="msteps"><div class="mrow"><div class="mtext"><b>(a)</b> The two sides of length <i>l</i> perpendicular to <b>B</b> each carry a force <i>F</i> = <i>BIl</i>; they are equal, opposite and <b>not collinear</b>, so they form a couple, while the forces on the other two sides are collinear and cancel</div><span class="mk">1</span></div><div class="mrow"><div class="mtext">Their perpendicular separation is <i>b</i> sin &theta;, where &theta; is the angle between the <b>normal</b> to the coil and <b>B</b>, so &tau; = <i>BIl</i>&#183;<i>b</i> sin &theta; = <i>BIA</i> sin &theta;</div><span class="mk">1</span></div><div class="mrow"><div class="mtext">For <i>N</i> turns <b>&tau; = <i>NIAB</i> sin &theta;</b>, or <b>&tau;</b> = <b>m</b> &#215; <b>B</b> with <i>m</i> = <i>NIA</i></div><span class="mk">1</span></div><div class="mrow"><div class="mtext"><b>(b)</b> The plane of the coil is parallel to <b>B</b>, so the normal is perpendicular to it: &theta; = 90&deg; and sin &theta; = 1 &mdash; the position of <b>maximum</b> torque</div><span class="mk">1</span></div><div class="mrow"><div class="mtext">&tau; = (50)(3&#183;0)(2&#183;0 &#215; 10<super>&#8722;2</super>)(0&#183;10) = <b>0&#183;30 N m</b></div><span class="mk">1</span></div></div><div class="mtot">Total for this question <b>5</b></div><div class="enote"><span class="lbl">Examiner&rsquo;s note</span>The fourth mark is for recognising &theta; = 90&deg; from &lsquo;plane parallel to the field&rsquo;. This is the standard trap: a candidate who reads &theta; = 0 and answers zero scores the three derivation marks and nothing more.</div></div></div></section>
+</div>
+
+<div class="navbar">
+  <span class="bar" id="bar"></span>
+  <button class="nbtn" id="prevb" type="button">&lsaquo;&ensp;Prev</button>
+  <span class="counter" id="counter"></span>
+  <button class="nbtn primary" id="nextb" type="button">Next&ensp;&rsaquo;</button>
+</div>
+
+<div class="gcontrol">
+  <button id="revealAll">Reveal all solutions</button>
+  <button id="hideAll">Hide all</button>
+  <button id="clearDone">Clear progress</button>
+  <span class="prog" id="prog"></span>
+</div>
+
+<footer>
+  <p><b>What this is.</b> The full solution to every question on
+  <i>Unit Test 1</i> (40 marks, One and a Half Hours), in question-and-answer form. The
+  questions are taken from the paper itself and the mark allocation from its
+  marking scheme, so the three documents cannot disagree.</p>
+  <p><b>Diagrams</b> are drawn, not described: the Gaussian surface, the
+  Wheatstone bridge, the potentiometer circuit, the dielectric slab, the
+  Amp&egrave;rian loop and the rest.</p>
+  <p>Rebuild with <code>python3 src/build_solutions.py u1</code>.</p>
+</footer>
+</div>
+<button class="up" id="up" title="Back to top" aria-label="Back to top">&uarr;</button>
+<script>
+(function(){
+  var KEY='isc-physics-u1-solutions-v1';
+  var PKEY=KEY+':pos';
+  var store={};
+  try{ store=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ store={}; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+
+  var probs=[].slice.call(document.querySelectorAll('.prob'));
+  var slides=[].slice.call(document.querySelectorAll('#deck > .slide'));
+
+  function setOpen(p,on){
+    p.classList.toggle('open',on);
+    var b=p.querySelector('.sbtn');
+    if(b){ b.textContent = on ? 'Hide solution' : 'Show solution';
+           b.setAttribute('aria-expanded', on?'true':'false'); }
+    tally();
+  }
+  function tally(){
+    var done=document.querySelectorAll('.prob.done').length;
+    var el=document.getElementById('prog');
+    if(el) el.textContent = done+' of '+probs.length+' marked done';
+  }
+
+  probs.forEach(function(p){
+    var btn=p.querySelector('.sbtn');
+    if(btn) btn.addEventListener('click',function(){ setOpen(p,!p.classList.contains('open')); });
+    var d=p.querySelector('.dtoggle');
+    if(d) d.addEventListener('click',function(){
+      var on=!p.classList.contains('done');
+      p.classList.toggle('done',on);
+      d.textContent = on ? '✓ done' : 'mark done';
+      store[p.id]=on?1:0; if(!on) delete store[p.id];
+      save(); tally();
+    });
+    if(store[p.id]){ p.classList.add('done');
+      var dd=p.querySelector('.dtoggle'); if(dd) dd.textContent='✓ done'; }
+  });
+
+  function bulk(list,on){ list.forEach(function(p){ setOpen(p,on); }); }
+  var ra=document.getElementById('revealAll'), ha=document.getElementById('hideAll');
+  if(ra) ra.addEventListener('click',function(){ bulk(probs,true); });
+  if(ha) ha.addEventListener('click',function(){ bulk(probs,false); });
+  var cd=document.getElementById('clearDone');
+  if(cd) cd.addEventListener('click',function(){
+    probs.forEach(function(p){ p.classList.remove('done');
+      var d=p.querySelector('.dtoggle'); if(d) d.textContent='mark done'; });
+    store={}; save(); tally();
+  });
+  /* Problems no longer sit inside their chapter section, so a per-chapter
+     reveal has to select by the data-ch tag the slides carry. */
+  function chProbs(id){
+    return [].slice.call(document.querySelectorAll('.slide[data-ch="'+id+'"] .prob'));
+  }
+  document.querySelectorAll('[data-ch-reveal]').forEach(function(b){
+    b.addEventListener('click',function(){ bulk(chProbs(b.getAttribute('data-ch-reveal')),true); });
+  });
+  document.querySelectorAll('[data-ch-hide]').forEach(function(b){
+    b.addEventListener('click',function(){ bulk(chProbs(b.getAttribute('data-ch-hide')),false); });
+  });
+
+  /* ---------------- the slide show ---------------- */
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  var prevb=document.getElementById('prevb'), nextb=document.getElementById('nextb');
+  var counter=document.getElementById('counter'), bar=document.getElementById('bar');
+  var chTitle={}, chFirst={};
+  slides.forEach(function(s,i){
+    var id=s.getAttribute('data-ch');
+    if(!(id in chFirst)) chFirst[id]=i;
+    if(s.classList.contains('chslide')){
+      var h=s.querySelector('h2'); if(h) chTitle[id]=h.textContent;
+    }
+  });
+  var cur=0;
+
+  function render(){
+    slides.forEach(function(s,i){ s.classList.toggle('on', i===cur); });
+    var s=slides[cur], id=s.getAttribute('data-ch');
+    var pr=s.querySelector('.prob');
+    if(counter){
+      counter.innerHTML='<b>'+(cur+1)+'</b> of '+slides.length+
+        '<span class="cwhere">'+(chTitle[id]||'')+
+        (pr? ' &middot; '+pr.id.toUpperCase() : ' &middot; section opener')+'</span>';
+    }
+    if(bar) bar.style.width=(slides.length<2?100:(cur/(slides.length-1))*100)+'%';
+    if(prevb) prevb.disabled=(cur===0);
+    if(nextb) nextb.disabled=(cur===slides.length-1);
+    links.forEach(function(l){ l.classList.toggle('on', l.getAttribute('href')==='#'+id); });
+    var on=links.filter(function(l){ return l.classList.contains('on'); })[0];
+    if(on){ try{ on.scrollIntoView({block:'nearest',inline:'nearest'}); }catch(x){} }
+    try{ localStorage.setItem(PKEY,String(cur)); }catch(e){}
+    var frag = pr ? pr.id : id;
+    if(window.history && history.replaceState){
+      try{ history.replaceState(null,'','#'+frag); }catch(e){}
+    }
+  }
+  function go(n){
+    cur = n<0 ? 0 : (n>slides.length-1 ? slides.length-1 : n);
+    render();
+    window.scrollTo(0,0);
+  }
+  if(prevb) prevb.addEventListener('click',function(){ go(cur-1); });
+  if(nextb) nextb.addEventListener('click',function(){ go(cur+1); });
+
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=a.getAttribute('href').slice(1);
+      if(id in chFirst){ e.preventDefault(); go(chFirst[id]); }
+    });
+  });
+
+  document.addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    var t=e.target;
+    if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.isContentEditable)) return;
+    var k=e.key;
+    if(k==='ArrowRight'||k==='PageDown'){ go(cur+1); e.preventDefault(); }
+    else if(k==='ArrowLeft'||k==='PageUp'){ go(cur-1); e.preventDefault(); }
+    else if(k==='Home'){ go(0); e.preventDefault(); }
+    else if(k==='End'){ go(slides.length-1); e.preventDefault(); }
+    else if(k==='s'||k==='S'){
+      var p=slides[cur].querySelector('.prob');
+      if(p){ setOpen(p,!p.classList.contains('open')); e.preventDefault(); }
+    }
+    else if(k==='d'||k==='D'){
+      var d=slides[cur].querySelector('.dtoggle');
+      if(d){ d.click(); e.preventDefault(); }
+    }
+  });
+
+  /* swipe, for reading on a phone */
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){
+    if(e.touches.length!==1) return;
+    x0=e.touches[0].clientX; y0=e.touches[0].clientY;
+  },{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null) return;
+    var t=e.changedTouches[0], dx=t.clientX-x0, dy=t.clientY-y0;
+    if(Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy)*1.8) go(cur + (dx<0?1:-1));
+    x0=y0=null;
+  },{passive:true});
+
+  /* Deep link, else resume where this browser left off. */
+  function indexFor(h){
+    if(!h) return -1;
+    for(var i=0;i<slides.length;i++){
+      var pr=slides[i].querySelector('.prob');
+      if((pr && pr.id===h) ||
+         (slides[i].classList.contains('chslide') && slides[i].getAttribute('data-ch')===h)){
+        return i;
+      }
+    }
+    return -1;
+  }
+  var start=0;
+  var h=(location.hash||'').replace('#','');
+  if(h){
+    var hit=indexFor(h);
+    if(hit>=0) start=hit;
+  } else {
+    try{ var v=parseInt(localStorage.getItem(PKEY),10);
+         if(!isNaN(v) && v>=0 && v<slides.length) start=v; }catch(e){}
+  }
+  cur=start; render();
+  function toTop(){ window.scrollTo(0,0); }
+  toTop();
+  if(window.requestAnimationFrame) requestAnimationFrame(toTop);
+  window.addEventListener('load', toTop);
+
+  window.addEventListener('hashchange',function(){
+    var i=indexFor((location.hash||'').replace('#',''));
+    if(i>=0 && i!==cur) go(i);
+  });
+
+  /* Printing falls back to the whole document: every slide, every solution. */
+  window.addEventListener('beforeprint',function(){
+    /* Do NOT add .on here: the print stylesheet already shows every slide, and
+       adding the class restarts the slidein animation from opacity:0, so the
+       pages come out blank. Only the disclosures need opening. */
+    document.querySelectorAll('details').forEach(function(d){ d.open=true; });
+  });
+
+  var up=document.getElementById('up');
+  if(up){
+    up.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+    window.addEventListener('scroll',function(){
+      up.classList.toggle('show', window.scrollY>700); },{passive:true});
+  }
+  tally();
+})();
+</script>
+</body>
+</html>
