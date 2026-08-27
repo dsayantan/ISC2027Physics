@@ -246,6 +246,10 @@ footer a:hover{text-decoration:underline}
         line, a <b>Note</b> on method, and a <b>Trap</b> naming the specific error the
         examiner is testing for &mdash; in Physics that is most often a sign convention, a
         missing unit, or a formula applied outside the conditions it was derived under.
+        Answers that depend on a picture carry one: <b>16 drawn figures</b> covering the
+        Huygens construction, the double-slit geometry, the two intensity distributions,
+        field and equipotential patterns, Amp&egrave;re's loop, resonance curves, the
+        electromagnetic spectrum and the 45&deg; prism.
         Each chapter has its own accent colour and card treatment, so you can see at a
         glance where you are. Printing falls back to the whole document, every solution
         revealed.</p>
@@ -263,6 +267,7 @@ footer a:hover{text-decoration:underline}
         <p class="stats">
           <span><b>146</b> problems</span> <span class="sep">&middot;</span>
           <span><b>153</b> slides</span> <span class="sep">&middot;</span>
+          <span><b>16</b> figures</span> <span class="sep">&middot;</span>
           <span><b>37</b> problem types</span> <span class="sep">&middot;</span>
           <span><b>7</b> sections</span> <span class="sep">&middot;</span>
           <span><b>6</b> sources drawn on</span> <span class="sep">&middot;</span>
@@ -423,6 +428,79 @@ footer a:hover{text-decoration:underline}
          ============================================================ -->
 
   </ul>
+
+  <div class="section-label">Unit test</div>
+
+  <p class="lead">A shorter paper on <b>three chapters only</b> &mdash; Electrostatics,
+  Current Electricity, and Magnetic Effect of Current and Magnetism. Same format and
+  standard as the papers above (four sections A&ndash;D, one-mark sub-parts then 2, 3 and
+  5 mark questions with internal choice, a constants table and an answer key), scaled to
+  <b>40 marks over ninety minutes</b>. Sit it when you have finished those three chapters
+  and before you take on a full 70-mark paper.</p>
+
+  <table class="bp">
+    <thead>
+      <tr><th>Section</th><th>Questions</th><th>Marks each</th><th>Total</th><th>Internal choices</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A</td><td>Q1, sub-parts (i)&ndash;(viii)</td><td>1</td><td>8</td><td>&mdash;</td></tr>
+      <tr><td>B</td><td>Q2&ndash;Q6</td><td>2</td><td>10</td><td>2</td></tr>
+      <tr><td>C</td><td>Q7&ndash;Q10</td><td>3</td><td>12</td><td>1</td></tr>
+      <tr><td>D</td><td>Q11&ndash;Q12</td><td>5</td><td>10</td><td>2</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td colspan="3">Chapter weights &mdash; Electrostatics 13, Current Electricity 13,
+      Magnetism 14</td><td>40</td><td>5</td></tr>
+    </tfoot>
+  </table>
+
+  <ul class="sets" style="margin-top:1.5rem">
+    <li class="paperblock">
+      <span class="kicker">Unit test 1 &middot; three chapters, ninety minutes</span>
+      <h2>First Term Unit Test 1</h2>
+      <p>The first four sub-parts of Section&nbsp;A are multiple choice or
+      assertion&ndash;reason and the last four are very short answer, as in the full
+      papers. Its five-markers are the dielectric-slab capacitance and the solenoid field
+      from Amp&egrave;re's law, each with a whole alternative offered &mdash; the dipole
+      potential energy and the torque on a coil.</p>
+      <div class="chips">
+        <span class="chip">Charge sharing on contact</span>
+        <span class="chip">Cut-and-parallel resistance</span>
+        <span class="chip">Field at a solenoid end</span>
+        <span class="chip">Capacitors in series</span>
+        <span class="chip">Galvanometer to voltmeter</span>
+        <span class="chip">Gauss for a plane sheet</span>
+        <span class="chip">Wheatstone balance</span>
+        <span class="chip">Force between parallel wires</span>
+      </div>
+      <p class="stats">
+        <span><b>40</b> marks</span> <span class="sep">&middot;</span>
+        <span><b>90</b> minutes</span> <span class="sep">&middot;</span>
+        <span><b>12</b> questions</span> <span class="sep">&middot;</span>
+        <span>6 pages</span> <span class="sep">&middot;</span>
+        <span>answer key included</span>
+      </p>
+      <div class="ways">
+        <a class="way" href="First-Term-Unit-Test-1.pdf">
+          <span class="wk">PDF &middot; question paper and key</span>
+          <b>Open Unit Test 1</b>
+          <span class="wd">The key starts on page&nbsp;4 and is marked <i>do not read
+            before attempting</i>. Electromagnetic Induction, EM Waves and Optics are not
+            examined here.</span>
+          <span class="go">Open &rarr;</span>
+        </a>
+      </div>
+    </li>
+
+    <!-- ============================================================
+         TO ADD ANOTHER UNIT TEST: copy the block above, bump the
+         number in the heading and the href, and add a matching
+         src/papers_uN.py carrying "spec": SPEC_UNIT. build_papers.py
+         reads the shape from that spec, so a 40-mark paper is checked
+         against 8/5/4/2 and 40 marks rather than the 70-mark pattern.
+         Build it with: python3 src/build_papers.py uN
+         ============================================================ -->
+  </ul>
 </main>
 
 <footer>
@@ -433,8 +511,8 @@ footer a:hover{text-decoration:underline}
   in <code>Question-Papers/</code> and <code>Specimen-Papers/</code>, the CISCE
   <b>competency-focused</b> booklet, and the <b>Heritage School</b> First Term paper of
   2024&ndash;25. Each problem names its own source, so you can always go back to the original.
-  The three practice papers are written fresh against the blueprint rather than assembled from
-  past questions.</p>
+  The three practice papers and the unit test are written fresh against the blueprint
+  rather than assembled from past questions.</p>
 
   <h3>A note on the school paper</h3>
   <p>Worth knowing if you are tempted to treat last year&rsquo;s First Term paper as a guide:
@@ -460,7 +538,7 @@ footer a:hover{text-decoration:underline}
   <p><code>python3 src/build_revision.py</code> rebuilds the revision page and prints the
   section, type and problem counts it wrote &mdash; the chips above should be kept in step with
   them. <code>python3 src/build_papers.py</code> rebuilds all three papers, or pass a number
-  for one of them; it refuses to write a paper that does not total 70 marks or that has the
+  for one of them &mdash; <code>u1</code> for the unit test; it refuses to write a paper that does not total 70 marks or that has the
   wrong number of internal choices. <code>python3 src/verify_papers.py</code> re-checks the
   arithmetic, and <code>python3 src/verify_revision.py --print</code> drives the deck
   in a headless browser to check the navigation, the per-chapter templates and the
