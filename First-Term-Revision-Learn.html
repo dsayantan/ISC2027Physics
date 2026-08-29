@@ -144,10 +144,12 @@ th,td{border:1px solid var(--rule);padding:.32rem .6rem;text-align:left}
 th{background:var(--surface-3);font-size:.78rem;letter-spacing:.02em}
 
 /* ------------------------------------------------------------------- math */
-.fr{display:inline-block;vertical-align:middle;text-align:center;font-size:.92em;
+/* `frac` is an alias: the Revision pipeline uses that name, and a
+   figure caption or a harvested string may carry it. */
+.fr,.frac{display:inline-block;vertical-align:middle;text-align:center;font-size:.92em;
     margin:0 .16em;line-height:1.22}
-.fr .n{display:block;border-bottom:1px solid currentColor;padding:0 .26em}
-.fr .d{display:block;padding:0 .26em}
+.fr .n,.frac .n{display:block;border-bottom:1px solid currentColor;padding:0 .26em}
+.fr .d,.frac .d{display:block;padding:0 .26em}
 /* physics: vectors carry a real arrow glyph above the symbol, because the
    combining arrow U+20D7 is unreliable across fonts. Units stay upright. */
 .vec{position:relative; display:inline-block; font-style:italic; font-weight:600}
@@ -2234,8 +2236,13 @@ figure.fg figcaption,figure.fg .plain{color:var(--muted)}
   function setOpen(p,on){
     p.classList.toggle('open',on);
     var b=p.querySelector('.sbtn');
-    if(b){ b.textContent = on ? 'Hide solution' : 'Show solution';
-           b.setAttribute('aria-expanded', on?'true':'false'); }
+    if(b){
+      /* a deck can label its own buttons: data-show / data-hide override the
+         default wording, so a derivation does not say "Show solution" */
+      var sh=b.getAttribute('data-show')||'Show solution';
+      var hd=b.getAttribute('data-hide')||'Hide solution';
+      b.textContent = on ? hd : sh;
+      b.setAttribute('aria-expanded', on?'true':'false'); }
     tally();
   }
   function tally(){
