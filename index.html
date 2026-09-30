@@ -3,9 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ISC Mathematics &mdash; First Term Practice</title>
+<title>ISC Physics &mdash; First Term Practice</title>
 <style>
-/* Shared design tokens — keep in step with src/build_revision.py. */
+/* Light only, by request: no dark palette, no
+   prefers-color-scheme override, no theme toggle. Do not reintroduce them.
+   Shared design tokens — keep in step with src/build_revision.py.
+   Copied from ../Maths/index.html; the two pages are deliberately
+   identical in style and differ only in content. */
 :root{
   --bg:#EEF1F6; --surface:#FFFFFF; --surface-2:#F6F8FC;
   --ink:#151B26; --muted:#5A6577; --rule:#D5DCE7; --rule-strong:#A3AFC2;
@@ -15,22 +19,6 @@
   --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;
   --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --mono:ui-monospace,"SF Mono","Cascadia Mono","JetBrains Mono",Menlo,Consolas,monospace;
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#0C1017; --surface:#141A24; --surface-2:#1A222E;
-    --ink:#E5EAF2; --muted:#94A1B5; --rule:#26303E; --rule-strong:#48566B;
-    --accent:#7EA6EE; --accent-soft:#182741; --accent-ink:#A8C4F5;
-    --warm:#E0B36A; --warm-soft:#2C2314;
-    --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px -20px rgba(0,0,0,.85);
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0C1017; --surface:#141A24; --surface-2:#1A222E;
-  --ink:#E5EAF2; --muted:#94A1B5; --rule:#26303E; --rule-strong:#48566B;
-  --accent:#7EA6EE; --accent-soft:#182741; --accent-ink:#A8C4F5;
-  --warm:#E0B36A; --warm-soft:#2C2314;
-  --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px -20px rgba(0,0,0,.85);
 }
 
 *{box-sizing:border-box}
@@ -61,13 +49,6 @@ h1{
   line-height:1.1; margin:0; letter-spacing:-.014em; text-wrap:balance;
 }
 .standfirst{margin:0; color:var(--muted); max-width:60ch; font-size:1.02rem}
-.themeBtn{
-  position:absolute; top:2.6rem; right:1.25rem;
-  font-family:var(--sans); font-size:.78rem; font-weight:550;
-  background:var(--surface); border:1px solid var(--rule); border-radius:2px;
-  padding:.38rem .8rem; color:var(--muted); transition:border-color .15s, color .15s;
-}
-.themeBtn:hover{border-color:var(--rule-strong); color:var(--ink)}
 
 /* ---------- layout ---------- */
 main{flex:1 0 auto; max-width:56rem; margin:0 auto; padding:2.2rem 1.25rem 1rem; width:100%}
@@ -130,6 +111,9 @@ main{flex:1 0 auto; max-width:56rem; margin:0 auto; padding:2.2rem 1.25rem 1rem;
 .stats b{font-variant-numeric:tabular-nums; font-weight:650; color:var(--ink); margin-right:.15rem}
 .stats .sep{color:var(--rule-strong)}
 .chips{display:flex; flex-wrap:wrap; gap:.35rem; margin:.7rem 0 0}
+kbd{font-family:var(--mono); font-size:.78em; border:1px solid var(--rule-strong);
+    border-bottom-width:2px; border-radius:4px; padding:.05em .32em;
+    background:var(--surface-2)}
 .chip{
   font-family:var(--sans); font-size:.72rem; color:var(--accent-ink);
   background:var(--accent-soft); border:1px solid var(--accent-soft);
@@ -188,29 +172,21 @@ footer a:hover{text-decoration:underline}
 @media (max-width:560px){
   body{font-size:16px}
   .masthead .inner{padding-top:3.6rem}
-  .themeBtn{top:1.1rem}
   .set,.paperblock{padding:1.15rem 1.1rem}
 }
 </style>
-<script>
-/* Apply the remembered theme before first paint, so there is no flash of the
-   wrong palette. This page only — the revision page is light-only. */
-try {
-  var t = localStorage.getItem('isc-maths-theme');
-  if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-} catch (e) {}
-</script>
 </head>
 <body>
 
 <header class="masthead">
   <div class="inner">
-    <button class="themeBtn" id="themeBtn" type="button">Dark</button>
     <div class="eyebrow">The Heritage School &middot; Class 12 &middot; First Term 2026&ndash;27</div>
-    <h1>Mathematics First Term</h1>
-    <p class="standfirst">Two revision documents to work through and three full papers to sit.
-    Both revision pages keep every solution hidden behind a button so you can attempt first;
-    the papers follow the <b>new ISC 2027 pattern</b> and each carries its own answer key.</p>
+    <h1>Physics First Term</h1>
+    <p class="standfirst">Two slide decks that work as a pair. The first
+    <b>teaches the physics</b> &mdash; the concepts in the order they build, the
+    derivations, and every type of problem that gets set. The second <b>tests
+    it</b>, with problems from six sources and worked solutions. Both hide the
+    answer until you ask for it, so you can attempt each one first.</p>
   </div>
 </header>
 
@@ -222,547 +198,216 @@ try {
       <div>
         <h3>In the First Term</h3>
         <ol>
-          <li>Relations and Functions</li>
-          <li>Inverse Trigonometric Functions</li>
-          <li>Matrices</li>
-          <li>Determinants</li>
-          <li>Continuity and Differentiability</li>
-          <li>Applications of Derivatives</li>
-          <li>Integrals</li>
-          <li>Application of Integrals</li>
-          <li>Linear Programming</li>
+          <li>Electrostatics</li>
+          <li>Current Electricity</li>
+          <li>Magnetic Effect of Current and Magnetism</li>
+          <li>Electromagnetic Induction and Alternating Current</li>
+          <li>Electromagnetic Waves</li>
+          <li>Optics &mdash; Ray Optics and Optical Instruments</li>
+          <li>Optics &mdash; Wave Optics</li>
         </ol>
       </div>
       <div>
         <h3>Held back to the Pre-Board</h3>
         <ol>
-          <li>Differential Equations</li>
-          <li>Vectors</li>
-          <li>Three-dimensional Geometry</li>
-          <li>Probability</li>
+          <li>Dual Nature of Radiation and Matter</li>
+          <li>Atoms and Nuclei</li>
+          <li>Electronic Devices</li>
         </ol>
       </div>
     </div>
-    <p>Chapter order follows <i>Understanding ISC Mathematics</i> (M.L.&nbsp;Aggarwal). Worth
-    knowing before you reach for last year&rsquo;s paper: the <b>2024&ndash;25 First Term paper
-    examined Probability, Vectors, 3-D Geometry and Linear Regression</b>, none of which is in
-    this year&rsquo;s First Term &mdash; and linear regression has been dropped from the ISC
-    syllabus altogether. Integrals and Application of Integrals are new to the First Term and
-    were not on that paper at all.</p>
+    <p>The chapter list is from <code>FirstTermSyllabus.txt</code>; it is a school
+    decision and cannot be read off the CISCE syllabus, which is organised into
+    nine units for the whole year. Optics is <b>one</b> syllabus unit but is set
+    out here as <b>two</b> sections, Ray and Wave, which is why seven sections
+    cover six chapters. Two things worth knowing before you reach for an older
+    paper: <b>polarisation is no longer in the Wave Optics syllabus</b> &mdash;
+    Malus&rsquo; law, Brewster&rsquo;s law and polaroids were all set in the 2018,
+    2019 and 2020 board papers but are now out of scope; and these six chapters
+    carry <b>50 of the 70 board marks</b>, scaled up to 70 for the First Term.
+    Scope was checked against <code>Syllabus/ISC-2027.pdf</code>, not assumed from
+    the papers.</p>
   </div>
 
   <div class="section-label">Revision</div>
 
-  <p class="lead">Start here. Problems are grouped <b>by type</b> rather than by paper, each
-  type opening with the method that solves all of them. Nothing is a question paper &mdash;
-  attempt on paper, then reveal.</p>
+  <p class="lead">Work a section in the first deck, then do the same section in
+  the second. The <b>problem types are the same in both</b>, in the same order and
+  under the same names &mdash; the concepts deck imports them from the problem
+  deck, so they cannot drift apart.</p>
 
   <ul class="sets">
-    <li>
-      <a class="set" href="First-Term-Revision-Learn.html">
-        <span class="kicker">Slide show &middot; one problem at a time</span>
-        <h2>First Term Revision <span class="go">Open &rarr;</span></h2>
-        <p>A <b>slide show</b>: one problem at a time, moved with <i>Previous</i> and
-        <i>Next</i>, and a title slide announcing each new chapter &mdash; each chapter
-        with its own accent colour and its own slide template, so you always know where
-        you are. Ninety worked problems
-        over the nine First Term chapters, each tagged with its marks and its source. Every
-        solution sits behind a <i>Show solution</i> button, and <i>Show hint</i> gives
-        the method for that whole type of problem without giving away the one in front of
-        you. Solutions carry an <b>Answer</b> line, a <b>Note</b> on method, and a
-        <b>Trap</b> naming the specific error the examiner is testing for.</p>
-        <!-- Counts below are the real per-chapter totals; recompute with
-             python3 src/build_revision.py, which prints the totals it wrote. -->
-        <div class="chips">
-          <span class="chip"><b>12</b> Relations &amp; Functions</span>
-          <span class="chip"><b>9</b> Inverse Trig</span>
-          <span class="chip"><b>9</b> Matrices</span>
-          <span class="chip"><b>8</b> Determinants</span>
-          <span class="chip"><b>12</b> Continuity &amp; Differentiability</span>
-          <span class="chip"><b>12</b> Applications of Derivatives</span>
-          <span class="chip"><b>15</b> Integrals</span>
-          <span class="chip"><b>7</b> Application of Integrals</span>
-          <span class="chip"><b>6</b> Linear Programming</span>
-        </div>
-        <p class="stats">
-          <span><b>90</b> problems</span> <span class="sep">&middot;</span>
-          <span><b>34</b> problem types</span> <span class="sep">&middot;</span>
-          <span><b>9</b> chapters</span> <span class="sep">&middot;</span>
-          <span><b>101</b> slides</span> <span class="sep">&middot;</span>
-          <span>no clock, no score</span> <span class="sep">&middot;</span>
-          <span>remembers your place</span> <span class="sep">&middot;</span>
-          <span>printing reveals everything</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="set" href="First-Term-Revision-Paper.html">
-        <span class="kicker">Slide show &middot; one question at a time</span>
-        <h2>First Term Revision Paper <span class="go">Open &rarr;</span></h2>
-        <p>A <b>slide show</b>: one question to a slide, 106 of them over 116 slides with
-        a title slide opening each chapter. Every question is picked from the <b>Heritage
-        2024&ndash;25 First Term paper</b> or from the matching <b>NCERT Exemplar</b> chapter,
-        at the difficulty the First Term paper sets. Each chapter mixes <b>objective and
-        subjective</b> questions and carries at least ten. Solutions stay hidden behind a
-        per-slide button, and one switch in the bar <b>reveals every solution at once</b>.</p>
-        <p>Every <b>Application of Integrals</b> and <b>Linear Programming</b> solution opens
-        with a <b>drawn graph</b> &mdash; the curves and the shaded region for an area, the
-        feasible region and its boundary lines for an LPP &mdash; with <b>every coordinate
-        labelled</b>: the points of intersection, the corner points, the limits of the
-        integral. 23 graphs in all.</p>
-        <p>The number of questions a chapter gets is derived, not guessed: marks were counted
-        question by question in the First Term paper, out-of-syllabus chapters dropped, and
-        the two chapters that paper never touches &mdash; Integrals and Application of
-        Integrals &mdash; given the average of the rest. The page shows the whole table.</p>
-        <!-- Counts below are the real per-chapter totals; recompute with
-             python3 src/build_revpaper.py, which prints the totals it wrote. -->
-        <div class="chips">
-          <span class="chip"><b>11</b> Relations &amp; Functions</span>
-          <span class="chip"><b>11</b> Inverse Trig</span>
-          <span class="chip"><b>11</b> Matrices</span>
-          <span class="chip"><b>10</b> Determinants</span>
-          <span class="chip"><b>15</b> Continuity &amp; Differentiability</span>
-          <span class="chip"><b>13</b> Applications of Derivatives</span>
-          <span class="chip"><b>12</b> Integrals</span>
-          <span class="chip"><b>12</b> Application of Integrals</span>
-          <span class="chip"><b>11</b> Linear Programming</span>
-        </div>
-        <p class="stats">
-          <span><b>106</b> questions</span> <span class="sep">&middot;</span>
-          <span><b>116</b> slides</span> <span class="sep">&middot;</span>
-          <span><b>48</b> objective, <b>58</b> subjective</span> <span class="sep">&middot;</span>
-          <span><b>23</b> graphs</span> <span class="sep">&middot;</span>
-          <span>reveal one, or reveal all</span> <span class="sep">&middot;</span>
-          <span>remembers your place</span> <span class="sep">&middot;</span>
-          <span>every answer machine-checked</span>
-        </p>
-      </a>
-    </li>
-  </ul>
-
-  <div class="section-label">Sourced from the papers</div>
-
-  <p class="lead">Topic-by-topic indexes built by searching every question paper in this
-  folder &mdash; ISC board and specimen papers, the Heritage School papers and the CISCE
-  competency booklet &mdash; so you can see exactly how a topic has been set.</p>
-
-  <ul class="sets">
-    <li>
-      <a class="set" href="Heritage-2026-27-First-Term-MCQ-Test.html">
-        <span class="kicker">Sit a paper &middot; this year's own First Term
-        &middot; timed, 3 hours</span>
-        <h2>Heritage First Term 2026&ndash;27 <span class="go">Open &rarr;</span></h2>
-        <p><b>The school's own First Term Examination for this session, turned into a
-        timed objective paper.</b> Every question of it and nothing else &mdash; all
-        twenty questions, every sub-part separately, and <b>all nine OR
-        alternatives</b>, which is how twenty questions become 61. No question is
-        drawn from any other paper or book.</p>
-        <p>The original is 80 marks in three hours, four sections, all compulsory. The
-        clock here runs the same <b>three hours</b>; answers change freely and nothing
-        is marked until you submit. The marked paper gives your score, a
-        chapter-by-chapter breakdown and the <b>full worked solution to every
-        question</b>, right or wrong, each naming the question of the paper it came
-        from. The figures the paper printed &mdash; the rail lines, the speed camera
-        and the feasible region &mdash; are redrawn beside their questions.</p>
-        <div class="chips">
-          <span class="chip"><b>20</b> Section A &middot; 1 mark</span>
-          <span class="chip"><b>12</b> Section B &middot; 2 marks</span>
-          <span class="chip"><b>16</b> Section C &middot; 3 marks</span>
-          <span class="chip"><b>13</b> Section D &middot; 5 marks</span>
-        </div>
-        <p class="stats">
-          <span><b>61</b> questions</span> <span class="sep">&middot;</span>
-          <span><b>180</b> minutes</span> <span class="sep">&middot;</span>
-          <span><b>7</b> drawings</span> <span class="sep">&middot;</span>
-          <span>solutions shown after submitting</span> <span class="sep">&middot;</span>
-          <span>every answer machine-checked</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="set" href="Concept-Revision-Notes.html">
-        <span class="kicker">Notes &middot; chapter by chapter &middot; also a PDF</span>
-        <h2>Concept Revision Notes <span class="go">Open &rarr;</span></h2>
-        <p>The concepts you need in order to solve the questions in <b>School Paper
-        Based</b> &mdash; <b>66 of them</b> across the nine First Term chapters, each
-        with the formula or definition stated exactly, the questions that need it
-        named, and, where there is one, the standard way of getting it wrong.</p>
-        <p><b>Nothing here is general revision.</b> Every item earns its place by
-        being required by a question in that deck &mdash; and <b>every &lsquo;Needed
-        for&rsquo; reference is a link</b>: click one and that problem opens beside
-        the notes with its full solution; click another and it takes its place.
-        141 references to 90 distinct problems.</p>
-        <p>The matching <b>A4 PDF</b> prints the notes first and then, because paper
-        cannot be clicked, an <b>appendix carrying every one of those 90 problems</b>
-        worked through.</p>
-        <div class="chips">
-          <span class="chip"><b>10</b> Continuity &amp; Differentiability</span>
-          <span class="chip"><b>9</b> Applications of Derivatives</span>
-          <span class="chip"><b>8</b> Inverse Trig</span>
-          <span class="chip"><b>7</b> Relations &amp; Functions</span>
-          <span class="chip"><b>7</b> Matrices</span>
-          <span class="chip"><b>7</b> Integrals</span>
-          <span class="chip"><b>7</b> Linear Programming</span>
-          <span class="chip"><b>6</b> Determinants</span>
-          <span class="chip"><b>5</b> Application of Integrals</span>
-        </div>
-        <p class="stats">
-          <span><b>66</b> concepts</span> <span class="sep">&middot;</span>
-          <span><b>44</b> cautions</span> <span class="sep">&middot;</span>
-          <span><b>90</b> problems, one click away</span> <span class="sep">&middot;</span>
-          <span>PDF is 73 pp, A4</span> <span class="sep">&middot;</span>
-          <span>every reference resolved and checked</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="set" href="School-Paper-Based-Revision.html">
-        <span class="kicker">Slide show &middot; the school's own papers</span>
-        <h2>School Paper Based <span class="go">Open &rarr;</span></h2>
-        <p>The Heritage School's <b>two Mathematics papers</b> &mdash; the
-        2024&ndash;25 First Term and the 2016&ndash;17 Pre-Board &mdash; walked
-        question by question, one to a slide, and <b>restricted to the nine First
-        Term chapters</b>. 42 questions. Both papers are full-scope papers, so a good
-        deal of each falls outside this term: the closing slide lists all of it, split
-        into what is <b>held to the Pre-Board</b> (Probability, Vectors, 3-D,
-        Differential Equations) and what the ISC 2027 syllabus has <b>dropped
-        altogether</b> (conics, complex numbers, Boolean algebra, regression, the old
-        commerce section).</p>
-        <p>Hung on each question are the <b>similar sums</b> found in the other five
-        sources &mdash; <b>55 of them</b>, from NCERT, the NCERT Exemplar, the ISC
-        board papers, the ISC specimen papers and the CISCE competency booklet &mdash;
-        each with its own answer. Several turn out to be the school question word for
-        word, and two questions the school set <i>twice</i>, eight years apart.</p>
-        <div class="chips">
-          <span class="chip"><b>8</b> Continuity &amp; Differentiability</span>
-          <span class="chip"><b>8</b> Applications of Derivatives</span>
-          <span class="chip"><b>5</b> Inverse Trig</span>
-          <span class="chip"><b>5</b> Linear Programming</span>
-          <span class="chip"><b>4</b> Relations &amp; Functions</span>
-          <span class="chip"><b>4</b> Matrices</span>
-          <span class="chip"><b>4</b> Determinants</span>
-          <span class="chip"><b>3</b> Integrals</span>
-          <span class="chip"><b>1</b> Application of Integrals</span>
-        </div>
-        <p class="stats">
-          <span><b>42</b> questions</span> <span class="sep">&middot;</span>
-          <span><b>55</b> similar sums</span> <span class="sep">&middot;</span>
-          <span><b>46</b> slides</span> <span class="sep">&middot;</span>
-          <span>reveal one, or reveal all</span> <span class="sep">&middot;</span>
-          <span>every citation grep-checked</span> <span class="sep">&middot;</span>
-          <span>every answer machine-checked</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="set" href="Definite-Integrals-Revision.html">
-        <span class="kicker">Revision booklet &middot; question and answer</span>
-        <h2>Definite Integrals <span class="go">Open &rarr;</span></h2>
-        <p><b>Every definite-integral question</b> set in the <b>ISC specimen papers</b>
-        and in the <b>CISCE competency booklet</b>, with a further ten per cent from the
-        <b>NCERT Exemplar</b> and ten per cent from the <b>NCERT book</b> &mdash; 29
-        problems, each with a complete worked answer. Where CISCE printed its own
-        marking scheme, that is quoted beside the working.</p>
-        <p>They are arranged <b>by technique rather than by paper</b>: ten of them fall
-        to the reflection property alone, and seeing that happen ten times in a row is
-        the point of the booklet. Reveal one answer at a time, or all 29 with a single
-        switch.</p>
-        <div class="chips">
-          <span class="chip"><b>1</b> Limit of a sum</span>
-          <span class="chip"><b>3</b> Substitution &amp; standard forms</span>
-          <span class="chip"><b>4</b> Modulus &amp; greatest integer</span>
-          <span class="chip"><b>10</b> The reflection property</span>
-          <span class="chip"><b>7</b> Odd, even &amp; symmetric limits</span>
-          <span class="chip"><b>4</b> Additivity &amp; area</span>
-        </div>
-        <p class="stats">
-          <span><b>29</b> problems</span> <span class="sep">&middot;</span>
-          <span><b>6</b> techniques</span> <span class="sep">&middot;</span>
-          <span><b>5</b> drawings</span> <span class="sep">&middot;</span>
-          <span>reveal one, or reveal all</span> <span class="sep">&middot;</span>
-          <span>every citation grep-checked</span> <span class="sep">&middot;</span>
-          <span>every answer machine-checked</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="set" href="Definite-Integrals-Test.html">
-        <span class="kicker">Sit a paper &middot; timed, 60 minutes</span>
-        <h2>Definite Integrals &mdash; the test <span class="go">Open &rarr;</span></h2>
-        <p><b>Twenty-five one-mark questions in an hour</b>, every one drawn from the
-        booklet above. Instructions gate, then a running clock; answers change freely
-        and <b>nothing is marked until you submit</b>. Submitting with blanks asks
-        first, and the clock submits the paper itself when it runs out.</p>
-        <p>The marked paper gives your score, a breakdown by technique, and the
-        <b>full worked solution to every question</b> &mdash; right or wrong &mdash; so
-        it doubles as the review sheet.</p>
-        <div class="chips">
-          <span class="chip"><b>25</b> questions</span>
-          <span class="chip"><b>25</b> marks</span>
-          <span class="chip"><b>60</b> minutes</span>
-          <span class="chip">no negative marking</span>
-        </div>
-        <p class="stats">
-          <span>resumes if you reload</span> <span class="sep">&middot;</span>
-          <span>solutions shown after submitting</span> <span class="sep">&middot;</span>
-          <span>answer key balanced</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="set" href="Integration-Formulas.html">
-        <span class="kicker">Reference &middot; click a formula, read its proof</span>
-        <h2>Integration Formulas <span class="go">Open &rarr;</span></h2>
-        <p>Every standard integral in the <b>Summary at the end of NCERT Class XII
-        Mathematics Part II, Chapter 7</b> &mdash; all 29 of them, in the Summary's own
-        order and grouping, nothing added and nothing left out. <b>Click a formula and
-        its proof opens in the panel beside it</b>; click another and that proof takes
-        its place.</p>
-        <p>The proofs are not just verification: each one shows how the formula is
-        <i>got</i> &mdash; the substitution, the partial fractions, the multiplier that
-        makes &int;sec&thinsp;x&thinsp;dx work, the parts-with-1 trick behind the three
-        radical integrals &mdash; and then differentiates the answer back.</p>
-        <div class="chips">
-          <span class="chip"><b>14</b> standard integrals</span>
-          <span class="chip"><b>4</b> by substitution</span>
-          <span class="chip"><b>6</b> special functions</span>
-          <span class="chip"><b>2</b> by parts</span>
-          <span class="chip"><b>3</b> special types</span>
-        </div>
-        <p class="stats">
-          <span><b>29</b> formulas</span> <span class="sep">&middot;</span>
-          <span>proof opens beside the list</span> <span class="sep">&middot;</span>
-          <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> to walk them</span>
-          <span class="sep">&middot;</span>
-          <span>every one differentiated back</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="set" href="Integration-By-Parts-From-Papers.html">
-        <span class="kicker">Index &middot; integrals</span>
-        <h2>Integration by Parts <span class="go">Open &rarr;</span></h2>
-        <p>Every integration-by-parts problem that has appeared in any of the 23 papers
-        here, each with its source, its marks and a <b>complete worked solution</b> behind a button.
-        Split into the thirteen classic &int;u dv problems, the four that are really the
-        e<sup>x</sup>(f + f&prime;) identity, and six that <i>look</i> like parts and are
-        not &mdash; those last ones are where the time goes missing.</p>
-        <div class="chips">
-          <span class="chip"><b>13</b> classic by parts</span>
-          <span class="chip"><b>4</b> e<sup>x</sup>(f + f&prime;) form</span>
-          <span class="chip"><b>6</b> near-misses</span>
-          <span class="chip"><b>23</b> papers searched</span>
-        </div>
-        <p class="stats">
-          <span><b>17</b> problems</span> <span class="sep">&middot;</span>
-          <span>1 to 6 marks</span> <span class="sep">&middot;</span>
-          <span>2016&ndash;17 to 2027</span> <span class="sep">&middot;</span>
-          <span>full solutions</span> <span class="sep">&middot;</span>
-          <span>machine-checked</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="set" href="Integration-From-ISC-Papers.pdf">
-        <span class="kicker">PDF &middot; questions then solutions</span>
-        <h2>Integration &mdash; the complete set <span class="go">Open &rarr;</span></h2>
-        <p>Every integration question &mdash; indefinite, definite and area &mdash;
-        from the <b>ISC specimen papers 2018&ndash;2027</b>, the <b>CISCE competency
-        booklet</b> and the <b>Heritage School</b> papers. Grouped by the method that
-        solves them rather than by paper, and kept deliberately spare &mdash; just the
-        problem and its mark value. Part 1 is the questions; <b>Part 2 gives a complete worked solution for
-        every one</b>, and a source index at the end says which paper each came from.</p>
-        <div class="chips">
-          <span class="chip"><b>12</b> Substitution &amp; standard forms</span>
-          <span class="chip"><b>5</b> Partial fractions</span>
-          <span class="chip"><b>12</b> By parts</span>
-          <span class="chip"><b>10</b> Trigonometric</span>
-          <span class="chip"><b>15</b> Definite by properties</span>
-          <span class="chip"><b>4</b> Modulus &amp; greatest integer</span>
-          <span class="chip"><b>10</b> Area under curves</span>
-        </div>
-        <p class="stats">
-          <span><b>68</b> questions</span> <span class="sep">&middot;</span>
-          <span><b>17</b> pages</span> <span class="sep">&middot;</span>
-          <span>solutions at the end</span> <span class="sep">&middot;</span>
-          <span>machine-checked</span>
-        </p>
-      </a>
-    </li>
-  </ul>
-
-  <div class="section-label">Practice papers</div>
-
-  <p class="lead">Three papers on the <b>ISC 2027 pattern</b>, which is new this year: four
-  sections A&ndash;D, twenty questions, <b>all compulsory</b> &mdash; the old choice between
-  Section&nbsp;B and Section&nbsp;C is gone. Each paper is 80 marks over three hours, with
-  internal choice in three questions in each of Sections B, C and D, and an answer key on the
-  last pages.</p>
-
-  <table class="bp">
-    <thead>
-      <tr><th>Section</th><th>Questions</th><th>Marks each</th><th>Total</th><th>Internal choices</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>A</td><td>Q1, sub-parts (i)&ndash;(xx)</td><td>1</td><td>20</td><td>&mdash;</td></tr>
-      <tr><td>B</td><td>Q2&ndash;Q8</td><td>2</td><td>14</td><td>3</td></tr>
-      <tr><td>C</td><td>Q9&ndash;Q15</td><td>3</td><td>21</td><td>3</td></tr>
-      <tr><td>D</td><td>Q16&ndash;Q20</td><td>5</td><td>25</td><td>3</td></tr>
-    </tbody>
-    <tfoot>
-      <tr><td colspan="3">Unit weights &mdash; Relations &amp; Functions and Inverse Trig 14,
-      Algebra 14, Calculus 45, Linear Programming 7</td><td>80</td><td>9</td></tr>
-    </tfoot>
-  </table>
-
-  <ul class="sets" style="margin-top:1.5rem">
 
     <li class="paperblock featured">
-      <span class="kicker">Paper 1 &middot; sit this one first</span>
-      <h2>First Term Practice Paper 1</h2>
-      <p>The closest of the three to a straight reading of the syllabus, and the one to try
-      before the others. Its long answers are the four that come up most often: a bijection
-      with its inverse, a three-variable system by Martin&rsquo;s rule, a maximum-area
-      optimisation, and an area bounded by a circle and a line.</p>
-      <div class="chips">
-        <span class="chip">Equivalence relations</span>
-        <span class="chip">tan<sup>&minus;1</sup> equations</span>
-        <span class="chip">Determinant properties</span>
-        <span class="chip">Martin&rsquo;s rule</span>
-        <span class="chip">Rate of change</span>
-        <span class="chip">Partial fractions</span>
-        <span class="chip">Window optimisation</span>
-        <span class="chip">Circle and line area</span>
-      </div>
+      <span class="kicker">Slide show &middot; learn it &middot; all six chapters</span>
+      <h2>Concepts, Derivations &amp; Problem Types</h2>
+      <p>The physics you need before the problems make sense, one idea to a
+      slide. Each section runs concepts &rarr; derivations &rarr; problem types
+      &rarr; a one-slide recall sheet. Every concept ends in a <i>Hold on to
+      this</i> line; every derivation keeps its working behind a button; every
+      problem type gives the cue and the method before it shows you a question.
+      <b>Every concept and every derivation carries a drawn figure</b> &mdash; 125
+      of them, most lifted from the 92-page revision volume in
+      <code>Revision/</code>, which already had one for nearly every derivation
+      it set out.</p>
       <p class="stats">
-        <span><b>80</b> marks</span> <span class="sep">&middot;</span>
-        <span><b>3</b> hours</span> <span class="sep">&middot;</span>
-        <span><b>20</b> questions</span> <span class="sep">&middot;</span>
-        <span>6 pages</span> <span class="sep">&middot;</span>
-        <span>answer key included</span>
+        <span><b>47</b> concepts</span> <span class="sep">&middot;</span>
+        <span><b>14</b> derivations</span> <span class="sep">&middot;</span>
+        <span><b>37</b> problem types</span> <span class="sep">&middot;</span>
+        <span><b>125</b> diagrams</span> <span class="sep">&middot;</span>
+        <span><b>7</b> recall sheets</span> <span class="sep">&middot;</span>
+        <span><b>112</b> slides</span>
       </p>
+      <div class="chips">
+        <span class="chip">Electrostatics <b>23</b></span>
+        <span class="chip">Current Electricity <b>17</b></span>
+        <span class="chip">Magnetism <b>17</b></span>
+        <span class="chip">EMI &amp; AC <b>16</b></span>
+        <span class="chip">EM Waves <b>7</b></span>
+        <span class="chip">Ray Optics <b>14</b></span>
+        <span class="chip">Wave Optics <b>11</b></span>
+      </div>
       <div class="ways">
-        <a class="way" href="First-Term-Practice-Paper-1.pdf">
-          <span class="wk">PDF &middot; question paper and key</span>
-          <b>Open Paper 1</b>
-          <span class="wd">Sections A&ndash;D as above. The key is on the last two pages and
-            is marked <i>do not read before attempting</i> &mdash; print pages 1&ndash;4 alone
-            if you would rather not have it to hand.</span>
-          <span class="go">Open &rarr;</span>
+        <a class="way" href="First-Term-Concepts.html">
+          <span class="wk">Read it &middot; then try each one</span>
+          <b>Concept, derivation, problem type &mdash; one to a slide</b>
+          <span class="wd">Start here if a chapter feels unfamiliar. The last
+            slide of every section is a recall sheet &mdash; the whole chapter on
+            one screen, for the morning of the paper.</span>
+          <span class="go">Start &rarr;</span>
         </a>
       </div>
     </li>
 
-    <li class="paperblock">
-      <span class="kicker">Paper 2 &middot; heavier on proof</span>
-      <h2>First Term Practice Paper 2</h2>
-      <p>Leans towards the questions that ask you to <i>show</i> rather than compute: a
-      second-order differentiation identity, an inverse-trigonometric identity over a
-      restricted domain, and the classic open-box maximum volume. Its integrals are the
-      substitution-and-partial-fractions pair the syllabus names explicitly.</p>
-      <div class="chips">
-        <span class="chip">Reflexivity counterexamples</span>
-        <span class="chip">2&nbsp;tan<sup>&minus;1</sup> formula</span>
-        <span class="chip">Cayley&ndash;Hamilton style identity</span>
-        <span class="chip">Implicit differentiation</span>
-        <span class="chip">e<sup>a&nbsp;cos&#8315;&#185;x</sup> proof</span>
-        <span class="chip">Tangent and normal</span>
-        <span class="chip">Open box maximum</span>
-        <span class="chip">Area along the y-axis</span>
-      </div>
+    <li class="paperblock featured">
+      <span class="kicker">Slide show &middot; test it &middot; all six chapters</span>
+      <h2>First Term Revision &mdash; problems</h2>
+      <p>A hundred and forty-six problems over the same seven sections, shown one
+      at a time. Every solution sits behind a <i>Show solution</i> button and
+      carries an <b>Answer</b> line, a <b>Note</b> on method, and a <b>Trap</b>
+      naming the specific error the examiner is testing for. Each problem is
+      tagged with its marks and its source.</p>
       <p class="stats">
-        <span><b>80</b> marks</span> <span class="sep">&middot;</span>
-        <span><b>3</b> hours</span> <span class="sep">&middot;</span>
-        <span><b>20</b> questions</span> <span class="sep">&middot;</span>
-        <span>6 pages</span> <span class="sep">&middot;</span>
-        <span>answer key included</span>
+        <span><b>146</b> problems</span> <span class="sep">&middot;</span>
+        <span><b>37</b> problem types</span> <span class="sep">&middot;</span>
+        <span><b>16</b> figures</span> <span class="sep">&middot;</span>
+        <span><b>6</b> sources drawn on</span> <span class="sep">&middot;</span>
+        <span><b>153</b> slides</span>
       </p>
+      <div class="chips">
+        <span class="chip">Electrostatics <b>25</b></span>
+        <span class="chip">Current Electricity <b>25</b></span>
+        <span class="chip">Magnetism <b>25</b></span>
+        <span class="chip">EMI &amp; AC <b>24</b></span>
+        <span class="chip">EM Waves <b>9</b></span>
+        <span class="chip">Ray Optics <b>24</b></span>
+        <span class="chip">Wave Optics <b>14</b></span>
+      </div>
       <div class="ways">
-        <a class="way" href="First-Term-Practice-Paper-2.pdf">
-          <span class="wk">PDF &middot; question paper and key</span>
-          <b>Open Paper 2</b>
-          <span class="wd">Same blueprint, different questions throughout &mdash; no problem
-            is repeated from Paper 1.</span>
-          <span class="go">Open &rarr;</span>
+        <a class="way" href="First-Term-Revision-Learn.html">
+          <span class="wk">Attempt it &middot; then reveal</span>
+          <b>Problem, then solution &mdash; one slide at a time</b>
+          <span class="wd">Problems are grouped <b>by type</b> rather than by
+            paper, and are chosen to cover different concepts rather than to
+            predict a paper. Drawn from the NCERT Exemplar, the NCERT textbook,
+            ISC board and specimen papers, the CISCE competency booklet and the
+            Heritage School papers.</span>
+          <span class="go">Start &rarr;</span>
         </a>
       </div>
     </li>
 
-    <li class="paperblock">
-      <span class="kicker">Paper 3 &middot; widest spread of small questions</span>
-      <h2>First Term Practice Paper 3</h2>
-      <p>The best of the three for finding gaps: its Section A ranges over all nine chapters
-      and its two-markers are short and varied. Long answers cover a least-cost problem, a
-      completed-square integral and an area cut by the line y&nbsp;=&nbsp;x.</p>
-      <div class="chips">
-        <span class="chip">Counting equivalence relations</span>
-        <span class="chip">tan<sup>&minus;1</sup>1&nbsp;+&nbsp;tan<sup>&minus;1</sup>2&nbsp;+&nbsp;tan<sup>&minus;1</sup>3</span>
-        <span class="chip">Area by determinants</span>
-        <span class="chip">Parametric derivatives</span>
-        <span class="chip">Local maxima</span>
-        <span class="chip">Least-cost tank</span>
-        <span class="chip">Completing the square</span>
-        <span class="chip">Circle and y&nbsp;=&nbsp;x</span>
-      </div>
+    <li class="paperblock featured">
+      <span class="kicker">Timed paper &middot; objective &middot; the 26 proofs</span>
+      <h2>Theory Proofs &mdash; objective paper</h2>
+      <p>Sixty one-mark questions on the twenty-six theory proofs that have
+      actually been set &mdash; the <b>result</b> itself, a <b>numerical</b>
+      application of it, and the <b>traps</b> the solution sheet warns about.
+      Two hours. Answers can be changed freely and nothing is marked
+      until you submit; when the time runs out the paper submits itself. The
+      marked paper gives the correct answer and a worked explanation for every
+      question, so it doubles as the review.</p>
       <p class="stats">
-        <span><b>80</b> marks</span> <span class="sep">&middot;</span>
-        <span><b>3</b> hours</span> <span class="sep">&middot;</span>
-        <span><b>20</b> questions</span> <span class="sep">&middot;</span>
-        <span>6 pages</span> <span class="sep">&middot;</span>
-        <span>answer key included</span>
+        <span><b>60</b> questions</span> <span class="sep">&middot;</span>
+        <span><b>120</b> minutes</span> <span class="sep">&middot;</span>
+        <span><b>26</b> proofs covered</span> <span class="sep">&middot;</span>
+        <span><b>27</b> numericals</span> <span class="sep">&middot;</span>
+        <span><b>13</b> traps</span>
       </p>
+      <div class="chips">
+        <span class="chip">Electrostatics <b>21</b></span>
+        <span class="chip">Current Electricity <b>3</b></span>
+        <span class="chip">Magnetism <b>9</b></span>
+        <span class="chip">EMI &amp; AC <b>3</b></span>
+        <span class="chip">Ray Optics <b>15</b></span>
+        <span class="chip">Wave Optics <b>9</b></span>
+      </div>
       <div class="ways">
-        <a class="way" href="First-Term-Practice-Paper-3.pdf">
-          <span class="wk">PDF &middot; question paper and key</span>
-          <b>Open Paper 3</b>
-          <span class="wd">Sit this one last, as a check on coverage rather than on
-            technique.</span>
-          <span class="go">Open &rarr;</span>
+        <a class="way" href="First-Term-Theory-Proofs-MCQ.html">
+          <span class="wk">Sit it &middot; then read every explanation</span>
+          <b>Two hours, sixty questions, marked at the end</b>
+          <span class="wd">Work the proofs first. This paper checks whether the
+            <b>results</b> stuck &mdash; which direction the equatorial field
+            points, whether the arm of the couple is 2<i>l</i> sin
+            &theta;, whether &theta; is measured from the normal or from the
+            plane, and whether the energy is <sup>1</sup>&frasl;<sub>2</sub><i>QV</i>
+            or <i>QV</i>.</span>
+          <span class="go">Begin &rarr;</span>
         </a>
       </div>
     </li>
 
-    <li class="paperblock">
-      <span class="kicker">Unit test &middot; chapters 1&ndash;5 only</span>
-      <h2>Unit Test &mdash; 40 marks</h2>
-      <p>Half the length, half the syllabus: the same Heritage First Term format and
-      standard cut to <b>40 marks over an hour and a half</b>, covering only Relations
-      and Functions, Inverse Trigonometric Functions, Matrices, Determinants, and
-      Continuity and Differentiability. Applications of Derivatives, Integrals,
-      Application of Integrals and Linear Programming are not examined here. No
-      question repeats from the three full papers.</p>
-      <div class="chips">
-        <span class="chip"><b>9</b> Relations &amp; Functions</span>
-        <span class="chip"><b>7</b> Inverse Trig</span>
-        <span class="chip"><b>7</b> Matrices</span>
-        <span class="chip"><b>7</b> Determinants</span>
-        <span class="chip"><b>10</b> Continuity &amp; Differentiability</span>
-      </div>
+    <li class="paperblock featured">
+      <span class="kicker">Second Term &middot; NCERT Chapter 11 &middot; from the papers</span>
+      <h2>Dual Nature of Radiation and Matter</h2>
+      <p>Every question on this chapter that has actually been set &mdash; the
+      ISC board papers 2018&ndash;2026, the ISC specimen papers
+      2018&ndash;2027 and the CISCE competency booklet &mdash; together with
+      questions from <b>NCERT Chapter 11 and the NCERT Exemplar</b>, gathered
+      by topic with its answer. Answers stay hidden behind a button, and
+      <b>23 of them are the examiner&rsquo;s own</b>, quoted from the printed
+      keys that the specimen papers, the booklet, NCERT and the Exemplar all
+      carry.</p>
       <p class="stats">
-        <span><b>40</b> marks</span> <span class="sep">&middot;</span>
-        <span><b>1&frac12;</b> hours</span> <span class="sep">&middot;</span>
-        <span><b>11</b> questions</span> <span class="sep">&middot;</span>
-        <span>4 pages</span> <span class="sep">&middot;</span>
-        <span>answer key included</span>
+        <span><b>48</b> questions</span> <span class="sep">&middot;</span>
+        <span><b>84</b> marks</span> <span class="sep">&middot;</span>
+        <span><b>5</b> topics</span> <span class="sep">&middot;</span>
+        <span><b>23</b> printed answers</span> <span class="sep">&middot;</span>
+        <span><b>5</b> from NCERT &amp; Exemplar</span> <span class="sep">&middot;</span>
+        <span><b>9</b> diagrams</span> <span class="sep">&middot;</span>
+        <span><b>25</b>-question test</span>
       </p>
+      <div class="chips">
+        <span class="chip">The photon <b>6</b></span>
+        <span class="chip">Photoelectric laws <b>9</b></span>
+        <span class="chip">Einstein&rsquo;s equation <b>6</b></span>
+        <span class="chip">V<sub>s</sub>&ndash;&nu; graph <b>7</b></span>
+        <span class="chip">de Broglie waves <b>15</b></span>
+      </div>
       <div class="ways">
-        <a class="way" href="Unit-Test-Paper-40-Marks.pdf">
-          <span class="wk">PDF &middot; question paper and key</span>
-          <b>Open the Unit Test</b>
-          <span class="wd">Sections A&ndash;D scaled to 40 marks: 10 &times; 1, 4 &times; 2,
-            4 &times; 3 and 2 &times; 5, with internal choice in two questions in
-            Section B, two in Section C and one in Section D. Key on pages 3&ndash;4.</span>
+        <a class="way" href="Dual-Nature-From-Papers.html">
+          <span class="wk">Read it &middot; cover the answer first</span>
+          <b>Forty-three questions, every one of them previously set</b>
+          <span class="wd">This chapter is in the <b>Second Term</b>, not the
+            First. It is examined almost entirely on four things: whether the
+            stopping potential depends on intensity or on frequency, the slope
+            and the two intercepts of the V<sub>s</sub>&ndash;&nu; line,
+            &lambda; = <i>h</i>/<i>p</i> in whichever form the data demand, and
+            arithmetic with <i>hc</i> = 1240&nbsp;eV&nbsp;nm.</span>
+          <span class="wd">At the end there is a <b>timed test</b> &mdash;
+            25 one-mark questions in 60 minutes, every one built on a question
+            above. After you submit, each item opens a <b>worked solution</b>
+            &mdash; the steps, the answer and the trap &mdash; and links
+            straight back to the question it came from.</span>
           <span class="go">Open &rarr;</span>
         </a>
       </div>
     </li>
 
     <!-- ============================================================
-         TO ADD ANOTHER PAPER: copy one <li class="paperblock"> above,
-         change the paper number in the heading and the href, and
-         rewrite the description, the chips and the stats. The PDF
-         itself is generated by src/build_papers.py from a matching
-         src/papers_pN.py data file.
+         TO ADD ANOTHER STUDY PAGE: copy one <li class="paperblock">
+         above, change the heading, the description and the href.
+         Drop "featured" unless it should carry the accent border.
          ============================================================ -->
 
   </ul>
@@ -770,50 +415,34 @@ try {
 
 <footer>
   <div class="rule"></div>
-  <h3>Where the questions come from</h3>
-  <p>Problems are drawn from the <b>NCERT Exemplar</b> and the <b>NCERT textbook</b>, the
-  <b>ISC board and specimen papers</b> held in <code>Question-Papers/</code> and
-  <code>Specimen-Papers/</code>, and the <b>Heritage School</b> First Term paper of
-  2024&ndash;25. Each problem on the revision page names its source. Where a school-paper
-  question was ambiguous or misprinted it has been restated and the change noted.</p>
+  <h3>How the two decks are kept in step</h3>
+  <p>The concepts deck does not write its own list of problem types: it imports
+  them from the same modules the problem deck is built from, so a type cannot be
+  named one thing in one deck and something else in the other. Both builders
+  check this on every run.</p>
 
-  <h3>Answers</h3>
-  <p>Every numerical and algebraic answer on the revision page and in the three answer keys
-  was checked against a computer algebra system rather than copied across.</p>
+  <h3>Where the material comes from</h3>
+  <p>Concepts follow the <b>ISC 2027 syllabus</b> and what the board, specimen and
+  school papers actually set. Problems are drawn from six sources &mdash; the
+  <b>NCERT Exemplar</b> and <b>NCERT textbook</b>, the <b>ISC board</b> and
+  <b>specimen</b> papers, CISCE&rsquo;s <b>competency</b> booklet and the
+  <b>Heritage School</b> papers &mdash; and each names its own. Every numerical
+  answer was recomputed independently rather than copied across.</p>
 
-  <h3>Also in this folder</h3>
-  <p><a href="Functional_Analysis_Viva_Questions.pdf">Project viva questions</a> &mdash; 73
-  questions with answers, plus a rapid-fire sheet, for the Paper II project
-  <i>Functional Analysis of Exponential Mappings and Cryptographic Applications</i>. Check the
-  current syllabus in <code>Syllabus/</code> before working through the older papers; it
-  decides what is still examinable.</p>
+  <h3>Both decks work the same way</h3>
+  <p>Move with <kbd>&larr;</kbd> <kbd>&rarr;</kbd> or the buttons, <kbd>s</kbd> to
+  reveal, <kbd>d</kbd> to mark done; the contents bar jumps to a section, the
+  address bar tracks the slide, and your place is remembered. Printing lays the
+  whole deck out with everything revealed, so either one doubles as a booklet.</p>
 
   <h3>Rebuilding</h3>
-  <p><code>python3 src/build_revision.py</code> rebuilds the revision page.
-  <code>python3 src/build_papers.py</code> rebuilds all three papers, or pass a number for
-  one of them. This page is maintained by hand.</p>
+  <p><code>python3 src/build_concepts.py</code> and
+  <code>python3 src/build_revision.py</code> rebuild the two decks.
+  <code>python3 src/verify_concepts.py --print</code> and
+  <code>python3 src/verify_revision.py --print</code> drive them in a headless
+  browser to check the structure, the pairing, the diagrams and the print path.
+  This page is maintained by hand.</p>
 </footer>
 
-<script>
-/* Remember the reader's light / dark choice for this page. The revision page
-   is deliberately light-only, so nothing is shared with it. */
-var KEY = 'isc-maths-theme';
-function save(v){ try { localStorage.setItem(KEY, v); } catch(e){} }
-
-function isDark(){
-  var set = document.documentElement.getAttribute('data-theme');
-  if (set) return set === 'dark';
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
-}
-var btn = document.getElementById('themeBtn');
-function syncBtn(){ btn.textContent = isDark() ? 'Light' : 'Dark'; }
-btn.addEventListener('click', function(){
-  var next = isDark() ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  save(next);
-  syncBtn();
-});
-syncBtn();
-</script>
 </body>
 </html>
